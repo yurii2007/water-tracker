@@ -2,6 +2,7 @@
   "name": "water-tracker",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.io/yurii2007/water-tracker",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
     "@testing-library/jest-dom": "^5.17.0",
