@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/yurii2007/water-tracker/static/css/main.e6c13ad2.css",
+    "main.js": "/yurii2007/water-tracker/static/js/main.c8bd63fd.js",
+    "index.html": "/yurii2007/water-tracker/index.html",
+    "main.e6c13ad2.css.map": "/yurii2007/water-tracker/static/css/main.e6c13ad2.css.map",
+    "main.c8bd63fd.js.map": "/yurii2007/water-tracker/static/js/main.c8bd63fd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.c8bd63fd.js"
+  ]
+}
