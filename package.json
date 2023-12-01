@@ -2,7 +2,7 @@
   "name": "water-tracker",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.io/yurii2007/water-tracker",
+  "homepage": "https://yurii2007.github.io/water-tracker/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
     "@testing-library/jest-dom": "^5.17.0",
@@ -26,6 +26,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   },
   "eslintConfig": {
     "extends": [
