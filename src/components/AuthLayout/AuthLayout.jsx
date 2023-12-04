@@ -1,5 +1,7 @@
+import AuthLayoutStyles from "./AuthLayout.styled";
+
 const AuthLayout = ({ children }) => {
-  return <div>{children}</div>;
+  return <AuthLayoutStyles>{children}</AuthLayoutStyles>;
 };
 
 export default AuthLayout;
