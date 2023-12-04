@@ -64,7 +64,7 @@ export const UploadWrapper = styled.div`
   }
 `;
 
-export const WrapperFormInfo = styled.form`
+export const WrapperFormInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;

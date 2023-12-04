@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { ReactComponent as UploadImgSvg } from "../../images/svg/upload_icon.svg";
 import { ReactComponent as CloseModalSvg } from "../../images/svg/x.svg";
 import SettingForm from "./SettingForm";
@@ -10,16 +10,18 @@ import {
 
 const SettingModal = () => {
   const filePickerRef = useRef(null);
-  const [selectedFile, setSelectedFile] = useState(null);
+
+  const FileChange = async (e) => {
+    const formData = new FormData();
+    if (e.target.files.length > 0) {
+      const file = e.target.files[0];
+      formData.append("avatar", file);
+      // dispatch to update avatar will be here
+    }
+  };
 
   const handleButtonClick = () => {
     filePickerRef.current.click();
-  };
-
-  const FileChange = (e) => {
-    const formaData = new FormData();
-    console.log(formaData);
-    // dispatch to update avatar will be here
   };
 
   return (
@@ -46,7 +48,7 @@ const SettingModal = () => {
             Upload a photo
           </button>
         </label>
-        {selectedFile && <img src={selectedFile} alt="Picked Image" />}
+        {/* {selectedFile && <img src={selectedFile} alt="Picked" />} */}
       </UploadWrapper>
       <SettingForm />
     </ContainerSettings>
