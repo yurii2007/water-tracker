@@ -1,4 +1,5 @@
 import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
 import {
   FormMainWrapper,
   InputLabel,
@@ -7,8 +8,10 @@ import {
   RightFormWrap,
   WrapperFormInfo,
 } from "./SettingModal.styled";
+import { updateUserThunk } from "../../redux/User/UserThunk";
 
 const SettingForm = () => {
+  const dispatch = useDispatch();
   const { values, touched, errors, handleSubmit, handleChange, handleBlur } =
     useFormik({
       initialValues: {
@@ -21,7 +24,19 @@ const SettingForm = () => {
       },
       // validationSchema: ,
       onSubmit: (values) => {
-        console.log(values);
+        dispatch(
+          updateUserThunk({
+            gender: values.gender,
+            name: values.name,
+            email: values.email,
+            oldPassword: values.oldPassword,
+            newPassword: values.newPassword,
+          })
+        )
+          .unwrap()
+          .then(() => {
+            //  ???
+          });
         // dispatch to update user will be here
       },
     });
@@ -77,17 +92,20 @@ const SettingForm = () => {
             <PasswordLabel>
               <span> Outdated password:</span>
               <input
-                autoComplete="new-password"
+                type="password"
+                autoComplete="off"
                 id="oldPassword"
                 value={values.oldPassword}
                 onChange={handleChange}
                 placeholder="Old password"
+                onBlur={handleBlur}
               />
             </PasswordLabel>
             <PasswordLabel>
               <span> New Password:</span>
               <div>
                 <input
+                  type="password"
                   autoComplete="off"
                   name="newPassword"
                   value={values.newPassword}
@@ -100,11 +118,13 @@ const SettingForm = () => {
             <PasswordLabel>
               <span> Repeat new password:</span>
               <input
+                type="password"
                 autoComplete="off"
                 name="repeatPassword"
                 value={values.repeatPassword}
                 onChange={handleChange}
                 placeholder="Repeat password"
+                onBlur={handleBlur}
               />
             </PasswordLabel>
           </RightFormWrap>
