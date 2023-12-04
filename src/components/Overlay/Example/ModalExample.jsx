@@ -1,10 +1,9 @@
-const ModalExample = ({ closeModal, exampleProp }) => {
+const ModalExample = ({ closeModal }) => {
   return (
     <div>
       <button onClick={closeModal} type="button">
         Close modal
       </button>
-      <p>{exampleProp}</p>
     </div>
   );
 };

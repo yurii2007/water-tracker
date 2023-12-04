@@ -1,13 +1,33 @@
 import { createPortal } from "react-dom";
-
-import { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 
 import { useModal } from "../ModalContext/ModalContextProvider";
 
+import SettingModal from "../SettingModal/SettingModal";
+import TodayListModal from "../TodayListModal/TodayListModal";
 import OverlayStyle from "./Overlay.styled";
 
-const Overlay = ({ modal, modalProps = {} }) => {
-  const { isOpenModal, closeModal } = useModal();
+const Overlay = () => {
+  const { modalName, isOpenModal, closeModal } = useModal();
+
+  const openedModal = useCallback(() => {
+    switch (modalName) {
+      case "logout":
+        return null; // return <LogoutModal closeModal={closeModal} />
+      case "todayListModal":
+        return <TodayListModal closeModal={closeModal} />;
+      case "deletePopUp":
+        return null; // return <Component closeModal={closeModal} />
+      case "settings":
+        return <SettingModal closeModal={closeModal} />;
+      case "dailyNorma":
+        return null; // return <DailyNormaModal closeModal={closeModal} />
+      case "addWater":
+        return null; // return <AddWater closeModal={closeModal} />
+      default:
+        return null;
+    }
+  }, [modalName]);
 
   const backdropClick = useCallback(
     (e) => {
@@ -18,7 +38,6 @@ const Overlay = ({ modal, modalProps = {} }) => {
 
   const handleKeyDown = useCallback(
     (e) => {
-      console.log(e.code);
       if (e.code === "Escape") {
         closeModal();
       }
@@ -39,16 +58,8 @@ const Overlay = ({ modal, modalProps = {} }) => {
     return null;
   }
 
-  if (!modal) {
-    throw new Error(
-      "Передайте правильно модальне вікно, як показано в components/Overlay/Example/ModalRenderExample.jsx"
-    );
-  }
-
   return createPortal(
-    <OverlayStyle onClick={backdropClick}>
-      {modal({ ...modalProps, closeModal })}
-    </OverlayStyle>,
+    <OverlayStyle onClick={backdropClick}>{openedModal()}</OverlayStyle>,
     document.body
   );
 };

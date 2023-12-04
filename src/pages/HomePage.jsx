@@ -1,6 +1,10 @@
+import WaterRatioPanel from "../components/WaterRatioPanel/WaterRatioPanel"
+
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <div>
+      <WaterRatioPanel />
+    </div>
   )
 }
 
