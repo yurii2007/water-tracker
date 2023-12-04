@@ -1,7 +1,7 @@
-const SignUpPage = () => {
-  return (
-    <div>SignUpPage</div>
-  )
-}
+import SignUpForm from "../components/SignUpForm/SignUpForm";
 
-export default SignUpPage
+const SignUpPage = () => {
+  return <SignUpForm />;
+};
+
+export default SignUpPage;
