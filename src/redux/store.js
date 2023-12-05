@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import {
-//   persistStore,
-//   persistReducer,
+  persistStore,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -9,16 +9,22 @@ import {
   REGISTER,
   PURGE,
 } from "redux-persist";
-// import storage from "redux-persist/lib/storage";
+import storage from "redux-persist/lib/storage";
 
-// const persistConfig = {
-//   key: "",
-//   storage,
-//   whitelist: [],
-// };
+import { userReducer } from "./User/UserSlice";
+
+const persistUserConfig = {
+  key: "auth",
+  storage,
+  whitelist: ["token"],
+};
+
+const persistedUser = persistReducer(persistUserConfig, userReducer);
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    user: persistedUser,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -26,5 +32,7 @@ const store = configureStore({
       },
     }),
 });
+
+export const persistedStore = persistStore(store);
 
 export default store;

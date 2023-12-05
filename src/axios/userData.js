@@ -6,18 +6,19 @@ export const instance = axios.create({
 
 // User data
 
-export const getProfile = async () => {
-  const { data } = await instance("/current");
+export const getProfile = async (token) => {
+  const { data } = await instance.get("/current", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return data;
 };
 
 export const updateUser = async (newUserData) => {
-  const dataToUpdate = Object.entries(newUserData).reduce(
-    (acc, [key, value]) => {
-      return value ? { ...acc, [key]: value } : acc;
-    },
-    {}
-  );
+  const dataToUpdate = Object.entries(newUserData).reduce((acc, [key, value]) => {
+    return value ? { ...acc, [key]: value } : acc;
+  }, {});
 
   if (!dataToUpdate.newPassword) {
     delete dataToUpdate.oldPassword;
