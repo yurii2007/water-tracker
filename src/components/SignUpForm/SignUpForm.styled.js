@@ -7,8 +7,9 @@ export const PasswordIconLook = styled.div`
   height: 16px;
   width: 16px;
   position: absolute;
-  right: 0;
-  top: 0;
+  right: ${(props) => (props.type === "settings" ? "10px" : "0")};
+  top: ${(props) => (props.type === "settings" ? "43px" : "0")};
+  cursor: pointer;
 `;
 
 export const FaEyeStyled = styled(FaEye)`

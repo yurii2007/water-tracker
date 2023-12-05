@@ -129,6 +129,7 @@ export const InputLabel = styled.label`
 export const PasswordLabel = styled.label`
   display: flex;
   flex-direction: column;
+  position: relative;
   span {
     color: var(--primary-black);
     font-family: Roboto, sans-serif;
@@ -138,6 +139,7 @@ export const PasswordLabel = styled.label`
   }
   input {
     display: flex;
+
     padding: 12px 10px;
     align-items: flex-start;
     border-radius: 6px;
