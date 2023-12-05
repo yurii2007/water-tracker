@@ -75,8 +75,6 @@ export const FormMainWrapper = styled.div`
   gap: 24px;
   flex-direction: column;
 
-  @media screen and (min-width: 768px) {
-  }
   @media screen and (min-width: 1440px) {
     flex-direction: row;
   }
@@ -148,5 +146,40 @@ export const PasswordLabel = styled.label`
     font-family: Roboto, sans-serif;
     font-size: 16px;
     line-height: 1.25;
+    width: 100%;
   }
+`;
+
+export const BtnSave = styled.button`
+  display: flex;
+  padding: 10px 30px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  color: var(--primery-color-white, #fff);
+  text-align: center;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.33;
+  border: none;
+  background: var(--primery-color-blue, #407bff);
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+  cursor: pointer;
+
+  width: 100%;
+  @media screen and (min-width: 768px) {
+    width: 160px;
+  }
+`;
+
+export const BtnSaveWrap = styled.div`
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: flex-end;
+  }
+`;
+
+export const UpTitle = styled.h3`
+  margin-bottom: 8px;
 `;
