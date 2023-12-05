@@ -1,16 +1,27 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { getProfile, updateAvatar, updateUser } from "../../axios/userData";
+import {
+  getProfile,
+  saveToken,
+  updateAvatar,
+  updateUser,
+} from "../../axios/userData";
 import { logIn, register } from "../../axios/auth";
 
 export const updateAvatarThunk = createAsyncThunk(
   "user/updateAvatar",
-  async (newImg, { rejectWithValue }) => {
+  async (newImg, thunkAPI) => {
+    const state = await thunkAPI.getState();
+
+    if (!state.user.token) return thunkAPI.rejectWithValue("Unauthorized");
+
     try {
+      saveToken(state.user.token);
       const URL = await updateAvatar(newImg);
+
       return URL;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
