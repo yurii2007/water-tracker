@@ -6,6 +6,7 @@ import { useModal } from "../ModalContext/ModalContextProvider";
 import SettingModal from "../SettingModal/SettingModal";
 import TodayListModal from "../TodayListModal/TodayListModal";
 import OverlayStyle from "./Overlay.styled";
+import LogOut from "../LogOut/LogOut";
 
 const Overlay = () => {
   const { modalName, isOpenModal, closeModal } = useModal();
@@ -13,7 +14,7 @@ const Overlay = () => {
   const openedModal = useCallback(() => {
     switch (modalName) {
       case "logout":
-        return null; // return <LogoutModal closeModal={closeModal} />
+        return <LogOut closeModal={closeModal} />;
       case "todayListModal":
         return <TodayListModal closeModal={closeModal} />;
       case "deletePopUp":
@@ -47,9 +48,11 @@ const Overlay = () => {
 
   useEffect(() => {
     if (isOpenModal) {
+      document.body.style.overflow = "hidden";
       document.addEventListener("keydown", handleKeyDown);
     }
     if (!isOpenModal) {
+      document.body.style.overflow = "auto";
       document.removeEventListener("keydown", handleKeyDown);
     }
   }, [handleKeyDown, isOpenModal]);
@@ -58,8 +61,10 @@ const Overlay = () => {
     return null;
   }
 
-  return createPortal(
-    <OverlayStyle onClick={backdropClick}>{openedModal()}</OverlayStyle>,
+  return (
+    createPortal(
+      <OverlayStyle onClick={backdropClick}>{openedModal()}</OverlayStyle>
+    ),
     document.body
   );
 };
