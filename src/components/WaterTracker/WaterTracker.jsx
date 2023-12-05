@@ -12,7 +12,7 @@ import {
 } from "./WaterTracker.styled";
 
 import { ReactComponent as CalendarIcon } from "../../images/svg/calendar.svg";
-import { ReactComponent as GraphicIcon } from "../../images/svg/settings_icon.svg";
+import { ReactComponent as GraphicIcon } from "../../images/svg/statistic_icon.svg";
 import { ReactComponent as ToolsIcon } from "../../images/svg/instruments_icon.svg";
 
 const primaryBlue = "var(--primary-blue)";

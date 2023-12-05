@@ -1,6 +1,8 @@
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
+  BtnSave,
+  BtnSaveWrap,
   FormMainWrapper,
   InputLabel,
   LeftFormWrap,
@@ -9,10 +11,15 @@ import {
   WrapperFormInfo,
 } from "./SettingModal.styled";
 import { updateUserThunk } from "../../redux/User/UserThunk";
+// import { validationSchema } from "../../schemas/settingFormSchema";
+import { useEffect } from "react";
 
 const SettingForm = () => {
   const dispatch = useDispatch();
-  const { values, touched, errors, handleSubmit, handleChange, handleBlur } =
+  const userData = useSelector((state) => state.user.user);
+  console.log(userData);
+
+  const { values, handleSubmit, handleChange, handleBlur, setValues } =
     useFormik({
       initialValues: {
         gender: "",
@@ -22,8 +29,9 @@ const SettingForm = () => {
         newPassword: "",
         repeatPassword: "",
       },
-      // validationSchema: ,
+      // validationSchema,
       onSubmit: (values) => {
+        console.log(values);
         dispatch(
           updateUserThunk({
             gender: values.gender,
@@ -35,37 +43,48 @@ const SettingForm = () => {
         )
           .unwrap()
           .then(() => {
-            //  ???
+            alert("User updated successfully!");
           });
-        // dispatch to update user will be here
       },
     });
+
+  useEffect(() => {
+    setValues((prevValues) => ({
+      ...prevValues,
+      gender: userData.gender || "",
+      name: userData.name || "",
+      email: userData.email || "",
+    }));
+  }, [setValues, userData]);
+
   return (
     <form onSubmit={handleSubmit}>
       <WrapperFormInfo>
         <FormMainWrapper>
           <LeftFormWrap>
             <h3>Your gender identity</h3>
-            <label>
-              <input
-                type="radio"
-                name="gender"
-                value="female"
-                onChange={handleChange}
-                checked={values.gender === "female"}
-              />
-              <span>Girl</span>
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="gender"
-                value="male"
-                onChange={handleChange}
-                checked={values.gender === "male"}
-              />
-              <span>Man</span>
-            </label>
+            <div>
+              <label style={{ marginRight: "24px" }}>
+                <input
+                  type="radio"
+                  name="gender"
+                  value="female"
+                  onChange={handleChange}
+                  checked={values.gender === "female"}
+                />
+                <span>Girl</span>
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="gender"
+                  value="male"
+                  onChange={handleChange}
+                  checked={values.gender === "male"}
+                />
+                <span>Man</span>
+              </label>
+            </div>
 
             <InputLabel>
               <span> Your name</span>
@@ -129,7 +148,9 @@ const SettingForm = () => {
             </PasswordLabel>
           </RightFormWrap>
         </FormMainWrapper>
-        <button type="submit">Save</button>
+        <BtnSaveWrap>
+          <BtnSave type="submit">Save</BtnSave>
+        </BtnSaveWrap>
       </WrapperFormInfo>
     </form>
   );
