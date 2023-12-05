@@ -68,6 +68,7 @@ export const WrapperPercentage = styled.div`
 `;
 
 export const AddBtn = styled.button`
+  width: 178px;
   display: inline-flex;
   padding: 10px 30px;
   justify-content: center;

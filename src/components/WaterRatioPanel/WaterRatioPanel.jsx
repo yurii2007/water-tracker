@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useModal } from "../ModalContext/ModalContextProvider";
-import Overlay from "../Overlay/Overlay";
 import { ReactComponent as AddIcon } from "../../images/svg/plus_circle.svg";
-import TodayListModal from "../TodayListModal/TodayListModal";
 import {
   AddBtn,
   ContainerWater,
@@ -12,6 +10,7 @@ import {
   TodayText,
   WrapperPercentage,
 } from "./WaterRatioPanel.styled";
+import { modalNames } from "../../constants/modals";
 
 const WaterRatioPanel = () => {
   const [water, setWater] = useState(0);
@@ -41,13 +40,12 @@ const WaterRatioPanel = () => {
           <span>0%</span>
           <span>100%</span>
         </WrapperPercentage>
-        <TextPercentage percentPosition={inputValue}>{water}%</TextPercentage>
+        <TextPercentage $percentPosition={inputValue}>{water}%</TextPercentage>
       </InputContainer>
-      <AddBtn onClick={openModal} type="button">
+      <AddBtn onClick={() => openModal(modalNames.todayList)} type="button">
         <AddIcon aria-label="add_water" />
         Add water
       </AddBtn>
-      <Overlay modal={TodayListModal} />
     </ContainerWater>
   );
 };
