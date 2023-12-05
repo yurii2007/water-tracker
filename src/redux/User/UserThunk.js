@@ -32,7 +32,7 @@ export const registerThunk = createAsyncThunk(
     try {
       return await register(userCredentials);
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -43,7 +43,7 @@ export const loginThunk = createAsyncThunk(
     try {
       return await logIn(userCredentials);
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
