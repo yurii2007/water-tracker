@@ -16,7 +16,8 @@ const initialState = {
     dailyNorma: "",
   },
   message: "",
-  token: null,
+  token: "",
+  isLoggedIn: false,
   isLoading: false,
   error: null,
 };
@@ -52,9 +53,10 @@ const userSlice = createSlice({
       .addCase(registerThunk.rejected, rejectedCase)
       .addCase(loginThunk.pending, pendingCase)
       .addCase(loginThunk.fulfilled, (state, { payload }) => {
-        state.user.email = payload.email;
-        state.user.avatar = payload.avatar;
-        state.token = payload.token;
+        state.user.email = payload.user.email;
+        state.user.avatar = payload.user.avatar;
+        state.token = payload.user.token;
+        state.isLoggedIn = true;
         state.isLoading = false;
       })
       .addCase(loginThunk.rejected, rejectedCase)
@@ -66,6 +68,7 @@ const userSlice = createSlice({
         state.user.avatar = payload.avatar;
         state.user.gender = payload.gender;
         state.user.dailyNorma = payload.dailyNorma;
+        state.isLoggedIn = true;
         state.isLoading = false;
       })
       .addCase(getCurrentThunk.rejected, rejectedCase);

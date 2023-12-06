@@ -31,7 +31,7 @@ const Overlay = () => {
       default:
         return null;
     }
-  }, [modalName]);
+  }, [modalName, closeModal]);
 
   const backdropClick = useCallback(
     (e) => {

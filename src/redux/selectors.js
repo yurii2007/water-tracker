@@ -1,3 +1,12 @@
+import { createSelector } from "reselect";
+
 // export const selectUser = (state) => state.auth.user;
-// export const selectIsLogin = (state) => state.auth.isLoggedIn;
+export const selectIsLoggedIn = (state) => state.user.isLoggedIn;
+const selectToken = (state) => state.user.token;
 // export const isRefreshing = (state) => state.auth.isRefreshing;
+export const selectMonthInfo = (state) => state.water.monthInfo;
+
+export const selectIsAuth = createSelector(
+  [selectIsLoggedIn, selectToken],
+  (isLoggedIn, token) => token && isLoggedIn
+);
