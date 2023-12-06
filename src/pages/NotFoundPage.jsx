@@ -1,9 +1,12 @@
-
+import { Suspense } from "react";
+import { Outlet } from "react-router";
 
 const NotFoundPage = () => {
   return (
-    <div>NotFoundPage</div>
-  )
-}
+    <Suspense fallback={<div>loading...</div>}>
+      <Outlet />
+    </Suspense>
+  );
+};
 
-export default NotFoundPage
+export default NotFoundPage;
