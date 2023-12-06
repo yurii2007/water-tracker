@@ -1,6 +1,5 @@
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
 
 import { updateUserThunk } from "../../redux/User/UserThunk";
 import { validationSchema } from "../../schemas/settingFormSchema";
@@ -9,27 +8,30 @@ import { TogglePasswordIcon } from "../TogglePasswordVisibility/TogglePasswordVi
 import {
   BtnSave,
   BtnSaveWrap,
+  ErrorPassText,
   FormMainWrapper,
+  GenderBlock,
   InputLabel,
   LeftFormWrap,
   PasswordLabel,
   RightFormWrap,
   WrapperFormInfo,
 } from "./SettingModal.styled";
+import { usePasswordToggle } from "../../Helpers/usePasswordToggle";
 
 const SettingForm = () => {
   const userData = useSelector((state) => state.user.user);
-  const [isShow, setIsShow] = useState(false);
+  const { showPasswords, togglePasswordVisibility } = usePasswordToggle([
+    "oldPassword",
+    "password1",
+    "password2",
+  ]);
   const dispatch = useDispatch();
-
-  const toggleShowPassword = () => {
-    setIsShow(!isShow);
-  };
 
   const { values, errors, handleSubmit, handleChange, handleBlur, setValues } =
     useFormik({
       initialValues: {
-        gender: "",
+        gender: userData.gender || "",
         name: "",
         email: "",
         oldPassword: "",
@@ -67,14 +69,14 @@ const SettingForm = () => {
         <FormMainWrapper>
           <LeftFormWrap>
             <h3>Your gender identity</h3>
-            <div>
+            <GenderBlock>
               <label style={{ marginRight: "24px" }}>
                 <input
                   type="radio"
                   name="gender"
                   value="female"
                   onChange={handleChange}
-                  checked={userData.gender === "female"}
+                  checked={values.gender === "female"}
                 />
                 <span> Girl </span>
               </label>
@@ -84,11 +86,11 @@ const SettingForm = () => {
                   name="gender"
                   value="male"
                   onChange={handleChange}
-                  checked={userData.gender === "male"}
+                  checked={values.gender === "male"}
                 />
                 <span> Man </span>
               </label>
-            </div>
+            </GenderBlock>
 
             <InputLabel>
               <span> Your name</span>
@@ -116,10 +118,10 @@ const SettingForm = () => {
           </LeftFormWrap>
           <RightFormWrap>
             <h3>Password</h3>
-            <PasswordLabel>
+            <PasswordLabel $error={errors.oldPassword ? "true" : "false"}>
               <span> Outdated password:</span>
               <input
-                type={isShow ? "text" : "password"}
+                type={showPasswords.oldPassword ? "text" : "password"}
                 autoComplete="off"
                 id="oldPassword"
                 value={values.oldPassword}
@@ -127,18 +129,20 @@ const SettingForm = () => {
                 placeholder="Old password"
                 onBlur={handleBlur}
               />
-              {errors.oldPassword && <p>{errors.oldPassword}</p>}
+              {errors.oldPassword && (
+                <ErrorPassText>{errors.oldPassword}</ErrorPassText>
+              )}
               <TogglePasswordIcon
                 type={"settings"}
-                showPassword={isShow}
-                onToggle={toggleShowPassword}
+                showPassword={showPasswords.oldPassword}
+                onToggle={() => togglePasswordVisibility("oldPassword")}
               />
             </PasswordLabel>
-            <PasswordLabel>
+            <PasswordLabel $error={errors.newPassword ? "true" : "false"}>
               <span> New Password:</span>
               <div>
                 <input
-                  type={isShow ? "text" : "password"}
+                  type={showPasswords.password1 ? "text" : "password"}
                   autoComplete="off"
                   name="newPassword"
                   value={values.newPassword}
@@ -146,18 +150,20 @@ const SettingForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                {errors.newPassword && <p>{errors.newPassword}</p>}
+                {errors.newPassword && (
+                  <ErrorPassText>{errors.newPassword}</ErrorPassText>
+                )}
                 <TogglePasswordIcon
                   type={"settings"}
-                  showPassword={isShow}
-                  onToggle={toggleShowPassword}
+                  showPassword={showPasswords.password1}
+                  onToggle={() => togglePasswordVisibility("password1")}
                 />
               </div>
             </PasswordLabel>
-            <PasswordLabel>
+            <PasswordLabel $error={errors.repeatPassword ? "true" : "false"}>
               <span> Repeat new password:</span>
               <input
-                type={isShow ? "text" : "password"}
+                type={showPasswords.password2 ? "text" : "password"}
                 autoComplete="off"
                 name="repeatPassword"
                 value={values.repeatPassword}
@@ -165,11 +171,14 @@ const SettingForm = () => {
                 placeholder="Repeat password"
                 onBlur={handleBlur}
               />
-              {errors.repeatPassword && <p>{errors.repeatPassword}</p>}
+              {errors.repeatPassword && (
+                <ErrorPassText>{errors.repeatPassword}</ErrorPassText>
+              )}
+
               <TogglePasswordIcon
                 type={"settings"}
-                showPassword={isShow}
-                onToggle={toggleShowPassword}
+                showPassword={showPasswords.password2}
+                onToggle={() => togglePasswordVisibility("password2")}
               />
             </PasswordLabel>
           </RightFormWrap>
