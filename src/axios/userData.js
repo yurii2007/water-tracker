@@ -4,6 +4,10 @@ export const instance = axios.create({
   baseURL: "https://water-tracker-f07j.onrender.com/api/user",
 });
 
+export const saveToken = (token) => {
+  instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+};
+
 // User data
 
 export const getProfile = async (token) => {
@@ -12,13 +16,17 @@ export const getProfile = async (token) => {
       Authorization: `Bearer ${token}`,
     },
   });
+  saveToken(token);
   return data;
 };
 
 export const updateUser = async (newUserData) => {
-  const dataToUpdate = Object.entries(newUserData).reduce((acc, [key, value]) => {
-    return value ? { ...acc, [key]: value } : acc;
-  }, {});
+  const dataToUpdate = Object.entries(newUserData).reduce(
+    (acc, [key, value]) => {
+      return value ? { ...acc, [key]: value } : acc;
+    },
+    {}
+  );
 
   if (!dataToUpdate.newPassword) {
     delete dataToUpdate.oldPassword;
@@ -31,11 +39,16 @@ export const updateUser = async (newUserData) => {
 export const updateAvatar = async (newImg) => {
   const {
     avatar: { avatarURL },
-  } = await instance.patch("/updateAvatar", newImg, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+  } = await instance.patch(
+    "/updateAvatar",
+    { file: newImg },
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+
   return avatarURL;
 };
 

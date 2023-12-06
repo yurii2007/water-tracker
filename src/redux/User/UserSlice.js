@@ -1,6 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getCurrentThunk, loginThunk, registerThunk, updateUserThunk } from "./UserThunk";
+import {
+  getCurrentThunk,
+  loginThunk,
+  registerThunk,
+  updateUserThunk,
+} from "./UserThunk";
 
 const initialState = {
   user: {
@@ -11,7 +16,7 @@ const initialState = {
     dailyNorma: "",
   },
   message: "",
-  token: null,
+  token: "",
   isLoading: false,
   error: null,
 };

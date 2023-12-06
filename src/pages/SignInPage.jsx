@@ -1,7 +1,7 @@
 import SignInForm from "../components/SignInForm/SignInForm";
 
-const LoginPage = () => {
+const SignInPage = () => {
   return <SignInForm />;
 };
 
-export default LoginPage;
+export default SignInPage;
