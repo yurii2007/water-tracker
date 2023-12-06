@@ -28,7 +28,7 @@ const Overlay = () => {
       default:
         return null;
     }
-  }, [modalName]);
+  }, [modalName, closeModal]);
 
   const backdropClick = useCallback(
     (e) => {
@@ -61,10 +61,8 @@ const Overlay = () => {
     return null;
   }
 
-  return (
-    createPortal(
-      <OverlayStyle onClick={backdropClick}>{openedModal()}</OverlayStyle>
-    ),
+  return createPortal(
+    <OverlayStyle onClick={backdropClick}>{openedModal()}</OverlayStyle>,
     document.body
   );
 };
