@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import {
   Container,
@@ -16,6 +16,7 @@ const LogOut = ({ closeModal }) => {
 
   const handleLogout = () => {
     dispatch(logOutThunk());
+    closeModal();
   };
 
   return (
