@@ -1,15 +1,18 @@
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { addWaterThunk, getTodayThunk } from "../../redux/Water/WaterThunk";
+import { ReactComponent as CloseBtnIcon } from "../../images/svg/x.svg";
 import {
+  AmountText,
   BtnSaveWrapper,
   BtnWrapper,
   FormStyled,
   HeaderWrapper,
   ModalContainer,
+  StyledDecrementIcon,
+  StyledIncrementIcon,
+  ValueText,
 } from "./TodayListModal.styled";
-// import { ReactComponent as IconGlass } from "../../images/svg/glass_of_water.svg";
-// import { ReactComponent as IncrementIcon } from "../../images/svg/plus.svg";
-// import { ReactComponent as DecrementIcon } from "../../images/svg/minus.svg";
-import { useState } from "react";
-import { ReactComponent as CloseBtnIcon } from "../../images/svg/x.svg";
 
 const formatTime = (time) => {
   const hours = String(time.getHours()).padStart(2, "0");
@@ -20,23 +23,15 @@ const formatTime = (time) => {
 
 const TodayListModal = ({ closeModal }) => {
   const [value, setValue] = useState(0);
-  const [selectedTime, setSelectedTime] = useState(new Date());
+  const [time, setTime] = useState(new Date());
 
-  // const handleTimeChange = (evt) => {
-  //   const selectedHour = parseInt(evt.target.value.substring(0, 2), 10);
-  //   const selectedMinute = parseInt(evt.target.value.substring(3), 10);
-  //   const newTime = new Date(selectedTime);
-  //   newTime.setHours(selectedHour);
-  //   newTime.setMinutes(selectedMinute);
-  //   setSelectedTime(newTime);
-  // };
+  const dispatch = useDispatch();
 
   const hours = Array.from({ length: 24 }, (_, index) => index);
   const minutes = Array.from({ length: 12 }, (_, index) => index * 5);
 
   const handleUpdate = (evt) => {
-    const { name } = evt.target;
-    console.log(name);
+    const { name } = evt.currentTarget;
     switch (name) {
       case "decrement":
         setValue((state) => state - 50);
@@ -45,14 +40,22 @@ const TodayListModal = ({ closeModal }) => {
         setValue((state) => state + 50);
         break;
       case "input":
-        setValue(evt.target.value);
+        setValue(Number(evt.target.value));
         break;
       default:
     }
   };
 
-  const rettm = formatTime(selectedTime);
-  console.log(rettm);
+  const handleSave = async (evt) => {
+    evt.preventDefault();
+    const newTime = new Date(time);
+    const saveWater = { amount: value, time: newTime };
+
+    await dispatch(addWaterThunk(saveWater));
+    await dispatch(getTodayThunk());
+    closeModal();
+  };
+
   return (
     <ModalContainer>
       <HeaderWrapper>
@@ -61,14 +64,8 @@ const TodayListModal = ({ closeModal }) => {
           <CloseBtnIcon />
         </button>
       </HeaderWrapper>
-      {/* <div>
-        <IconGlass />
-        <p></p>
-        <p></p>
-      </div> */}
-
-      <p>Choose a value:</p>
-      <p>Amount of water:</p>
+      <ValueText>Choose a value:</ValueText>
+      <AmountText>Amount of water:</AmountText>
       <BtnWrapper>
         <button
           type="button"
@@ -76,27 +73,28 @@ const TodayListModal = ({ closeModal }) => {
           onClick={handleUpdate}
           disabled={value === 0}
         >
+          <StyledDecrementIcon aria-label="decrement_button" />
           {/* <DecrementIcon aria-label="decrement_button" /> */}
         </button>
         <span>{value}ml</span>
         <button type="button" name="increment" onClick={handleUpdate}>
-          {/* <IncrementIcon aria-label="increment_button" /> */}
-          {/* <StyledIncrementIcon/> */}
+          <StyledIncrementIcon aria-label="increment_button" />
         </button>
       </BtnWrapper>
       <FormStyled>
         <label>
           Recording time:
           <select
-            value={rettm}
+            value={formatTime(time)}
             onChange={(evt) => {
               const [hours, minutes] = evt.target.value.split(":");
-              const newTime = new Date(selectedTime);
+              const newTime = new Date(time);
               newTime.setHours(Number(hours));
               newTime.setMinutes(Number(minutes));
-              setSelectedTime(newTime);
+              setTime(newTime);
             }}
           >
+            <option value={formatTime(time)}>{formatTime(time)}</option>
             {hours.map((hour) =>
               minutes.map((minute) => {
                 const formattedHour = hour < 10 ? `0${hour}` : hour;
@@ -118,12 +116,12 @@ const TodayListModal = ({ closeModal }) => {
             value={value}
             onChange={handleUpdate}
             min="1"
-            max="15000"
+            max="5000"
           />
         </label>
         <BtnSaveWrapper>
           <p>{value}</p>
-          <button>Save</button>
+          <button onClick={handleSave}>Save</button>
         </BtnSaveWrapper>
       </FormStyled>
     </ModalContainer>

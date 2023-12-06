@@ -1,14 +1,19 @@
 import styled from "styled-components";
 import { ReactComponent as IncrementIcon } from "../../images/svg/plus.svg";
+import { ReactComponent as DecrementIcon } from "../../images/svg/minus.svg";
 
 export const StyledIncrementIcon = styled(IncrementIcon)`
-  width: 24px;
-  height: 24px;
+  stroke: var(--primary-blue);
+`;
+
+export const StyledDecrementIcon = styled(DecrementIcon)`
+  stroke: var(--primary-blue);
 `;
 
 export const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 24px;
 
   h3 {
     color: var(--primary-black);
@@ -30,13 +35,7 @@ export const BtnWrapper = styled.div`
   display: flex;
   gap: 7px;
   align-items: center;
-
-  p {
-    color: var(--primary-black);
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 1.1;
-  }
+  margin-bottom: 24px;
 
   button {
     width: 44px;
@@ -70,12 +69,33 @@ export const BtnWrapper = styled.div`
   }
 `;
 
+export const ValueText = styled.p`
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  color: var(--primary-black);
+`;
+
+export const AmountText = styled.p`
+  font-size: 16px;
+  line-height: 1.2;
+  margin-bottom: 12px;
+`;
+
 export const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
 
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
   input,
   select {
+    width: 100%;
     display: flex;
     padding: 12px 10px;
     flex-direction: column;
@@ -85,6 +105,7 @@ export const FormStyled = styled.form`
     border: 1px solid var(--secondary-lightblue);
     color: var(--primary-blue);
     margin-bottom: 24px;
+    outline: none;
   }
 `;
 
@@ -127,7 +148,6 @@ export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 24px 12px;
-  gap: 24px;
 
   @media screen and (min-width: 768px) {
     width: 704px;

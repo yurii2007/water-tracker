@@ -1,9 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getMonthInfoThunk } from "./WaterThunk";
+import { addWaterThunk, getMonthInfoThunk, getTodayThunk } from "./WaterThunk";
 
 const initialState = {
   monthInfo: [],
+  today: {
+    percent: 0,
+    dailyWaterList: [],
+  },
   isLoading: false,
   error: null,
 };
@@ -25,7 +29,21 @@ const waterSlice = createSlice({
         state.isLoading = false;
         state.monthInfo = [...payload];
       })
-      .addCase(getMonthInfoThunk.rejected, rejectedCase);
+      .addCase(getMonthInfoThunk.rejected, rejectedCase)
+      .addCase(getTodayThunk.pending, pendingCase)
+      .addCase(getTodayThunk.fulfilled, (state, { payload }) => {
+        state.today.dailyWaterList = payload.dailyWaterList;
+        state.today.percent = payload.percent;
+      })
+      .addCase(getTodayThunk.rejected, rejectedCase)
+      .addCase(addWaterThunk.pending, pendingCase)
+      .addCase(
+        addWaterThunk.fulfilled,
+        (state, { payload: { amount, time, _id } }) => {
+          state.today.dailyWaterList.push({ amount, time, _id });
+        }
+      )
+      .addCase(addWaterThunk.rejected, rejectedCase);
   },
 });
 
