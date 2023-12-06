@@ -6,7 +6,7 @@ import {
   updateAvatar,
   updateUser,
 } from "../../axios/userData";
-import { logIn, register } from "../../axios/auth";
+import { logIn, register, logout } from "../../axios/auth";
 import { tokenWater } from "../../axios/water";
 
 export const updateAvatarThunk = createAsyncThunk(
@@ -60,13 +60,24 @@ export const loginThunk = createAsyncThunk(
   }
 );
 
+export const logOutThunk = createAsyncThunk(
+  "user/logout",
+  async (_, { rejectWithValue }) => {
+    try {
+      return await logout();
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
 export const getCurrentThunk = createAsyncThunk(
   "user/getCurrent",
   async (_, thunkAPI) => {
     const state = await thunkAPI.getState();
 
     if (!state.user.token) return thunkAPI.rejectWithValue("Unauthorized");
-    
+
     tokenWater(state.user.token);
 
     try {

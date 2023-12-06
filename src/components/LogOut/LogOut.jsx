@@ -1,7 +1,39 @@
-import React from "react";
+import { useDispatch } from "react-redux";
+
+import {
+  Container,
+  Title,
+  Text,
+  ButtonLogOut,
+  ButtonCancel,
+  CrossIcon,
+  ContainerButton,
+} from "./LogOut.styled";
+import { logOutThunk } from "../../redux/User/UserThunk";
 
 const LogOut = ({ closeModal }) => {
-  return <div>LogOut</div>;
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logOutThunk());
+    closeModal();
+  };
+
+  return (
+    <Container>
+      <Title>Log out</Title>
+      <Text>Do you really want to leave?</Text>
+      <ContainerButton>
+        <ButtonLogOut type="button" onClick={handleLogout}>
+          Log out
+        </ButtonLogOut>
+        <ButtonCancel type="button" onClick={closeModal}>
+          Cancel
+        </ButtonCancel>
+      </ContainerButton>
+      <CrossIcon onClick={closeModal} />
+    </Container>
+  );
 };
 
 export default LogOut;

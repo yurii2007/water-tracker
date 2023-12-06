@@ -12,18 +12,15 @@ import {
   UserName,
   UserLogo,
 } from "./Header.styled";
-import useToggleModal from "../../Helpers/useToggleModal";
-import LogoModalContext from "../LogoModalContext/LogoModalContext";
-
-import LogoModal from "../LogoModal/LogoModal";
+import { useModal } from "../ModalContext/ModalContextProvider";
+import { modalNames } from "../../constants/modals";
 
 const Header = () => {
   const isLogin = useSelector((state) => state.user.token);
   const IsName = useSelector((state) => state.user.user.name);
   const userLogo = useSelector((state) => state.user.user.avatar);
 
-  const { isOpen, closeModal, openModal, handleKeyDown, handleBackdropClick } =
-    useToggleModal();
+  const { openModal } = useModal();
 
   const defaultName = "V";
 
@@ -35,11 +32,7 @@ const Header = () => {
       </LinkStyles>
 
       {isLogin ? (
-        <WrapperSecondary
-          onClick={() => {
-            openModal();
-          }}
-        >
+        <WrapperSecondary onClick={() => openModal(modalNames.logoModal)}>
           <UserName>{IsName ? IsName : defaultName}</UserName>
           {userLogo ? <UserLogo /> : ""}
           <ArrowDown />
@@ -51,15 +44,6 @@ const Header = () => {
             <UserIconDefault />
           </WrapperSecondary>
         </LinkStyles>
-      )}
-
-      {isOpen && (
-        <LogoModal
-          handleKeyDown={handleKeyDown}
-          handleBackdropClick={handleBackdropClick}
-        >
-          <LogoModalContext />
-        </LogoModal>
       )}
     </HeaderSection>
   );

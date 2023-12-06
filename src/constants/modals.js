@@ -5,4 +5,5 @@ export const modalNames = {
   settingModal: "settings",
   dailyNormaModal: "dailyNorma",
   addWater: "addWater",
+  logoModal: "logoModal",
 };

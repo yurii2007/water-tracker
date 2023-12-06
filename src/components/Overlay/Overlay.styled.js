@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const OverlayStyle = styled.div`
+export const OverlayStyle = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -12,4 +12,11 @@ const OverlayStyle = styled.div`
   background: #000000cc;
 `;
 
-export default OverlayStyle;
+export const LogoModalStyles = styled.div`
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+`;
