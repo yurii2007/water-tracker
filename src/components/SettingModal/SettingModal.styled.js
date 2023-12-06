@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const ContainerSettings = styled.div`
   color: var(--primary-black);
@@ -82,6 +82,7 @@ export const FormMainWrapper = styled.div`
 export const LeftFormWrap = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: end;
   gap: 24px;
   width: 100%;
 
@@ -93,6 +94,7 @@ export const LeftFormWrap = styled.div`
 export const RightFormWrap = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: end;
   gap: 12px;
   width: 100%;
 
@@ -149,6 +151,12 @@ export const PasswordLabel = styled.label`
     font-size: 16px;
     line-height: 1.25;
     width: 100%;
+
+    ${(props) =>
+      props.$error === "true" &&
+      css`
+        border-color: var(--secondary-red);
+      `}
   }
 `;
 
@@ -184,4 +192,16 @@ export const BtnSaveWrap = styled.div`
 
 export const UpTitle = styled.h3`
   margin-bottom: 8px;
+`;
+
+export const ErrorPassText = styled.p`
+  color: var(--secondary-red);
+  font-size: 14px;
+  line-height: 1.28;
+`;
+
+export const GenderBlock = styled.div`
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 20px;
+  }
 `;

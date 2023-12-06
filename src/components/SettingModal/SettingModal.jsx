@@ -12,6 +12,7 @@ import {
   UpTitle,
   UploadWrapper,
 } from "./SettingModal.styled";
+import { useModal } from "../ModalContext/ModalContextProvider";
 
 const pictureFormat = ["jpg", "jpeg", "ico", "png", "svg", "webp"];
 
@@ -20,6 +21,7 @@ const SettingModal = () => {
   const avatar = useSelector((state) => state.user.user.avatar);
 
   const dispatch = useDispatch();
+  const { closeModal } = useModal();
 
   const FileChange = (e) => {
     if (e.target.files.length > 0) {
@@ -27,7 +29,7 @@ const SettingModal = () => {
       const fileExtension = file.name.split(".").pop().toLowerCase();
 
       if (pictureFormat.includes(fileExtension)) {
-        dispatch(updateAvatarThunk(e.target.files[0]));
+        dispatch(updateAvatarThunk(file));
       }
     }
   };
@@ -40,7 +42,7 @@ const SettingModal = () => {
     <ContainerSettings>
       <UpElementsWrapper>
         <h2>Setting</h2>
-        <CloseModalSvg />
+        <CloseModalSvg style={{ cursor: "pointer" }} onClick={closeModal} />
       </UpElementsWrapper>
       <UpTitle>Your photo</UpTitle>
       <UploadWrapper>

@@ -6,8 +6,8 @@ export const PasswordIconLook = styled.div`
   height: 16px;
   width: 16px;
   position: absolute;
-  right: 3%;
-  top: 34%;
+  right: ${(props) => (props.type === "settings" ? "15px" : "3%")};
+  top: ${(props) => (props.type === "settings" ? "43px" : "34%")};
   & svg {
     color: rgba(64, 123, 255, 1);
     cursor: pointer;
