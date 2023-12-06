@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
+import Notiflix from "notiflix";
 
 import { updateUserThunk } from "../../redux/User/UserThunk";
 import { validationSchema } from "../../schemas/settingFormSchema";
@@ -19,13 +20,14 @@ import {
 } from "./SettingModal.styled";
 import { usePasswordToggle } from "../../Helpers/usePasswordToggle";
 
-const SettingForm = () => {
+const SettingForm = ({ closeModal }) => {
   const userData = useSelector((state) => state.user.user);
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle([
     "oldPassword",
     "password1",
     "password2",
   ]);
+
   const dispatch = useDispatch();
 
   const { values, errors, handleSubmit, handleChange, handleBlur, setValues } =
@@ -40,7 +42,6 @@ const SettingForm = () => {
       },
       validationSchema,
       onSubmit: (values) => {
-        console.log(values);
         dispatch(
           updateUserThunk({
             gender: values.gender,
@@ -52,13 +53,14 @@ const SettingForm = () => {
         )
           .unwrap()
           .then(() => {
-            alert("User updated successfully!");
+            Notiflix.Notify.success("account updated successfully!");
             setValues((prevValues) => ({
               ...prevValues,
               oldPassword: "",
               newPassword: "",
               repeatPassword: "",
             }));
+            closeModal();
           });
       },
     });
