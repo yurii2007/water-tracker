@@ -75,7 +75,7 @@ const SettingModal = () => {
           </button>
         </label>
       </UploadWrapper>
-      <SettingForm />
+      <SettingForm closeModal={closeModal} />
     </ContainerSettings>
   );
 };

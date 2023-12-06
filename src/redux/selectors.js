@@ -10,3 +10,7 @@ export const selectIsAuth = createSelector(
   [selectIsLoggedIn, selectToken],
   (isLoggedIn, token) => token && isLoggedIn
 );
+
+export const selectIsLogin = (state) => state.user.token;
+export const selectIsName = (state) => state.user.user.name;
+export const selectUserLogo = (state) => state.user.user.avatar;
