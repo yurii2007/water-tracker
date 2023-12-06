@@ -1,12 +1,13 @@
 import { createPortal } from "react-dom";
-import React, { useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 import { useModal } from "../ModalContext/ModalContextProvider";
 
 import SettingModal from "../SettingModal/SettingModal";
 import TodayListModal from "../TodayListModal/TodayListModal";
-import OverlayStyle from "./Overlay.styled";
+import { OverlayStyle, LogoModalStyles } from "./Overlay.styled";
 import LogOut from "../LogOut/LogOut";
+import { LogoModal } from "../LogoModal/LogoModal";
 
 const Overlay = () => {
   const { modalName, isOpenModal, closeModal } = useModal();
@@ -25,6 +26,8 @@ const Overlay = () => {
         return null; // return <DailyNormaModal closeModal={closeModal} />
       case "addWater":
         return null; // return <AddWater closeModal={closeModal} />
+      case "logoModal":
+        return <LogoModal closeModal={closeModal} />;
       default:
         return null;
     }
@@ -61,8 +64,10 @@ const Overlay = () => {
     return null;
   }
 
-  return (
-    createPortal(
+  return createPortal(
+    modalName === "logoModal" ? (
+      <LogoModalStyles onClick={backdropClick}>{openedModal()}</LogoModalStyles>
+    ) : (
       <OverlayStyle onClick={backdropClick}>{openedModal()}</OverlayStyle>
     ),
     document.body

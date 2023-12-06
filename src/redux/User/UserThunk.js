@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import { getProfile, updateAvatar, updateUser } from "../../axios/userData";
-import { logIn, register } from "../../axios/auth";
+import { logIn, register, logout } from "../../axios/auth";
 
 export const updateAvatarThunk = createAsyncThunk(
   "user/updateAvatar",
@@ -44,6 +44,17 @@ export const loginThunk = createAsyncThunk(
       return await logIn(userCredentials);
     } catch (error) {
       return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const logOutThunk = createAsyncThunk(
+  "user/logout",
+  async (_, { rejectWithValue }) => {
+    try {
+      return await logout();
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
