@@ -5,11 +5,7 @@ export const instance = axios.create({
 });
 
 export const tokenWater = (token) => {
-  if (token) {
-    instance.defaults.headers.common.Authorization = `Bearer ${token}`;
-    return;
-  }
-  instance.defaults.headers.common.Authorization = "";
+  instance.defaults.headers.common["Authorization"] = token ? `Bearer ${token}` : "";
 };
 
 export const getMonthInfo = async (date) => {
