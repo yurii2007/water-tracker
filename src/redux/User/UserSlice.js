@@ -16,7 +16,7 @@ const initialState = {
     dailyNorma: "",
   },
   message: "",
-  token: null,
+  token: "",
   isLoading: false,
   error: null,
 };

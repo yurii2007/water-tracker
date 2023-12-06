@@ -18,7 +18,7 @@ const App = () => {
   useEffect(() => {
     dispatch(getCurrentThunk());
   }, [dispatch]);
-  
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
