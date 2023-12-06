@@ -1,7 +1,6 @@
 import { ErrorMessage, Field } from "formik";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export const PasswordIconLook = styled.div`
   height: 16px;
@@ -11,20 +10,12 @@ export const PasswordIconLook = styled.div`
   top: 34%;
   & svg {
     color: rgba(64, 123, 255, 1);
+    cursor: pointer;
   }
 `;
 
-export const FaEyeStyled = styled(FaEye)`
-  cursor: pointer;
-`;
-
-export const FaEyeSlashStyled = styled(FaEyeSlash)`
-  cursor: pointer;
-  color: rgba(64, 123, 255, 1);
-`;
-
 export const Title = styled.h2`
-  color: var(--primery-color-black, #2f2f2f);
+  color: var(--primary-black);
   font-size: 26px;
   font-style: normal;
   font-weight: 500;
@@ -34,8 +25,16 @@ export const Title = styled.h2`
 export const AuthUpForma = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 148px 198px 0 auto;
-  max-width: 384px;
+  margin: 24px auto 0 20px;
+  max-width: 280px;
+  @media screen and (min-width: 768px) {
+    max-width: 336px;
+    margin: 40px auto 0 32px;
+  }
+  @media screen and (min-width: 1440px) {
+    max-width: 384px;
+    margin: 148px 198px 0 auto;
+  }
 `;
 export const Input = styled.div`
   display: flex;
@@ -71,38 +70,38 @@ export const BtnSign = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  color: var(--primery-color-white, #fff);
+  color: var(--white-color);
   text-align: center;
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
   line-height: 24px;
   border: none;
-  background: var(--primery-color-blue, #407bff);
+  background: var(--primary-blue);
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   cursor: pointer;
   margin: 16px 0;
-  width: 384px;
+  width: 100%;
 `;
 export const Lable = styled.p`
   display: flex;
   margin-top: 16px;
   margin-bottom: 8px;
-  color: var(--primery-color-black, #2f2f2f);
+  color: var(--primary-black);
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
 `;
 export const Linking = styled(Link)`
-  color: var(--primery-color-blue, #407bff);
+  color: var(--primary-blue);
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
 `;
 export const StyledError = styled(ErrorMessage)`
-  color: #ef5050;
+  color: var(--secondary-red);
   font-family: Roboto;
   font-size: 14px;
   font-style: normal;
