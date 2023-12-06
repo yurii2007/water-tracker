@@ -17,6 +17,6 @@ export const TogglePasswordIcon = ({ showPassword, onToggle, type }) => {
 TogglePasswordIcon.propTypes = {
   onToggle: PropTypes.func.isRequired,
   showPassword: PropTypes.bool.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   // prop "type" is intended to indicate the value of the element's position
 };
