@@ -37,9 +37,7 @@ export const updateUser = async (newUserData) => {
 };
 
 export const updateAvatar = async (newImg) => {
-  const {
-    avatar: { avatarURL },
-  } = await instance.patch(
+  const response = await instance.patch(
     "/updateAvatar",
     { file: newImg },
     {
@@ -48,8 +46,8 @@ export const updateAvatar = async (newImg) => {
       },
     }
   );
-
-  return avatarURL;
+  const avatarURL = response?.data?.avatar;
+  if (avatarURL) return avatarURL;
 };
 
 export const updateWaterRate = async (newDailyNorma) => {
