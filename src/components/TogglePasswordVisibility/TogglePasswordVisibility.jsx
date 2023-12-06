@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { PasswordIconLook } from "../SignUpForm/SignUpForm.styled";
-
-export const TogglePasswordIcon = ({ showPassword, onToggle }) => {
+import { ReactComponent as FaEye } from "../../images/svg/open_eye_icon.svg";
+import { ReactComponent as FaEyeSlash } from "../../images/svg/close_eye_icon.svg";
+export const TogglePasswordIcon = ({ showPassword, onToggle, type }) => {
   return (
-    <PasswordIconLook>
+    <PasswordIconLook type={type}>
       {showPassword ? (
         <FaEye onClick={onToggle} />
       ) : (
@@ -17,4 +17,6 @@ export const TogglePasswordIcon = ({ showPassword, onToggle }) => {
 TogglePasswordIcon.propTypes = {
   onToggle: PropTypes.func.isRequired,
   showPassword: PropTypes.bool.isRequired,
+  type: PropTypes.string.isRequired,
+  // prop "type" is intended to indicate the value of the element's position
 };

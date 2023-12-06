@@ -4,6 +4,10 @@ export const instance = axios.create({
   baseURL: "https://water-tracker-f07j.onrender.com/api/user",
 });
 
+export const saveToken = (token) => {
+  instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+};
+
 // User data
 
 export const getProfile = async (token) => {
@@ -12,6 +16,7 @@ export const getProfile = async (token) => {
       Authorization: `Bearer ${token}`,
     },
   });
+  saveToken(token);
   return data;
 };
 
@@ -43,6 +48,7 @@ export const updateAvatar = async (newImg) => {
       },
     }
   );
+
   return avatarURL;
 };
 

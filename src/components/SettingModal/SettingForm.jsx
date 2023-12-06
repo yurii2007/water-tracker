@@ -1,5 +1,11 @@
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+
+import { updateUserThunk } from "../../redux/User/UserThunk";
+import { validationSchema } from "../../schemas/settingFormSchema";
+import { TogglePasswordIcon } from "../TogglePasswordVisibility/TogglePasswordVisibility";
+
 import {
   BtnSave,
   BtnSaveWrap,
@@ -10,16 +16,17 @@ import {
   RightFormWrap,
   WrapperFormInfo,
 } from "./SettingModal.styled";
-import { updateUserThunk } from "../../redux/User/UserThunk";
-// import { validationSchema } from "../../schemas/settingFormSchema";
-import { useEffect } from "react";
 
 const SettingForm = () => {
-  const dispatch = useDispatch();
   const userData = useSelector((state) => state.user.user);
-  console.log(userData);
+  const [isShow, setIsShow] = useState(false);
+  const dispatch = useDispatch();
 
-  const { values, handleSubmit, handleChange, handleBlur, setValues } =
+  const toggleShowPassword = () => {
+    setIsShow(!isShow);
+  };
+
+  const { values, errors, handleSubmit, handleChange, handleBlur, setValues } =
     useFormik({
       initialValues: {
         gender: "",
@@ -29,7 +36,7 @@ const SettingForm = () => {
         newPassword: "",
         repeatPassword: "",
       },
-      // validationSchema,
+      validationSchema,
       onSubmit: (values) => {
         console.log(values);
         dispatch(
@@ -38,24 +45,21 @@ const SettingForm = () => {
             name: values.name,
             email: values.email,
             oldPassword: values.oldPassword,
-            newPassword: values.newPassword,
+            password: values.newPassword,
           })
         )
           .unwrap()
           .then(() => {
             alert("User updated successfully!");
+            setValues((prevValues) => ({
+              ...prevValues,
+              oldPassword: "",
+              newPassword: "",
+              repeatPassword: "",
+            }));
           });
       },
     });
-
-  useEffect(() => {
-    setValues((prevValues) => ({
-      ...prevValues,
-      gender: userData.gender || "",
-      name: userData.name || "",
-      email: userData.email || "",
-    }));
-  }, [setValues, userData]);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -70,9 +74,9 @@ const SettingForm = () => {
                   name="gender"
                   value="female"
                   onChange={handleChange}
-                  checked={values.gender === "female"}
+                  checked={userData.gender === "female"}
                 />
-                <span>Girl</span>
+                <span> Girl </span>
               </label>
               <label>
                 <input
@@ -80,9 +84,9 @@ const SettingForm = () => {
                   name="gender"
                   value="male"
                   onChange={handleChange}
-                  checked={values.gender === "male"}
+                  checked={userData.gender === "male"}
                 />
-                <span>Man</span>
+                <span> Man </span>
               </label>
             </div>
 
@@ -93,7 +97,9 @@ const SettingForm = () => {
                 name="name"
                 value={values.name}
                 onChange={handleChange}
+                placeholder={userData.name ? userData.name : "Enter you name"}
               />
+              {errors.name && <p>{errors.name}</p>}
             </InputLabel>
             <InputLabel>
               <span> E-mail</span>
@@ -103,7 +109,9 @@ const SettingForm = () => {
                 name="email"
                 value={values.email}
                 onChange={handleChange}
+                placeholder={userData.email ? userData.email : ""}
               />
+              {errors.email && <p>{errors.email}</p>}
             </InputLabel>
           </LeftFormWrap>
           <RightFormWrap>
@@ -111,7 +119,7 @@ const SettingForm = () => {
             <PasswordLabel>
               <span> Outdated password:</span>
               <input
-                type="password"
+                type={isShow ? "text" : "password"}
                 autoComplete="off"
                 id="oldPassword"
                 value={values.oldPassword}
@@ -119,12 +127,18 @@ const SettingForm = () => {
                 placeholder="Old password"
                 onBlur={handleBlur}
               />
+              {errors.oldPassword && <p>{errors.oldPassword}</p>}
+              <TogglePasswordIcon
+                type={"settings"}
+                showPassword={isShow}
+                onToggle={toggleShowPassword}
+              />
             </PasswordLabel>
             <PasswordLabel>
               <span> New Password:</span>
               <div>
                 <input
-                  type="password"
+                  type={isShow ? "text" : "password"}
                   autoComplete="off"
                   name="newPassword"
                   value={values.newPassword}
@@ -132,18 +146,30 @@ const SettingForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
+                {errors.newPassword && <p>{errors.newPassword}</p>}
+                <TogglePasswordIcon
+                  type={"settings"}
+                  showPassword={isShow}
+                  onToggle={toggleShowPassword}
+                />
               </div>
             </PasswordLabel>
             <PasswordLabel>
               <span> Repeat new password:</span>
               <input
-                type="password"
+                type={isShow ? "text" : "password"}
                 autoComplete="off"
                 name="repeatPassword"
                 value={values.repeatPassword}
                 onChange={handleChange}
                 placeholder="Repeat password"
                 onBlur={handleBlur}
+              />
+              {errors.repeatPassword && <p>{errors.repeatPassword}</p>}
+              <TogglePasswordIcon
+                type={"settings"}
+                showPassword={isShow}
+                onToggle={toggleShowPassword}
               />
             </PasswordLabel>
           </RightFormWrap>
