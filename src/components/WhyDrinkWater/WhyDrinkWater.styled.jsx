@@ -29,8 +29,6 @@ export const WdwTitle = styled.h3`
   margin-bottom: 12px;
 `;
 
-export const WdwList = styled.ul``;
-
 export const WdwItem = styled.li`
   display: flex;
   gap: 8px;
