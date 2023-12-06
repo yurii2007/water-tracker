@@ -1,4 +1,4 @@
-import { Field } from "formik";
+import { ErrorMessage, Field } from "formik";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -7,9 +7,11 @@ export const PasswordIconLook = styled.div`
   height: 16px;
   width: 16px;
   position: absolute;
-  right: ${(props) => (props.type === "settings" ? "10px" : "0")};
-  top: ${(props) => (props.type === "settings" ? "43px" : "0")};
-  cursor: pointer;
+  right: 3%;
+  top: 34%;
+  & svg {
+    color: rgba(64, 123, 255, 1);
+  }
 `;
 
 export const FaEyeStyled = styled(FaEye)`
@@ -18,6 +20,7 @@ export const FaEyeStyled = styled(FaEye)`
 
 export const FaEyeSlashStyled = styled(FaEyeSlash)`
   cursor: pointer;
+  color: rgba(64, 123, 255, 1);
 `;
 
 export const Title = styled.h2`
@@ -36,19 +39,26 @@ export const AuthUpForma = styled.div`
 `;
 export const Input = styled.div`
   display: flex;
+  position: relative;
   padding: 12px 10px;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   border-radius: 6px;
-  border: 1px solid var(--secondary-color-5, #d7e3ff);
+  border: 1px solid ${({ $error }) => ($error ? "#ef5050" : "#d7e3ff")};
+  &:focus-within {
+    border: 1px solid ${({ $error }) => ($error ? "#ef5050" : "#407bff")};
+  }
 `;
 export const FormField = styled(Field)`
   display: flex;
+  outline: none;
   justify-content: center;
   align-items: flex-start;
   border: none;
-  color: var(--secondary-color-4, #9ebbff);
+  width: 100%;
+  background-color: transparent;
+  color: ${({ $error }) => ($error ? "#ef5050" : "#407bff")};
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -90,4 +100,12 @@ export const Linking = styled(Link)`
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
+`;
+export const StyledError = styled(ErrorMessage)`
+  color: #ef5050;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
 `;
