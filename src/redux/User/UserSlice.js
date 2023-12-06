@@ -20,6 +20,7 @@ const initialState = {
   token: "",
   isLoggedIn: false,
   isLoading: false,
+  isRefreshing: false,
   error: null,
 };
 

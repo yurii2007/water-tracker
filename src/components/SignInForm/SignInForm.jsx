@@ -6,6 +6,7 @@ import { Formik, Form } from "formik";
 import {
   AuthUpForma,
   BtnSign,
+  FormContainer,
   FormField,
   Input,
   Lable,
@@ -31,6 +32,7 @@ const validationSchema = yup.object().shape({
     ),
   password: yup
     .string()
+    .required("password is required")
     .min(8, "Password must be 8 characters long")
     .matches(/[0-9]/, "Password requires a number")
     .matches(/[a-z]/, "Password requires a lowercase letter")
@@ -45,7 +47,6 @@ const SignInForm = () => {
     "password2",
   ]);
   const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
     dispatch(loginThunk(values))
       .unwrap()
       .then(() => {
@@ -57,52 +58,54 @@ const SignInForm = () => {
       });
   };
   return (
-    <AuthUpForma>
-      <Title>Sign In</Title>
-      <Formik
-        initialValues={{
-          email: "",
-          password: "",
-        }}
-        onSubmit={handleSubmit}
-        validationSchema={validationSchema}
-      >
-        {({ errors, touched }) => {
-          return (
-            <Form>
-              <Lable>Enter your email</Lable>
-              <Input $error={errors.email && touched.email}>
-                <FormField
-                  $error={errors.email && touched.email}
-                  autoComplete="off"
-                  name="email"
-                  type="email"
-                  placeholder="E-mail"
-                />
-              </Input>
-              <StyledError name="email" component="div" />
-              <Lable>Enter your password</Lable>
-              <Input $error={errors.password && touched.password}>
-                <FormField
-                  $error={errors.password && touched.password}
-                  autoComplete="off"
-                  name="password"
-                  type={showPasswords.password1 ? "text" : "password"}
-                  placeholder="Password"
-                />
-                <TogglePasswordIcon
-                  showPassword={showPasswords.password1}
-                  onToggle={() => togglePasswordVisibility("password1")}
-                />
-              </Input>
-              <StyledError name="password" component="div" />
-              <BtnSign type="submit">Sign In</BtnSign>
-            </Form>
-          );
-        }}
-      </Formik>
-      <Linking to="/signup">Sign Up</Linking>
-    </AuthUpForma>
+    <FormContainer>
+      <AuthUpForma>
+        <Title>Sign In</Title>
+        <Formik
+          initialValues={{
+            email: "",
+            password: "",
+          }}
+          onSubmit={handleSubmit}
+          validationSchema={validationSchema}
+        >
+          {({ errors, touched }) => {
+            return (
+              <Form>
+                <Lable>Enter your email</Lable>
+                <Input $error={errors.email && touched.email}>
+                  <FormField
+                    $error={errors.email && touched.email}
+                    autoComplete="off"
+                    name="email"
+                    type="email"
+                    placeholder="E-mail"
+                  />
+                </Input>
+                <StyledError name="email" component="div" />
+                <Lable>Enter your password</Lable>
+                <Input $error={errors.password && touched.password}>
+                  <FormField
+                    $error={errors.password && touched.password}
+                    autoComplete="off"
+                    name="password"
+                    type={showPasswords.password1 ? "text" : "password"}
+                    placeholder="Password"
+                  />
+                  <TogglePasswordIcon
+                    showPassword={showPasswords.password1}
+                    onToggle={() => togglePasswordVisibility("password1")}
+                  />
+                </Input>
+                <StyledError name="password" component="div" />
+                <BtnSign type="submit">Sign In</BtnSign>
+              </Form>
+            );
+          }}
+        </Formik>
+        <Linking to="/signup">Sign Up</Linking>
+      </AuthUpForma>
+    </FormContainer>
   );
 };
 
