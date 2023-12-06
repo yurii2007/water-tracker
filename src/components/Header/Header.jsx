@@ -1,5 +1,13 @@
 import { useSelector } from "react-redux";
 
+import { useModal } from "../ModalContext/ModalContextProvider";
+import { modalNames } from "../../constants/modals";
+import {
+  selectIsLogin,
+  selectIsName,
+  selectUserLogo,
+} from "../../redux/selectors";
+
 import {
   LogoDefault,
   UserIconDefault,
@@ -12,15 +20,13 @@ import {
   UserName,
   UserLogo,
 } from "./Header.styled";
-import { useModal } from "../ModalContext/ModalContextProvider";
-import { modalNames } from "../../constants/modals";
 
 const Header = () => {
-  const isLogin = useSelector((state) => state.user.token);
-  const IsName = useSelector((state) => state.user.user.name);
-  const userLogo = useSelector((state) => state.user.user.avatar);
-
   const { openModal } = useModal();
+
+  const isLogin = useSelector(selectIsLogin);
+  const isName = useSelector(selectIsName);
+  const isUserLogo = useSelector(selectUserLogo);
 
   const defaultName = "V";
 
@@ -33,8 +39,8 @@ const Header = () => {
 
       {isLogin ? (
         <WrapperSecondary onClick={() => openModal(modalNames.logoModal)}>
-          <UserName>{IsName ? IsName : defaultName}</UserName>
-          {userLogo ? <UserLogo /> : ""}
+          <UserName>{isName ? isName : defaultName}</UserName>
+          {isUserLogo ? <UserLogo /> : ""}
           <ArrowDown />
         </WrapperSecondary>
       ) : (
