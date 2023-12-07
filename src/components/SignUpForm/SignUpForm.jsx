@@ -32,13 +32,7 @@ const validationSchema = yup.object().shape({
   password: yup
     .string()
     .required("password is required")
-    .min(8, "Password must be 8 characters long")
-    .matches(/[0-9]/, "Password requires a number")
-    .matches(/[a-z]/, "Password requires a lowercase letter")
-    .matches(/[A-Z]/, "Password requires an uppercase letter")
-    .matches(/[^\w]/, "Password requires a symbol"),
-  // const emailRegex = /[a-z0-9]+@+[a-z]+[\./]+[a-z]{2,3}/;
-
+    .min(8, "Password must be 8 characters long"),
   repeatPassword: yup
     .string()
     .required("repeat password is required")

@@ -1,6 +1,5 @@
 import { createSelector } from "reselect";
 
-// export const selectUser = (state) => state.auth.user;
 export const selectIsLoggedIn = (state) => state.user.isLoggedIn;
 const selectToken = (state) => state.user.token;
 export const selectIsLoading = (state) => state.user.isLoading;
