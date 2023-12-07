@@ -1,5 +1,7 @@
 import { useDispatch } from "react-redux";
 
+import { useModal } from "../ModalContext/ModalContextProvider";
+
 import {
   Container,
   Title,
@@ -11,12 +13,13 @@ import {
 } from "./LogOut.styled";
 import { logOutThunk } from "../../redux/User/UserThunk";
 
-const LogOut = ({ closeModal }) => {
+const LogOut = () => {
   const dispatch = useDispatch();
+  const toggleModal = useModal();
 
   const handleLogout = () => {
     dispatch(logOutThunk());
-    closeModal();
+    toggleModal();
   };
 
   return (
@@ -27,11 +30,11 @@ const LogOut = ({ closeModal }) => {
         <ButtonLogOut type="button" onClick={handleLogout}>
           Log out
         </ButtonLogOut>
-        <ButtonCancel type="button" onClick={closeModal}>
+        <ButtonCancel type="button" onClick={() => toggleModal()}>
           Cancel
         </ButtonCancel>
       </ContainerButton>
-      <CrossIcon onClick={closeModal} />
+      <CrossIcon onClick={() => toggleModal()} />
     </Container>
   );
 };

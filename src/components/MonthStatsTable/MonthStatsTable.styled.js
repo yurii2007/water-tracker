@@ -4,7 +4,7 @@ export const DivContentWrapper = styled.div`
   width: 100%;
 `;
 
-export const MonthHeading = styled.p`
+export const MonthHeading = styled.h3`
   font-size: 24px;
   font-weight: 500;
   line-height: 30px;
@@ -33,6 +33,7 @@ export const DivMonthSwitcher = styled.div`
     padding: 0;
     width: 14px;
     height: 14px;
+    cursor: pointer;
   }
   .month__name {
     font-size: 16px;
@@ -64,25 +65,30 @@ export const UlMonth = styled.ul`
 export const LiDayStyles = styled.li`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 4px;
   text-align: center;
   font-weight: 400;
   letter-spacing: 0em;
+  cursor: pointer;
   span {
     display: block;
   }
   .day {
-    font-size: 16px;
-    line-height: 20px;
+    width: 32px;
+    height: 32px;
 
     padding: ${({ $percentage }) => ($percentage < 100 ? "7px 6px" : "7px")};
     background: var(--white-color);
     border-radius: 50%;
     border: none;
-    border: ${({ $percentage }) =>
-      $percentage < 100 ? "1px solid var(--secondary-yellow)" : "none"};
+    border: ${({ $percentage }) => $percentage < 100 ? "1px solid var(--secondary-yellow)" : "none"};
+    font-size: 16px;
+    line-height: 20px;
 
     @media screen and (min-width: 768px) {
+      width: 34px;
+      height: 34px;
       font-size: 14px;
       line-height: 18px;
     }

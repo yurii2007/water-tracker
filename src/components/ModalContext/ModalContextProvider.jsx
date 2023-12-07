@@ -1,26 +1,22 @@
 import { createContext, useContext, useState, useCallback } from "react";
 
+import Overlay from "../Overlay/Overlay";
+
 const ModalContext = createContext();
 
 export const useModal = () => useContext(ModalContext);
 
 const ModalContextProvider = ({ children }) => {
-  const [isOpenModal, setIsOpen] = useState(false);
-  const [modalName, setModalName] = useState("");
+  const [modal, setModal] = useState(null);
 
-  const openModal = useCallback((name) => {
-    setModalName(name);
-    setIsOpen(true);
-  }, []);
-
-  const closeModal = useCallback(() => {
-    setIsOpen(false);
-    setModalName("");
+  const toggleModal = useCallback((modal = null) => {
+    setModal(modal);
   }, []);
 
   return (
-    <ModalContext.Provider value={{ modalName, isOpenModal, closeModal, openModal }}>
+    <ModalContext.Provider value={toggleModal}>
       {children}
+      {modal && <Overlay>{modal}</Overlay>}
     </ModalContext.Provider>
   );
 };

@@ -6,7 +6,6 @@ import { selectIsLoading } from "../../redux/selectors";
 
 import ModalContextProvider from "../ModalContext/ModalContextProvider";
 import Header from "../Header/Header";
-import Overlay from "../Overlay/Overlay";
 import Loader from "../Loader/Loader";
 
 const Layout = () => {
@@ -21,7 +20,6 @@ const Layout = () => {
           <Outlet />
         </Suspense>
       </main>
-      <Overlay />
     </ModalContextProvider>
   );
 };
