@@ -21,7 +21,7 @@ const SettingModal = () => {
   const avatar = useSelector((state) => state.user.user.avatar);
 
   const dispatch = useDispatch();
-  const { closeModal } = useModal();
+  const toggleModal = useModal();
 
   const FileChange = (e) => {
     if (e.target.files.length > 0) {
@@ -42,7 +42,7 @@ const SettingModal = () => {
     <ContainerSettings>
       <UpElementsWrapper>
         <h2>Setting</h2>
-        <CloseModalSvg style={{ cursor: "pointer" }} onClick={closeModal} />
+        <CloseModalSvg style={{ cursor: "pointer" }} onClick={()=> toggleModal()} />
       </UpElementsWrapper>
       <UpTitle>Your photo</UpTitle>
       <UploadWrapper>
@@ -75,7 +75,7 @@ const SettingModal = () => {
           </button>
         </label>
       </UploadWrapper>
-      <SettingForm closeModal={closeModal} />
+      <SettingForm closeModal={()=> toggleModal()} />
     </ContainerSettings>
   );
 };

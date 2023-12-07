@@ -34,7 +34,7 @@ const Header = () => {
       </LinkStyles>
 
       {isLogin ? (
-        <WrapperSecondary onClick={() => toggleModal(<LogoModal />)}>
+        <WrapperSecondary onClick={() => toggleModal(<LogoModal isLogoModal />)}>
           <UserName>{isName ? isName : defaultName}</UserName>
           {isUserLogo ? <UserLogo /> : ""}
           <ArrowDown />

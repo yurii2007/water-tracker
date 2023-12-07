@@ -65,6 +65,7 @@ export const UlMonth = styled.ul`
 export const LiDayStyles = styled.li`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 4px;
   text-align: center;
   font-weight: 400;
@@ -74,17 +75,20 @@ export const LiDayStyles = styled.li`
     display: block;
   }
   .day {
-    font-size: 16px;
-    line-height: 20px;
+    width: 32px;
+    height: 32px;
 
     padding: ${({ $percentage }) => ($percentage < 100 ? "7px 6px" : "7px")};
     background: var(--white-color);
     border-radius: 50%;
     border: none;
-    border: ${({ $percentage }) =>
-      $percentage < 100 ? "1px solid var(--secondary-yellow)" : "none"};
+    border: ${({ $percentage }) => $percentage < 100 ? "1px solid var(--secondary-yellow)" : "none"};
+    font-size: 16px;
+    line-height: 20px;
 
     @media screen and (min-width: 768px) {
+      width: 34px;
+      height: 34px;
       font-size: 14px;
       line-height: 18px;
     }

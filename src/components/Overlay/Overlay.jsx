@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 import { useModal } from "../ModalContext/ModalContextProvider";
 
-import { OverlayStyle, LogoModalStyles } from "./Overlay.styled";
+import { OverlayStyle } from "./Overlay.styled";
 
 const Overlay = ({ children }) => {
   const toggleModal = useModal();
@@ -29,10 +29,9 @@ const Overlay = ({ children }) => {
   }, [toggleModal]);
 
   return createPortal(
-    // modalName === "logoModal" ? (
-    //   <LogoModalStyles onClick={backdropClick}>{children}</LogoModalStyles>
-    // ) : (
-    <OverlayStyle onClick={backdropClick}>{children}</OverlayStyle>,
+    <OverlayStyle $isLogoModal={children.props.isLogoModal} onClick={backdropClick}>
+      {children}
+    </OverlayStyle>,
     document.body
   );
 };
