@@ -1,3 +1,5 @@
+import { getMonthName } from "../../utils/getMonthName";
+
 import { ReactComponent as LeftArrow } from "../../images/svg/month_arrow_left.svg";
 import { ReactComponent as RightArrow } from "../../images/svg/month_arrow_right.svg";
 import {
@@ -14,7 +16,7 @@ const MonthHeader = ({ changeDirection, month }) => {
         <button className="arrow" onClick={() => changeDirection(-1)} type="button">
           <LeftArrow />
         </button>
-        <p className="month__name">{month}</p>
+        <p className="month__name">{getMonthName(month)}</p>
         <button className="arrow" onClick={() => changeDirection(1)} type="button">
           <RightArrow />
         </button>
