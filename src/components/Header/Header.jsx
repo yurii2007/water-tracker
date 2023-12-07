@@ -1,12 +1,7 @@
 import { useSelector } from "react-redux";
 
 import { useModal } from "../ModalContext/ModalContextProvider";
-import { modalNames } from "../../constants/modals";
-import {
-  selectIsLogin,
-  selectIsName,
-  selectUserLogo,
-} from "../../redux/selectors";
+import { selectIsLogin, selectIsName, selectUserLogo } from "../../redux/selectors";
 
 import {
   LogoDefault,
@@ -20,9 +15,10 @@ import {
   UserName,
   UserLogo,
 } from "./Header.styled";
+import { LogoModal } from "../LogoModal/LogoModal";
 
 const Header = () => {
-  const { openModal } = useModal();
+  const toggleModal = useModal();
 
   const isLogin = useSelector(selectIsLogin);
   const isName = useSelector(selectIsName);
@@ -38,7 +34,7 @@ const Header = () => {
       </LinkStyles>
 
       {isLogin ? (
-        <WrapperSecondary onClick={() => openModal(modalNames.logoModal)}>
+        <WrapperSecondary onClick={() => toggleModal(<LogoModal />)}>
           <UserName>{isName ? isName : defaultName}</UserName>
           {isUserLogo ? <UserLogo /> : ""}
           <ArrowDown />

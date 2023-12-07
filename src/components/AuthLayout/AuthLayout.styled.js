@@ -33,12 +33,12 @@ const AuthLayoutStyles = styled.div`
   @media screen and (min-width: 1440px) {
     background-image: url(${bgDesk}), url(${bgDeskBottle});
     height: calc(100vh - 60px);
+    background-size: contain, 916px 680px;
+    background-position: bottom 60px left, left -40px bottom 60px;
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
       background-image: url(${bgDeskRetina}), url(${bgDeskBottleRetina});
-      background-size: contain, 916px 680px;
-      background-position: bottom 60px left, left -40px bottom 60px;
     }
   }
 `;

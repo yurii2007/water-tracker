@@ -1,5 +1,7 @@
-import { modalNames } from "../../constants/modals";
 import { useModal } from "../ModalContext/ModalContextProvider";
+
+import SettingModal from "../SettingModal/SettingModal";
+import LogoutModal from "../LogOut/LogOut";
 import {
   LogOut,
   Setting,
@@ -10,19 +12,16 @@ import {
 } from "./LogoModal.styled";
 
 export const LogoModal = () => {
-  const { openModal, closeModal } = useModal();
+  const toggleModal = useModal();
 
   return (
-    <ContainerWidth onClick={closeModal}>
+    <ContainerWidth onClick={() => toggleModal()}>
       <Container onClick={(e) => e.stopPropagation()}>
-        <Button
-          type="button"
-          onClick={() => openModal(modalNames.settingModal)}
-        >
+        <Button type="button" onClick={() => toggleModal(<SettingModal />)}>
           <Setting />
           <Text>Setting</Text>
         </Button>
-        <Button type="button" onClick={() => openModal(modalNames.logout)}>
+        <Button type="button" onClick={() => toggleModal(<LogoutModal />)}>
           <LogOut />
           <Text>Log out</Text>
         </Button>

@@ -1,3 +1,5 @@
+import { routes } from "../../constants/routes";
+
 import {
   TrackerWrapper,
   WelcomeTitle,
@@ -10,7 +12,6 @@ import {
   TryTrackerLink,
   IconBox,
 } from "./WaterTracker.styled";
-
 import { waterTrackerInfo } from "../../constants/whyDrinkWater";
 
 const WelcomeTracker = () => {
@@ -28,7 +29,7 @@ const WelcomeTracker = () => {
         ))}
       </BenefitsList>
       <TryTrackerBtn>
-        <TryTrackerLink to="/signup">Try Tracker</TryTrackerLink>
+        <TryTrackerLink to={routes.SignUp}>Try Tracker</TryTrackerLink>
       </TryTrackerBtn>
     </TrackerWrapper>
   );

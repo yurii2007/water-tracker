@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { addWaterThunk, getTodayThunk } from "../../redux/Water/WaterThunk";
+import { useModal } from "../ModalContext/ModalContextProvider";
 import { ReactComponent as CloseBtnIcon } from "../../images/svg/x.svg";
 import {
   AmountText,
@@ -21,9 +22,10 @@ const formatTime = (time) => {
   return `${hours}:${minutes}`;
 };
 
-const TodayListModal = ({ closeModal }) => {
+const TodayListModal = () => {
   const [value, setValue] = useState(0);
   const [time, setTime] = useState(new Date());
+  const toggleModal = useModal();
 
   const dispatch = useDispatch();
 
@@ -53,14 +55,14 @@ const TodayListModal = ({ closeModal }) => {
 
     await dispatch(addWaterThunk(saveWater));
     await dispatch(getTodayThunk());
-    closeModal();
+    toggleModal();
   };
 
   return (
     <ModalContainer>
       <HeaderWrapper>
         <h3>Add water</h3>
-        <button onClick={closeModal} type="button" aria-label="Close">
+        <button onClick={()=>toggleModal()} type="button" aria-label="Close">
           <CloseBtnIcon />
         </button>
       </HeaderWrapper>

@@ -4,7 +4,7 @@ export const DivContentWrapper = styled.div`
   width: 100%;
 `;
 
-export const MonthHeading = styled.p`
+export const MonthHeading = styled.h3`
   font-size: 24px;
   font-weight: 500;
   line-height: 30px;
@@ -33,6 +33,7 @@ export const DivMonthSwitcher = styled.div`
     padding: 0;
     width: 14px;
     height: 14px;
+    cursor: pointer;
   }
   .month__name {
     font-size: 16px;
@@ -68,6 +69,7 @@ export const LiDayStyles = styled.li`
   text-align: center;
   font-weight: 400;
   letter-spacing: 0em;
+  cursor: pointer;
   span {
     display: block;
   }
