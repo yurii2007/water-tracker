@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkwater_tracker=self.webpackChunkwater_tracker||[]).push([[964],{4964:(e,t,r)=>{r.r(t),r.d(t,{default:()=>u});var a=r(9434),c=r(7689),s=r(2286),k=r(8155),n=r(3329);const u=e=>{let{children:t,navigate:r=k._.Home}=e;return(0,a.v9)(s.Jt)?(0,n.jsx)(c.Fg,{to:r}):t}}}]);
+//# sourceMappingURL=964.01bd139a.chunk.js.map
