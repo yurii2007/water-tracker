@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkwater_tracker=self.webpackChunkwater_tracker||[]).push([[520],{4520:(e,a,r)=>{r.r(a),r.d(a,{default:()=>t});var s=r(2791),c=r(7689),l=r(3329);const t=()=>(0,l.jsx)(s.Suspense,{fallback:(0,l.jsx)("div",{children:"loading..."}),children:(0,l.jsx)(c.j3,{})})}}]);
+//# sourceMappingURL=520.ba0a8f69.chunk.js.map
