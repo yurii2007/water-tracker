@@ -1,23 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import {
-  getProfile,
-  saveToken,
-  updateAvatar,
-  updateUser,
-} from "../../axios/userData";
+import { getProfile, updateAvatar, updateUser } from "../../axios/userData";
 import { logIn, register, logout } from "../../axios/auth";
-import { tokenWater } from "../../axios/water";
+import setTokens from "../../utils/setTokens";
 
 export const updateAvatarThunk = createAsyncThunk(
   "user/updateAvatar",
   async (newImg, thunkAPI) => {
-    const state = await thunkAPI.getState();
-
-    if (!state.user.token) return thunkAPI.rejectWithValue("Unauthorized");
-
     try {
-      saveToken(state.user.token);
       const URL = await updateAvatar(newImg);
 
       return URL;
@@ -53,7 +43,9 @@ export const loginThunk = createAsyncThunk(
   "user/login",
   async (userCredentials, { rejectWithValue }) => {
     try {
-      return await logIn(userCredentials);
+      const { data } = await logIn(userCredentials);
+      setTokens(data.user.token);
+      return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }
@@ -74,11 +66,13 @@ export const logOutThunk = createAsyncThunk(
 export const getCurrentThunk = createAsyncThunk(
   "user/getCurrent",
   async (_, thunkAPI) => {
+    // try to get token from storage
     const state = await thunkAPI.getState();
 
     if (!state.user.token) return thunkAPI.rejectWithValue("Unauthorized");
 
-    tokenWater(state.user.token);
+    // set all the tokens in axios instances
+    setTokens(state.user.token);
 
     try {
       const response = await getProfile(state.user.token);

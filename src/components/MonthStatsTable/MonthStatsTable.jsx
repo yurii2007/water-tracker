@@ -1,26 +1,47 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import { getMonthInfoThunk } from "../../redux/Water/WaterThunk";
+import { selectMonthInfo } from "../../redux/selectors";
+import { months } from "../../constants/months";
+
+import MonthCalendar from "./MonthCalendar";
+import MonthHeader from "./MothHeader";
+
+let currentDate = new Date();
 
 const MonthStatsTable = () => {
-  const [currentDate, setCurrentMonth] = useState(new Date());
+  const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth());
+  const monthData = useSelector(selectMonthInfo);
   const dispatch = useDispatch();
 
-  useEffect(() => {});
+  useEffect(() => {
+    dispatch(getMonthInfoThunk(currentDate));
+  }, [dispatch, currentMonth]);
+
+  const changeMonth = useCallback(
+    (direction) => {
+      currentDate = new Date(currentDate.getFullYear(), currentMonth);
+      setCurrentMonth(currentDate.getMonth() + direction);
+    },
+    [currentMonth]
+  );
+
+  const getCurrentMonth = useCallback(() => {
+    if (currentMonth === 12) {
+      return [months[0]];
+    }
+    if (currentMonth === -1) {
+      return [months[11]];
+    }
+    return months[currentMonth];
+  }, [currentMonth]);
+
   return (
     <div>
-      <div>{currentDate.getFullYear()}</div>
-      <button
-        onClick={() => {
-          const newDate = currentDate;
-          newDate.setMonth(currentDate.getMonth() - 1);
-          setCurrentMonth(newDate);
-          console.log(currentDate);
-        }}
-        type="button"
-      >
-        1month
-      </button>
+      <MonthHeader changeDirection={changeMonth} month={getCurrentMonth()} />
+      <MonthCalendar monthData={monthData} />
     </div>
   );
 };

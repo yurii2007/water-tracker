@@ -79,9 +79,7 @@ const userSlice = createSlice({
       })
       .addCase(getCurrentThunk.rejected, rejectedCase)
       .addCase(logOutThunk.pending, pendingCase)
-      .addCase(logOutThunk.fulfilled, (state) => {
-        state.token = "";
-      })
+      .addCase(logOutThunk.fulfilled, rejectedCase)
       .addCase(logOutThunk.rejected, rejectedCase)
       .addCase(updateAvatarThunk.pending, pendingCase)
       .addCase(updateAvatarThunk.fulfilled, (state, { payload }) => {
