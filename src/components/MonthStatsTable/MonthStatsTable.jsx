@@ -8,6 +8,7 @@ import { months } from "../../constants/months";
 
 import MonthCalendar from "./MonthCalendar";
 import MonthHeader from "./MothHeader";
+import { DivContentWrapper } from "./MonthStatsTable.styled";
 
 let currentDate = new Date();
 
@@ -39,10 +40,10 @@ const MonthStatsTable = () => {
   }, [currentMonth]);
 
   return (
-    <div>
+    <DivContentWrapper>
       <MonthHeader changeDirection={changeMonth} month={getCurrentMonth()} />
       <MonthCalendar monthData={monthData} />
-    </div>
+    </DivContentWrapper>
   );
 };
 

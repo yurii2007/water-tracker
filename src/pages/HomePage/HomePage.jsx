@@ -1,16 +1,17 @@
 import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel";
 import MonthStatsTable from "../../components/MonthStatsTable/MonthStatsTable";
+import { DivWrapperPage, SectionWrapperTodayListCalendar } from "./HomePage.styled";
 
 const HomePage = () => {
   return (
-    <div>
+    <DivWrapperPage>
       <section>
         <WaterRatioPanel />
       </section>
-      <section>
+      <SectionWrapperTodayListCalendar>
         <MonthStatsTable />
-      </section>
-    </div>
+      </SectionWrapperTodayListCalendar>
+    </DivWrapperPage>
   );
 };
 

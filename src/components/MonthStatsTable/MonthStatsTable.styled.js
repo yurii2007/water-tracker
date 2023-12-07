@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const DivContentWrapper = styled.div`
+  width: 100%;
+`;
+
 export const MonthHeading = styled.p`
   font-size: 24px;
   font-weight: 500;
@@ -7,6 +11,11 @@ export const MonthHeading = styled.p`
   letter-spacing: 0em;
   text-align: left;
   color: var(--primary-black);
+
+  @media screen and (min-width: 768px) {
+    font-size: 26px;
+    line-height: 32px;
+  }
 `;
 
 export const DivHeadingWrapper = styled.div`
@@ -41,6 +50,15 @@ export const UlMonth = styled.ul`
   gap: 16px 26px;
   margin-top: 16px;
   list-style: none;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(10, 1fr);
+    gap: 20px 34px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    gap: 20px 22px;
+  }
 `;
 
 export const LiDayStyles = styled.li`
@@ -63,6 +81,11 @@ export const LiDayStyles = styled.li`
     border: none;
     border: ${({ $percentage }) =>
       $percentage < 100 ? "1px solid var(--secondary-yellow)" : "none"};
+
+    @media screen and (min-width: 768px) {
+      font-size: 14px;
+      line-height: 18px;
+    }
   }
   .percentage {
     font-size: 10px;
