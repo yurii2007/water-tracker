@@ -50,7 +50,7 @@ const SignInForm = () => {
         Notiflix.Notify.success("success");
       })
       .catch((error) => {
-        Notiflix.Notify.failure(error);
+        Notiflix.Notify.failure(error.message);
       });
   };
   return (

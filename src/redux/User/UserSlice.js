@@ -60,9 +60,9 @@ const userSlice = createSlice({
       .addCase(registerThunk.rejected, rejectedCase)
       .addCase(loginThunk.pending, pendingCase)
       .addCase(loginThunk.fulfilled, (state, { payload }) => {
-        state.user.email = payload.user.email;
-        state.user.avatar = payload.user.avatar;
-        state.token = payload.user.token;
+        state.user.email = payload.email;
+        state.user.avatar = payload.avatar;
+        state.token = payload.token;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
