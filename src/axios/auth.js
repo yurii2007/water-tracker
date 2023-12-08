@@ -31,7 +31,7 @@ export const logout = async () => {
 
 // forgotPassword
 
-// export const forgotPassword = async (body) => {
-//   const { data } = await instance.post("/forgot-password", body);
-//   return data;
-// };
+export const forgotPassword = async (body) => {
+  const { data } = await instance.post("/forgot-password", body);
+  return data;
+};
