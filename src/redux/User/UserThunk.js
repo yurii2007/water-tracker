@@ -12,7 +12,7 @@ export const updateAvatarThunk = createAsyncThunk(
 
       return URL;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -21,9 +21,10 @@ export const updateUserThunk = createAsyncThunk(
   "user/updateUser",
   async (newUserData, { rejectWithValue }) => {
     try {
-      return await updateUser(newUserData);
+      const data = await updateUser(newUserData);
+      return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -43,7 +44,7 @@ export const loginThunk = createAsyncThunk(
   "user/login",
   async (userCredentials, { rejectWithValue }) => {
     try {
-      const {user} = await logIn(userCredentials);
+      const { user } = await logIn(userCredentials);
       setTokens(user.token);
       return user;
     } catch (error) {
