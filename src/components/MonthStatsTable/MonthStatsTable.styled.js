@@ -46,6 +46,7 @@ export const DivMonthSwitcher = styled.div`
 `;
 
 export const UlMonth = styled.ul`
+  position: relative;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 16px 26px;

@@ -83,3 +83,14 @@ export const getCurrentThunk = createAsyncThunk(
     }
   }
 );
+
+export const forgotPasswordThunk = createAsyncThunk(
+  "user/forgot-password",
+  async (userCredentials, { rejectWithValue }) => {
+    try {
+      return await userCredentials;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);

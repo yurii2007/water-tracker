@@ -7,6 +7,7 @@ import { selectIsLoading } from "../../redux/selectors";
 import ModalContextProvider from "../ModalContext/ModalContextProvider";
 import Header from "../Header/Header";
 import Loader from "../Loader/Loader";
+import SuspenseLoader from "../Loader/SuspenseLoader";
 
 const Layout = () => {
   const isLoading = useSelector(selectIsLoading);
@@ -16,7 +17,7 @@ const Layout = () => {
       <Header />
       <main>
         {isLoading ? <Loader /> : null}
-        <Suspense fallback={<div>loading...</div>}>
+        <Suspense fallback={<SuspenseLoader />}>
           <Outlet />
         </Suspense>
       </main>
