@@ -84,7 +84,7 @@ const SignUpForm = () => {
                 <Input $error={errors.email && touched.email}>
                   <FormField
                     $error={errors.email && touched.email}
-                    autoComplete="off"
+                    // autoComplete="off"
                     name="email"
                     type="email"
                     placeholder="E-mail"

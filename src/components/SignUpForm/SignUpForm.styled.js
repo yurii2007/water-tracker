@@ -120,6 +120,11 @@ export const Linking = styled(Link)`
     color: var(--secondary-yellow);
   }
 `;
+export const ForgotLink = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: fit-content;
+`;
 export const StyledError = styled(ErrorMessage)`
   color: var(--secondary-red);
   font-family: Roboto;
