@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const DayStatsContainer = styled.div`
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;

@@ -39,7 +39,7 @@ const MonthStatsTable = () => {
 
   return (
     <DivContentWrapper>
-      <MonthHeader changeDirection={changeMonth} month={month} />
+      <MonthHeader changeDirection={changeMonth} month={month} year={year} />
       {isLoading ? <SuspenseLoader /> : <MonthCalendar monthData={monthData} />}
     </DivContentWrapper>
   );
