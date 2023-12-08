@@ -51,6 +51,7 @@ export const Input = styled.div`
   justify-content: center;
   align-items: flex-start;
   border-radius: 6px;
+  background-color: var(--white-color);
   border: 1px solid ${({ $error }) => ($error ? "#ef5050" : "#d7e3ff")};
   &:focus-within {
     border: 1px solid ${({ $error }) => ($error ? "#ef5050" : "#407bff")};
@@ -62,7 +63,7 @@ export const FormField = styled(Field)`
   justify-content: center;
   align-items: flex-start;
   border: none;
-  width: 100%;
+  width: 90%;
   background-color: transparent;
   color: ${({ $error }) => ($error ? "#ef5050" : "#407bff")};
   font-size: 16px;

@@ -24,6 +24,7 @@ const validationSchema = yup.object().shape({
     .string()
     .email("email is not valid")
     .min(6, "the email must containe min six leters")
+    .max(64, "the email must containe maximum of 64 characters")
     .required("email is required")
     .trim()
     .matches(
@@ -33,7 +34,8 @@ const validationSchema = yup.object().shape({
   password: yup
     .string()
     .required("password is required")
-    .min(8, "Password must be 8 characters long"),
+    .min(8, "the password must containe min of 8 characters")
+    .max(64, "the password must containe maximum of 64 characters"),
 });
 
 const SignInForm = () => {
@@ -47,10 +49,10 @@ const SignInForm = () => {
       .unwrap()
       .then(() => {
         resetForm();
-        Notiflix.Notify.success("success");
+        Notiflix.Notify.success("success", { timeout: 1000 });
       })
       .catch((error) => {
-        Notiflix.Notify.failure(error.message);
+        Notiflix.Notify.failure(error.message, { timeout: 1000 });
       });
   };
   return (
