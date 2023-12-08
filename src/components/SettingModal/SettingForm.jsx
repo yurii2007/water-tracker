@@ -1,7 +1,6 @@
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import Notiflix from "notiflix";
-
 import { updateUserThunk } from "../../redux/User/UserThunk";
 import { validationSchema } from "../../schemas/settingFormSchema";
 import { TogglePasswordIcon } from "../TogglePasswordVisibility/TogglePasswordVisibility";
@@ -42,17 +41,23 @@ const SettingForm = ({ closeModal }) => {
       },
       validationSchema,
       onSubmit: (values) => {
+        const isGenderChanged = values.gender !== userData.gender;
         dispatch(
           updateUserThunk({
-            gender: values.gender,
+            gender: isGenderChanged ? values.gender : "",
             name: values.name,
             email: values.email,
-            oldPassword: values.oldPassword,
-            password: values.newPassword,
+            passwordOld: values.oldPassword,
+            passwordNew: values.newPassword,
           })
         )
           .unwrap()
           .then(() => {
+            if (values.email) {
+              Notiflix.Notify.success(
+                `Visit ${userData.email} to confirm new email`
+              );
+            }
             Notiflix.Notify.success("account updated successfully!");
             setValues((prevValues) => ({
               ...prevValues,
@@ -61,6 +66,9 @@ const SettingForm = ({ closeModal }) => {
               repeatPassword: "",
             }));
             closeModal();
+          })
+          .catch((error) => {
+            Notiflix.Notify.failure(error);
           });
       },
     });
@@ -115,7 +123,7 @@ const SettingForm = ({ closeModal }) => {
                 onChange={handleChange}
                 placeholder={userData.email ? userData.email : ""}
               />
-              {errors.email && <p>{errors.email}</p>}
+              {errors.email && <ErrorPassText>{errors.email}</ErrorPassText>}
             </InputLabel>
           </LeftFormWrap>
           <RightFormWrap>

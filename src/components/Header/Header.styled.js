@@ -73,6 +73,11 @@ export const WrapperSecondary = styled.div`
   & :nth-child(3) {
     margin-left: 4px;
   }
+
+  &:hover > *,
+  &:focus-within > * {
+    color: var(--secondary-yellow);
+  }
 `;
 
 export const Button = styled.button`

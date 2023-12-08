@@ -46,6 +46,15 @@ export const UploadWrapper = styled.div`
   gap: 8px;
   margin-bottom: 24px;
 
+  div {
+    display: flex;
+    justify-content: center;
+
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
   img {
     border-radius: 50%;
   }
@@ -176,6 +185,14 @@ export const BtnSave = styled.button`
   background: var(--primery-color-blue, #407bff);
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   cursor: pointer;
+
+  &:hover {
+    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+  }
+
+  &:active {
+    box-shadow: none;
+  }
 
   width: 100%;
   @media screen and (min-width: 768px) {
