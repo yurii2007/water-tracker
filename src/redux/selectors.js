@@ -18,4 +18,5 @@ export const selectUserLogo = (state) => state.user.user.avatar;
 
 export const selectMonthInfo = (state) => state.water.monthInfo;
 export const selectorWaterInfo = (state) => state.water.today;
+export const selectorWaterList = (state) => state.water.today.dailyWaterList;
 export const selectIsWaterLoading = (state) => state.water.isLoading;

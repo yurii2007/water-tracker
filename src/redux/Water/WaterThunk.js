@@ -1,6 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { addWater, getMonthInfo, getTodayInfo } from "../../axios/water";
+import {
+  addWater,
+  deleteWater,
+  getMonthInfo,
+  getTodayInfo,
+} from "../../axios/water";
 
 export const getMonthInfoThunk = createAsyncThunk(
   "water/getMonthInfo",
@@ -34,6 +39,18 @@ export const addWaterThunk = createAsyncThunk(
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteWaterThunk = createAsyncThunk(
+  "water/deleteWater",
+  async (id, thunkAPI) => {
+    try {
+      const response = await deleteWater(id);
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );

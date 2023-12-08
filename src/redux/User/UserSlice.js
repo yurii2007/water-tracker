@@ -30,6 +30,11 @@ const pendingCase = (state) => {
 };
 
 const rejectedCase = (_, { payload }) => ({ ...initialState, error: payload });
+const rejectedCaseUser = (state, { payload }) => {
+  state.error = payload;
+  state.message = payload.message;
+  state.isLoading = false;
+};
 const rejectedCaseAvatar = (state, { payload }) => ({
   ...state,
   error: payload,
@@ -42,16 +47,13 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(updateUserThunk.pending, pendingCase)
-      .addCase(
-        updateUserThunk.fulfilled,
-        (state, { payload: { gender, name, email } }) => {
-          state.user.email = email;
-          state.user.name = name;
-          state.user.gender = gender;
-          state.isLoading = false;
-        }
-      )
-      .addCase(updateUserThunk.rejected, rejectedCase)
+      .addCase(updateUserThunk.fulfilled, (state, { payload }) => {
+        state.user.email = payload.email;
+        state.user.name = payload.name;
+        state.user.gender = payload.gender;
+        state.isLoading = false;
+      })
+      .addCase(updateUserThunk.rejected, rejectedCaseUser)
       .addCase(registerThunk.pending, pendingCase)
       .addCase(registerThunk.fulfilled, (state, { payload }) => {
         state.message = payload;

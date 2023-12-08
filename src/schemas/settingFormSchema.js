@@ -1,9 +1,8 @@
 import * as yup from "yup";
 const emailRegex = /^[a-zA-Z0-9]+[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
-// const emailRegex = /[a-z0-9]+@+[a-z]+[\./]+[a-z]{2,3}/;
 
 export const validationSchema = yup.object().shape({
-  gender: yup.string().required(),
+  gender: yup.string(),
   name: yup.string(),
   email: yup.string().matches(emailRegex, "Email is not valid"),
   oldPassword: yup
@@ -11,7 +10,18 @@ export const validationSchema = yup.object().shape({
     .when("newPassword", (newPassword, field) =>
       newPassword[0] ? field.required() : field
     ),
-  newPassword: yup.string().nullable(),
+  newPassword: yup
+    .string()
+    .nullable()
+    .min(8, "New password must be at least 8 characters")
+    .test(
+      "notSameAsOldPassword",
+      "New password must be different from the old password",
+      function (value) {
+        const oldPassword = this.resolve(yup.ref("oldPassword"));
+        return !oldPassword || String(value) !== String(oldPassword);
+      }
+    ),
 
   repeatPassword: yup
     .string()
