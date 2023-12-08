@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 
 import { calculateWaterRate } from "../../utils/calculateWaterRate";
 
-import { Genders, ArticleCalculateWrapper } from "./DailyNormaModal.styled";
+import {
+  Genders,
+  ArticleCalculateWrapper,
+  PAmountOfWater,
+} from "./DailyNormaModal.styled";
 
 const DailyNormCalculate = () => {
   const [waterRate, setWaterRate] = useState(calculateWaterRate());
@@ -35,19 +39,27 @@ const DailyNormCalculate = () => {
           type="number"
           name="weight"
           max={200}
-          min={30}
+          min={0}
+          placeholder="0"
           onChange={handleInputChange}
         />
       </label>
       <label>
         The time of active participation in sports or other activities with a high
         physical load(in hours):
-        <input type="number" name="hours" max={24} min={0} onChange={handleInputChange} />
+        <input
+          type="number"
+          name="hours"
+          max={24}
+          min={0}
+          placeholder="0"
+          onChange={handleInputChange}
+        />
       </label>
-      <p>
+      <PAmountOfWater>
         The required amount of water in liters per day:
-        <span>{Math.round(waterRate * 100) / 100}L</span>
-      </p>
+        <span>{Math.round(waterRate * 100) / 100}&nbsp;L</span>
+      </PAmountOfWater>
     </ArticleCalculateWrapper>
   );
 };

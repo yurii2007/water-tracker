@@ -1,42 +1,53 @@
 import styled from "styled-components";
 
 export const DailyNormaContainer = styled.div`
-  width: 164px;
-  padding: 8px 20px 8px 20px;
-  border-radius: 10px;
+  width: max-content;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  box-shadow: 0px 4px 8px 4px rgba(158, 187, 255, 0.12);
+  padding: 8px 20px;
+  border-radius: 10px;
+  border: 1px solid var(--secondary-gray);
+  box-shadow: 0px 4px 8px 0px #9ebbff1f;
+  background-color: var(--white-color);
+
+  p {
+    color: var(--primary-black);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
 `;
 
-export const DailyNormaHeader = styled.p`
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 24px;
-  letter-spacing: 0em;
-  text-align: left;
-`;
-export const DailyNormaContainerWaterStat = styled.div`
+export const DailyNormaContainerWaterStats = styled.div`
   display: flex;
+  align-items: end;
   gap: 12px;
-`;
-
-export const DailyNormaWaterNorma = styled.p`
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 24px;
   letter-spacing: 0em;
   text-align: left;
-  color: var(--primary-blue);
-`;
 
-export const DailyNormaButton = styled.button`
-  font-size: 16px;
-  line-height: 20px;
-  letter-spacing: 0em;
-  text-align: left;
-  border: none;
-  background-color: transparent;
-  color: var(--secondary-skyblue);
+  span {
+    color: var(--primary-blue);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 24px;
+  }
+
+  button {
+    background: transparent;
+    border: none;
+    color: #8baeff;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    cursor: pointer;
+    transition: color 0.2s linear;
+
+    &:is(:hover, :focus) {
+      color: var(--primary-blue);
+      outline: none;
+    }
+  }
 `;

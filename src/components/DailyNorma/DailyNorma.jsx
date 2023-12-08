@@ -4,13 +4,7 @@ import { useModal } from "../ModalContext/ModalContextProvider.jsx";
 import { selectDailyNorma } from "../../redux/selectors.js";
 
 import DailyNormaModal from "../DailyNormaModal/DailyNormaModal";
-import {
-  DailyNormaButton,
-  DailyNormaContainer,
-  DailyNormaContainerWaterStat,
-  DailyNormaHeader,
-  DailyNormaWaterNorma,
-} from "./DailyNorma.styled";
+import { DailyNormaContainer, DailyNormaContainerWaterStats } from "./DailyNorma.styled";
 
 const DailyNorma = () => {
   const toggleModal = useModal();
@@ -18,13 +12,13 @@ const DailyNorma = () => {
 
   return (
     <DailyNormaContainer>
-      <DailyNormaHeader>My daily norma</DailyNormaHeader>
-      <DailyNormaContainerWaterStat>
-        <DailyNormaWaterNorma>{dailyNorma / 1000}L</DailyNormaWaterNorma>
-        <DailyNormaButton onClick={() => toggleModal(<DailyNormaModal />)}>
+      <p>My daily norma</p>
+      <DailyNormaContainerWaterStats>
+        <span>{dailyNorma / 1000} L</span>
+        <button onClick={() => toggleModal(<DailyNormaModal />)} type="button">
           Edit
-        </DailyNormaButton>
-      </DailyNormaContainerWaterStat>
+        </button>
+      </DailyNormaContainerWaterStats>
     </DailyNormaContainer>
   );
 };
