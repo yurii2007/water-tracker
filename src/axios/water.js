@@ -25,3 +25,8 @@ export const addWater = async (amount) => {
   );
   return data;
 };
+
+export const deleteWater = async (waterId) => {
+  const { data } = await instance.delete(`${waterId}`);
+  return data;
+};

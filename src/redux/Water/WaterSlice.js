@@ -1,6 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { addWaterThunk, getMonthInfoThunk, getTodayThunk } from "./WaterThunk";
+import {
+  addWaterThunk,
+  deleteWaterThunk,
+  getMonthInfoThunk,
+  getTodayThunk,
+} from "./WaterThunk";
 
 const initialState = {
   monthInfo: [],
@@ -17,6 +22,10 @@ const pendingCase = (state) => {
 };
 
 const rejectedCase = (_, { payload }) => ({ ...initialState, error: payload });
+const rejectedCaseDelete = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = payload;
+};
 
 const waterSlice = createSlice({
   name: "user",
@@ -38,11 +47,21 @@ const waterSlice = createSlice({
       })
       .addCase(getTodayThunk.rejected, rejectedCase)
       .addCase(addWaterThunk.pending, pendingCase)
-      .addCase(addWaterThunk.fulfilled, (state, { payload: { amount, time, _id } }) => {
-        state.today.dailyWaterList.push({ amount, time, _id });
-        state.isLoading = false;
+      .addCase(
+        addWaterThunk.fulfilled,
+        (state, { payload: { amount, time, _id } }) => {
+          state.today.dailyWaterList.push({ amount, time, _id });
+          state.isLoading = false;
+        }
+      )
+      .addCase(addWaterThunk.rejected, rejectedCase)
+      .addCase(deleteWaterThunk.pending, pendingCase)
+      .addCase(deleteWaterThunk.fulfilled, (state, { payload }) => {
+        state.today.dailyWaterList = state.today.dailyWaterList.filter(
+          (data) => data._id !== payload.removedId
+        );
       })
-      .addCase(addWaterThunk.rejected, rejectedCase);
+      .addCase(deleteWaterThunk.rejected, rejectedCaseDelete);
   },
 });
 
