@@ -60,7 +60,7 @@ const SignUpForm = () => {
         Notiflix.Notify.success("success", { timeout: 1000 });
       })
       .catch((error) => {
-        Notiflix.Notify.failure(error.message, { timeout: 1000 });
+        Notiflix.Notify.failure(error, { timeout: 1000 });
       });
   };
 
@@ -84,7 +84,7 @@ const SignUpForm = () => {
                 <Input $error={errors.email && touched.email}>
                   <FormField
                     $error={errors.email && touched.email}
-                    // autoComplete="off"
+                    autoComplete="off"
                     name="email"
                     type="email"
                     placeholder="E-mail"

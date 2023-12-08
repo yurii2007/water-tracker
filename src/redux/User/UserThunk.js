@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import { getProfile, updateAvatar, updateUser } from "../../axios/userData";
-import { logIn, register, logout } from "../../axios/auth";
+import { logIn, register, logout, forgotPassword } from "../../axios/auth";
 import setTokens from "../../utils/setTokens";
 
 export const updateAvatarThunk = createAsyncThunk(
@@ -88,7 +88,7 @@ export const forgotPasswordThunk = createAsyncThunk(
   "user/forgot-password",
   async (userCredentials, { rejectWithValue }) => {
     try {
-      return await userCredentials;
+      return await forgotPassword(userCredentials);
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }

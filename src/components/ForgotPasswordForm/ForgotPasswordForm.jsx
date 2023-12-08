@@ -33,7 +33,6 @@ const validationSchema = yup.object().shape({
 
 const ForgotPasswordForm = () => {
   const dispatch = useDispatch();
-
   const handleSubmit = (values, { resetForm }) => {
     dispatch(forgotPasswordThunk(values))
       .unwrap()
@@ -65,7 +64,7 @@ const ForgotPasswordForm = () => {
                   <Input $error={errors.email && touched.email}>
                     <FormField
                       $error={errors.email && touched.email}
-                      // autoComplete="off"
+                      autoComplete="off"
                       name="email"
                       type="email"
                       placeholder="E-mail"
