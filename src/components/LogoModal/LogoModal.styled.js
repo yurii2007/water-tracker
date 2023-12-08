@@ -52,6 +52,12 @@ export const Button = styled.button`
   padding: 0;
   cursor: pointer;
   align-items: center;
+
+  &:hover > *,
+  &:focus-within > * {
+    color: var(--secondary-yellow);
+    stroke: var(--secondary-yellow);
+  }
 `;
 
 export const Text = styled.p`
@@ -61,9 +67,11 @@ export const Text = styled.p`
 export const Setting = styled(SettingIcon)`
   width: 16px;
   height: 16px;
+  stroke: var(--primary-blue);
 `;
 
 export const LogOut = styled(LogOutIcon)`
   width: 16px;
   height: 16px;
+  stroke: var(--primary-blue);
 `;

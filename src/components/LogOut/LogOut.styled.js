@@ -60,6 +60,11 @@ export const ButtonLogOut = styled.button`
   border: none;
   cursor: pointer;
 
+  &:hover,
+  &:focus {
+    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+  }
+
   @media (min-width: 768px) {
     padding: 10px 30px;
     width: 160px;
