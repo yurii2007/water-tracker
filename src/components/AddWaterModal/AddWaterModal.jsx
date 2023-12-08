@@ -14,7 +14,10 @@ import {
   ValueText,
 } from "./AddWaterModal.styled";
 import { ReactComponent as CloseBtnIcon } from "../../images/svg/x.svg";
-import { formatTime } from "../../Helpers/formatTime";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Notiflix from "notiflix";
+import css from "../AddWaterModal/AddWater.module.css";
 
 const AddWaterModal = () => {
   const [value, setValue] = useState(0);
@@ -22,9 +25,6 @@ const AddWaterModal = () => {
   const toggleModal = useModal();
 
   const dispatch = useDispatch();
-
-  const hours = Array.from({ length: 24 }, (_, index) => index);
-  const minutes = Array.from({ length: 12 }, (_, index) => index * 5);
 
   const handleUpdate = (evt) => {
     const { name } = evt.currentTarget;
@@ -44,6 +44,10 @@ const AddWaterModal = () => {
 
   const handleSave = async (evt) => {
     evt.preventDefault();
+    if (value === 0) {
+      Notiflix.Notify.warning("Please enter a non-zero value for water.");
+      return;
+    }
     const newTime = new Date(time);
     const saveWater = { amount: value, time: newTime };
 
@@ -79,30 +83,20 @@ const AddWaterModal = () => {
       <FormStyled>
         <label>
           Recording time:
-          <select
-            value={formatTime(time)}
-            onChange={(evt) => {
-              const [hours, minutes] = evt.target.value.split(":");
-              const newTime = new Date(time);
-              newTime.setHours(Number(hours));
-              newTime.setMinutes(Number(minutes));
-              setTime(newTime);
+          <DatePicker
+            selected={time}
+            className={css.input_wrapper}
+            onChange={(date) => {
+              setTime(date);
             }}
-          >
-            <option value={formatTime(time)}>{formatTime(time)}</option>
-            {hours.map((hour) =>
-              minutes.map((minute) => {
-                const formattedHour = hour < 10 ? `0${hour}` : hour;
-                const formattedMinute = minute < 10 ? `0${minute}` : minute;
-                const timeValue = `${formattedHour}:${formattedMinute}`;
-                return (
-                  <option key={timeValue} value={timeValue}>
-                    {timeValue}
-                  </option>
-                );
-              })
-            )}
-          </select>
+            showTimeSelect
+            showTimeSelectOnly
+            timeIntervals={5}
+            dateFormat="hh:mm"
+            minTime={new Date(2023, 1, 1, 0, 0)}
+            maxTime={new Date()}
+            timeZone="UTC"
+          />
         </label>
         <label>
           Enter the value of the water used:
@@ -115,7 +109,7 @@ const AddWaterModal = () => {
           />
         </label>
         <BtnSaveWrapper>
-          <p>{value}</p>
+          <p>{value}ml</p>
           <button onClick={handleSave}>Save</button>
         </BtnSaveWrapper>
       </FormStyled>
