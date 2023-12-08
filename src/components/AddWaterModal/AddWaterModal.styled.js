@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Notiflix from "notiflix";
 import { ReactComponent as IncrementIcon } from "../../images/svg/plus.svg";
 import { ReactComponent as DecrementIcon } from "../../images/svg/minus.svg";
 
@@ -28,6 +29,7 @@ export const HeaderWrapper = styled.div`
     border: none;
     background-color: transparent;
     padding: 0;
+    cursor: pointer;
   }
 `;
 
@@ -49,6 +51,7 @@ export const BtnWrapper = styled.div`
     border: 1px solid var(--secondary-skyblue);
     background: var(--white-color);
     box-shadow: 0px 2px 4px 0px rgba(64, 123, 255, 0.2);
+    cursor: pointer;
   }
 
   span {
@@ -93,12 +96,10 @@ export const FormStyled = styled.form`
     gap: 12px;
   }
 
-  input,
-  select {
-    width: 100%;
+  input {
+    width: 120px;
     display: flex;
     padding: 12px 10px;
-    flex-direction: column;
     align-items: flex-start;
     gap: 10px;
     border-radius: 6px;
@@ -106,14 +107,30 @@ export const FormStyled = styled.form`
     color: var(--primary-blue);
     margin-bottom: 24px;
     outline: none;
+    appearance: none;
+  }
+
+  label:nth-child(2) {
+    color: var(--primary-black);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.1;
+  }
+
+  @media screen and (min-width: 768px) {
+    input,
+    select {
+      width: 100%;
+    }
   }
 `;
 
 export const BtnSaveWrapper = styled.div`
   display: flex;
-  justify-content: flex-end;
-  gap: 24px;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 16px;
 
   p {
     color: var(--primary-blue);
@@ -123,7 +140,7 @@ export const BtnSaveWrapper = styled.div`
   }
 
   button {
-    width: 160px;
+    width: 100%;
     display: flex;
     padding: 10px 30px;
     justify-content: center;
@@ -138,23 +155,49 @@ export const BtnSaveWrapper = styled.div`
     font-size: 18px;
     font-weight: 500;
     line-height: 1.33;
+    cursor: pointer;
+  }
+  @media screen and (min-width: 768px) {
+    gap: 24px;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    button {
+      width: 160px;
+    }
   }
 `;
 
 export const ModalContainer = styled.div`
   background-color: var(--white-color);
-  position: relative;
-  width: 256px;
+  width: 280px;
   display: flex;
   flex-direction: column;
   padding: 24px 12px;
+  position: relative;
+  border-radius: 10px;
 
   @media screen and (min-width: 768px) {
     width: 704px;
     padding: 32px 24px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1440px) {
     width: 592px;
   }
 `;
+
+Notiflix.Notify.init({
+  timeout: 2000,
+  fontFamily: "Roboto",
+  warning: {
+    background: "#407bff",
+    timeout: 8000,
+    textColor: "#d7e3ff",
+    childClassName: "notiflix-notify-warning",
+    notiflixIconColor: "rgba(0,0,0,0.2)",
+    fontAwesomeClassName: "fas fa-exclamation-circle",
+    fontAwesomeIconColor: "rgba(0,0,0,0.2)",
+    backOverlayColor: "rgba(238,191,49,0.2)",
+  },
+});

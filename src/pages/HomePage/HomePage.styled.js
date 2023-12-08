@@ -21,7 +21,9 @@ export const DivWrapperPage = styled.div`
   background-size: cover, 280px 208px;
   background-position: top left, top 54px center;
   background-repeat: no-repeat;
-  @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
     background-image: url(${bgMobRetina}), url(${bgBottleMobRetina});
   }
 
