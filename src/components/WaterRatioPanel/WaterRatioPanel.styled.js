@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const TextPercentage = styled.span`
   position: absolute;
   top: 96%;
-  left: ${(props) => props.percentPosition}%;
+  left: ${({ $percentPosition }) => `${$percentPosition}%`};
   transform: translateX(-50%);
   color: var(--primary-blue);
   font-size: 16px;
@@ -80,6 +80,7 @@ export const AddBtn = styled.button`
   background-color: var(--primary-blue);
   color: var(--white-color);
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+  cursor: pointer;
 
   svg {
     stroke: var(--white-color);
