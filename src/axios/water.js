@@ -9,7 +9,7 @@ export const tokenWater = (token) => {
 };
 
 export const getMonthInfo = async (date) => {
-  const { data } = await instance.post("month/info", { date });
+  const { data } = await instance.get(`month/info?date=${date.join("-")}`);
   return data;
 };
 

@@ -8,16 +8,20 @@ import {
   DivMonthSwitcher,
 } from "./MonthStatsTable.styled";
 
-const MonthHeader = ({ changeDirection, month }) => {
+const MonthHeader = ({ changeDirection, month, year }) => {
   return (
     <DivHeadingWrapper>
       <MonthHeading>Month</MonthHeading>
       <DivMonthSwitcher>
-        <button className="arrow" onClick={() => changeDirection(-1)} type="button">
+        <button className="arrow" onClick={() => changeDirection("back")} type="button">
           <LeftArrow />
         </button>
-        <p className="month__name">{getMonthName(month)}</p>
-        <button className="arrow" onClick={() => changeDirection(1)} type="button">
+        <p className="month__name">{getMonthName(month)}, {year}</p>
+        <button
+          className="arrow"
+          onClick={() => changeDirection("forward")}
+          type="button"
+        >
           <RightArrow />
         </button>
       </DivMonthSwitcher>

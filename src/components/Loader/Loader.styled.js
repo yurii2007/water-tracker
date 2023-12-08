@@ -11,3 +11,10 @@ export const DivLoaderWrapper = styled.div`
   background: rgba(236, 242, 255, 0.3);
   backdrop-filter: blur(3px);
 `;
+
+export const DivSuspenseLoaderWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+`;

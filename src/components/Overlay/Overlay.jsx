@@ -13,17 +13,24 @@ const Overlay = ({ children }) => {
   };
 
   useEffect(() => {
+    // Handle keydown event to close modal on 'Escape' key press
     const handleKeyDown = (e) => {
       if (e.code === "Escape") {
         toggleModal();
       }
     };
 
+    // Disable scrolling on the body when the modal is active
     document.body.style.overflow = "hidden";
+
+    // Add event listener for the 'Escape' keydown event
     document.addEventListener("keydown", handleKeyDown);
 
     return () => {
+      // Re-enable scrolling on the body when the modal is closed
       document.body.style.overflow = "auto";
+
+      // Remove the 'Escape' keydown event listener
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [toggleModal]);
