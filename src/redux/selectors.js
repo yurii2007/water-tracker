@@ -13,6 +13,7 @@ export const selectIsAuth = createSelector(
 
 export const selectIsName = (state) => state.user.user.name;
 export const selectUserLogo = (state) => state.user.user.avatar;
+export const selectDailyNorma = (state) => state.user.user.dailyNorma;
 
 // WATER SELECTORS
 

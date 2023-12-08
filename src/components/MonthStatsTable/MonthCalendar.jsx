@@ -24,7 +24,7 @@ const MonthCalendar = ({ monthData }) => {
           key={dayInfo.date.day}
         >
           <span className="day">{dayInfo.date.day}</span>
-          <span className="percentage">{dayInfo.percent || 0}&#37;</span>
+          <span className="percentage">{parseInt(dayInfo.percent) || 0}&#37;</span>
         </LiDayStyles>
       ))}
     </UlMonth>

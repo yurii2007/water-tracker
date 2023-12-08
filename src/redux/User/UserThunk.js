@@ -1,6 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { getProfile, updateAvatar, updateUser } from "../../axios/userData";
+import {
+  getProfile,
+  updateAvatar,
+  updateUser,
+  updateWaterRate,
+} from "../../axios/userData";
 import { logIn, register, logout } from "../../axios/auth";
 import setTokens from "../../utils/setTokens";
 
@@ -43,7 +48,7 @@ export const loginThunk = createAsyncThunk(
   "user/login",
   async (userCredentials, { rejectWithValue }) => {
     try {
-      const {user} = await logIn(userCredentials);
+      const { user } = await logIn(userCredentials);
       setTokens(user.token);
       return user;
     } catch (error) {
@@ -79,6 +84,18 @@ export const getCurrentThunk = createAsyncThunk(
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateWaterRateThunk = createAsyncThunk(
+  "user/updateWaterRate",
+  async (newData, thunkAPI) => {
+    try {
+      const data = await updateWaterRate(newData);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );

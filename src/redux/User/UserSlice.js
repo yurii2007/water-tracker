@@ -7,6 +7,7 @@ import {
   registerThunk,
   updateAvatarThunk,
   updateUserThunk,
+  updateWaterRateThunk,
 } from "./UserThunk";
 
 const initialState = {
@@ -87,7 +88,15 @@ const userSlice = createSlice({
         state.user.avatar = payload;
         state.isLoading = false;
       })
-      .addCase(updateAvatarThunk.rejected, rejectedCaseAvatar);
+      .addCase(updateAvatarThunk.rejected, rejectedCaseAvatar)
+      .addCase(updateWaterRateThunk.pending, pendingCase)
+      .addCase(updateWaterRateThunk.fulfilled, (state, { payload }) => {
+        state.user.dailyNorma = payload.dailyNorma;
+        state.isLoading = false;
+      })
+      .addCase(updateWaterRateThunk.rejected, (state) => {
+        state.isLoading = false;
+      });
   },
 });
 

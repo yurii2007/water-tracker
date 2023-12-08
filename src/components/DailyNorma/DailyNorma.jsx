@@ -1,3 +1,9 @@
+import { useSelector } from "react-redux";
+
+import { useModal } from "../ModalContext/ModalContextProvider.jsx";
+import { selectDailyNorma } from "../../redux/selectors.js";
+
+import DailyNormaModal from "../DailyNormaModal/DailyNormaModal";
 import {
   DailyNormaButton,
   DailyNormaContainer,
@@ -5,26 +11,19 @@ import {
   DailyNormaHeader,
   DailyNormaWaterNorma,
 } from "./DailyNorma.styled";
-import { ModalContext } from "../../css/ModalProvider.jsx/ModalProvider";
-import { useContext } from "react";
-import DailyNormaModal from "components/DailyNormaModal/DailyNormaModal";
-import { useAuth } from "../../hooks/useAuth";
 
 const DailyNorma = () => {
-  const toggleModal = useContext(ModalContext);
-
-  const { dailyNorma } = useAuth();
-
-  const openDailyNormaModal = () => {
-    toggleModal(<DailyNormaModal />);
-  };
+  const toggleModal = useModal();
+  const dailyNorma = useSelector(selectDailyNorma);
 
   return (
     <DailyNormaContainer>
       <DailyNormaHeader>My daily norma</DailyNormaHeader>
       <DailyNormaContainerWaterStat>
-        <DailyNormaWaterNorma>{`${dailyNorma}L`}</DailyNormaWaterNorma>
-        <DailyNormaButton onClick={openDailyNormaModal}>Edit</DailyNormaButton>
+        <DailyNormaWaterNorma>{dailyNorma / 1000}L</DailyNormaWaterNorma>
+        <DailyNormaButton onClick={() => toggleModal(<DailyNormaModal />)}>
+          Edit
+        </DailyNormaButton>
       </DailyNormaContainerWaterStat>
     </DailyNormaContainer>
   );
