@@ -18,8 +18,8 @@ const DaysGeneralStats = ({ currentDay, close, isLeft }) => {
           style={{ cursor: "pointer", width: "16px", height: "16px" }}
         />
       </UpperElem>
-      <p>Daily norma : {dailyNorma && <span>`${norma}L`</span>}</p>
-      <p>Fulfillment of the daily norm : {percent && <span>`${percent} %`</span>}</p>
+      <p>Daily norma : {dailyNorma && <span>{norma}L</span>}</p>
+      <p>Fulfillment of the daily norm : {percent && <span>{parseInt(percent)} %</span>}</p>
       <p>How many servings of water : {quantity && <span>{quantity}</span>}</p>
     </DayStatsContainer>
   );
