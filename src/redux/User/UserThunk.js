@@ -43,7 +43,7 @@ export const loginThunk = createAsyncThunk(
   "user/login",
   async (userCredentials, { rejectWithValue }) => {
     try {
-      const {user} = await logIn(userCredentials);
+      const { user } = await logIn(userCredentials);
       setTokens(user.token);
       return user;
     } catch (error) {
@@ -79,6 +79,17 @@ export const getCurrentThunk = createAsyncThunk(
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const forgotPasswordThunk = createAsyncThunk(
+  "user/forgot-password",
+  async (userCredentials, { rejectWithValue }) => {
+    try {
+      return await userCredentials;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
     }
   }
 );

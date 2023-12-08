@@ -7,7 +7,9 @@ export const instance = axios.create({
 // Token
 
 export const tokenAuth = (token) => {
-  instance.defaults.headers.common["Authorization"] = token ? `Bearer ${token}` : "";
+  instance.defaults.headers.common["Authorization"] = token
+    ? `Bearer ${token}`
+    : "";
 };
 
 // User athorize
@@ -25,4 +27,11 @@ export const logIn = async (body) => {
 export const logout = async () => {
   await instance.post("/logout");
   tokenAuth();
+};
+
+// forgotPassword
+
+export const forgotPassword = async (body) => {
+  const { data } = await instance.post("/forgot-password", body);
+  return data;
 };

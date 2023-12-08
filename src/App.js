@@ -9,12 +9,17 @@ import { routes } from "./constants/routes";
 import Layout from "./components/Layout/Layout";
 
 const PublicRoute = React.lazy(() => import("./components/Routes/PublicRoute"));
-const AuthLayout = React.lazy(() => import("./components/AuthLayout/AuthLayout"));
+const AuthLayout = React.lazy(() =>
+  import("./components/AuthLayout/AuthLayout")
+);
 const WelcomePage = React.lazy(() => import("./pages/WelcomePage/WelcomePage"));
 const HomePage = React.lazy(() => import("./pages/HomePage/HomePage"));
 const SignInPage = React.lazy(() => import("./pages/SignInPage"));
 const SignUpPage = React.lazy(() => import("./pages/SignUpPage"));
 const NotFoundPage = React.lazy(() => import("./pages/NotFoundPage"));
+const ForgotPasswordPage = React.lazy(() =>
+  import("./pages/ForgotPasswordPage")
+);
 
 const App = () => {
   const dispatch = useDispatch();
@@ -34,6 +39,16 @@ const App = () => {
             <PublicRoute navigate={routes.Home}>
               <AuthLayout>
                 <SignInPage />
+              </AuthLayout>
+            </PublicRoute>
+          }
+        />
+        <Route
+          path={routes.ForgotPassword}
+          element={
+            <PublicRoute navigate={routes.Home}>
+              <AuthLayout>
+                <ForgotPasswordPage />
               </AuthLayout>
             </PublicRoute>
           }

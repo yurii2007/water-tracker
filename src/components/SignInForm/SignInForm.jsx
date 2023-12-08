@@ -6,6 +6,7 @@ import { Formik, Form } from "formik";
 import {
   AuthUpForma,
   BtnSign,
+  ForgotLink,
   FormContainer,
   FormField,
   Input,
@@ -74,7 +75,7 @@ const SignInForm = () => {
                 <Input $error={errors.email && touched.email}>
                   <FormField
                     $error={errors.email && touched.email}
-                    autoComplete="off"
+                    // autoComplete="off"
                     name="email"
                     type="email"
                     placeholder="E-mail"
@@ -101,7 +102,10 @@ const SignInForm = () => {
             );
           }}
         </Formik>
-        <Linking to="/signup">Sign Up</Linking>
+        <ForgotLink>
+          <Linking to="/forgot-password">Forgot password?</Linking>
+          <Linking to="/signup">Sign Up</Linking>
+        </ForgotLink>
       </AuthUpForma>
     </FormContainer>
   );
