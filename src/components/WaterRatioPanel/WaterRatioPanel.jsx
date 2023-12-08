@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useModal } from "../ModalContext/ModalContextProvider";
-
-import TodayListModal from "../TodayListModal/TodayListModal";
+import AddWaterModal from "../AddWaterModal/AddWaterModal";
 import { ReactComponent as AddIcon } from "../../images/svg/plus_circle.svg";
 import {
   AddBtn,
@@ -20,7 +19,6 @@ const WaterRatioPanel = () => {
 
   const handleChange = (evt) => {
     const value = parseInt((1250 / 2000) * 100);
-    console.log(value);
     //Формула ((к-сть випитої води(із мого модального вікна)/добова норма води) * 100)
     setWater(value);
     setInputValue(parseInt(evt.target.value));
@@ -43,7 +41,7 @@ const WaterRatioPanel = () => {
         </WrapperPercentage>
         <TextPercentage $percentPosition={inputValue}>{water}%</TextPercentage>
       </InputContainer>
-      <AddBtn onClick={() => toggleModal(<TodayListModal />)} type="button">
+      <AddBtn onClick={() => toggleModal(<AddWaterModal />)} type="button">
         <AddIcon aria-label="add_water" />
         Add water
       </AddBtn>
