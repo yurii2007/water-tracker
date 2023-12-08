@@ -20,7 +20,7 @@ export const getTodayInfo = async () => {
 
 export const addWater = async (amount) => {
   const { data } = await instance.post(
-    "https://water-tracker-f07j.onrender.com/api/water/",
+    "",
     amount
   );
   return data;
