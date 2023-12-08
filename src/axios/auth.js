@@ -6,29 +6,23 @@ export const instance = axios.create({
 
 // Token
 
-const saveToken = (token) => {
-  instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-};
-
-const removeToken = () => {
-  delete instance.defaults.headers.common["Authorization"];
+export const tokenAuth = (token) => {
+  instance.defaults.headers.common["Authorization"] = token ? `Bearer ${token}` : "";
 };
 
 // User athorize
 
 export const register = async (body) => {
   const { data } = await instance.post("/register", body);
-  saveToken(data.token);
   return data;
 };
 
 export const logIn = async (body) => {
   const { data } = await instance.post("/login", body);
-  saveToken(data.token);
   return data;
 };
 
 export const logout = async () => {
   await instance.post("/logout");
-  removeToken();
+  tokenAuth();
 };

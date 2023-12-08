@@ -1,5 +1,6 @@
 import * as yup from "yup";
-const emailRegex = /[a-z0-9]+@+[a-z]+[\./]+[a-z]{2,3}/;
+const emailRegex = /^[a-zA-Z0-9]+[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
+// const emailRegex = /[a-z0-9]+@+[a-z]+[\./]+[a-z]{2,3}/;
 
 export const validationSchema = yup.object().shape({
   gender: yup.string().required(),

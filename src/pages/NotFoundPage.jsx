@@ -1,9 +1,11 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router";
 
+import SuspenseLoader from "../components/Loader/SuspenseLoader"
+
 const NotFoundPage = () => {
   return (
-    <Suspense fallback={<div>loading...</div>}>
+    <Suspense fallback={<SuspenseLoader />}>
       <Outlet />
     </Suspense>
   );

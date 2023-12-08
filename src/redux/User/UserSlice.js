@@ -21,6 +21,7 @@ const initialState = {
   token: "",
   isLoggedIn: false,
   isLoading: false,
+  isRefreshing: false,
   error: null,
 };
 
@@ -59,9 +60,9 @@ const userSlice = createSlice({
       .addCase(registerThunk.rejected, rejectedCase)
       .addCase(loginThunk.pending, pendingCase)
       .addCase(loginThunk.fulfilled, (state, { payload }) => {
-        state.user.email = payload.user.email;
-        state.user.avatar = payload.user.avatar;
-        state.token = payload.user.token;
+        state.user.email = payload.email;
+        state.user.avatar = payload.avatar;
+        state.token = payload.token;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
@@ -79,9 +80,7 @@ const userSlice = createSlice({
       })
       .addCase(getCurrentThunk.rejected, rejectedCase)
       .addCase(logOutThunk.pending, pendingCase)
-      .addCase(logOutThunk.fulfilled, (state) => {
-        state.token = "";
-      })
+      .addCase(logOutThunk.fulfilled, rejectedCase)
       .addCase(logOutThunk.rejected, rejectedCase)
       .addCase(updateAvatarThunk.pending, pendingCase)
       .addCase(updateAvatarThunk.fulfilled, (state, { payload }) => {

@@ -1,75 +1,44 @@
 import { createPortal } from "react-dom";
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 
 import { useModal } from "../ModalContext/ModalContextProvider";
 
-import SettingModal from "../SettingModal/SettingModal";
-import TodayListModal from "../TodayListModal/TodayListModal";
-import { OverlayStyle, LogoModalStyles } from "./Overlay.styled";
-import LogOut from "../LogOut/LogOut";
-import { LogoModal } from "../LogoModal/LogoModal";
+import { OverlayStyle } from "./Overlay.styled";
 
-const Overlay = () => {
-  const { modalName, isOpenModal, closeModal } = useModal();
+const Overlay = ({ children }) => {
+  const toggleModal = useModal();
 
-  const openedModal = useCallback(() => {
-    switch (modalName) {
-      case "logout":
-        return <LogOut closeModal={closeModal} />;
-      case "todayListModal":
-        return <TodayListModal closeModal={closeModal} />;
-      case "deletePopUp":
-        return null; // return <Component closeModal={closeModal} />
-      case "settings":
-        return <SettingModal closeModal={closeModal} />;
-      case "dailyNorma":
-        return null; // return <DailyNormaModal closeModal={closeModal} />
-      case "addWater":
-        return null; // return <AddWater closeModal={closeModal} />
-      case "logoModal":
-        return <LogoModal closeModal={closeModal} />;
-      default:
-        return null;
-    }
-  }, [modalName, closeModal]);
-
-  const backdropClick = useCallback(
-    (e) => {
-      if (e.target === e.currentTarget) closeModal();
-    },
-    [closeModal]
-  );
-
-  const handleKeyDown = useCallback(
-    (e) => {
-      if (e.code === "Escape") {
-        closeModal();
-      }
-    },
-    [closeModal]
-  );
+  const backdropClick = (e) => {
+    if (e.target === e.currentTarget) toggleModal();
+  };
 
   useEffect(() => {
-    if (isOpenModal) {
-      document.body.style.overflow = "hidden";
-      document.addEventListener("keydown", handleKeyDown);
-    }
-    if (!isOpenModal) {
-      document.body.style.overflow = "auto";
-      document.removeEventListener("keydown", handleKeyDown);
-    }
-  }, [handleKeyDown, isOpenModal]);
+    // Handle keydown event to close modal on 'Escape' key press
+    const handleKeyDown = (e) => {
+      if (e.code === "Escape") {
+        toggleModal();
+      }
+    };
 
-  if (!isOpenModal) {
-    return null;
-  }
+    // Disable scrolling on the body when the modal is active
+    document.body.style.overflow = "hidden";
+
+    // Add event listener for the 'Escape' keydown event
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      // Re-enable scrolling on the body when the modal is closed
+      document.body.style.overflow = "auto";
+
+      // Remove the 'Escape' keydown event listener
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [toggleModal]);
 
   return createPortal(
-    modalName === "logoModal" ? (
-      <LogoModalStyles onClick={backdropClick}>{openedModal()}</LogoModalStyles>
-    ) : (
-      <OverlayStyle onClick={backdropClick}>{openedModal()}</OverlayStyle>
-    ),
+    <OverlayStyle $isLogoModal={children.props.isLogoModal} onClick={backdropClick}>
+      {children}
+    </OverlayStyle>,
     document.body
   );
 };
