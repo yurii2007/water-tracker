@@ -15,11 +15,12 @@ const columnWidth = {
 };
 
 /**
- * Calculate the Y position of a box based on the day number and screen size.
+ * Calculate the Y and X positions of a box based on the day number and screen size.
  * @param {number} dayNumber - The number representing the day.
- * @param {string} screen - The screen size ("sm" for small, "md" for medium).
+ * @param {string} screen - The screen size ("sm" for small, "md" for medium, "xl" for big).
  * @returns {number} - The calculated Y position.
  */
+
 export const calculateBoxPositionY = (dayNumber, screen) => {
   // Calculate the number of row, where box is and the floor of that number
   const [number, floorNumber] = [
@@ -42,6 +43,13 @@ export const calculateBoxPositionY = (dayNumber, screen) => {
   }
 };
 
-export const calculateBoxPositionX = (number, screen) => {
-  return +number * columnWidth[screen];
+export const calculateBoxPositionX = (dayNumber, screen) => {
+  // Calculate the number of column, where box is and is it on the left side of calendar
+  let [number, isLeftSide] =
+    dayNumber % 10 === 0 ? [9, false] : [(dayNumber % 10) - 1, dayNumber % 10 < 5];
+
+  // Calculate the X position(-280 because of size of the box, and columnWidth[screen] / 4 to move a box directly in the middle of the day)
+  return isLeftSide
+    ? number * columnWidth[screen] + columnWidth[screen] / 4
+    : number * columnWidth[screen] - 280 + columnWidth[screen] / 4;
 };

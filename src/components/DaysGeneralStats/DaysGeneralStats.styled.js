@@ -46,6 +46,10 @@ export const DayStatsContainer = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
+    transform: translate(
+      ${({ $dayNumber }) => `${calculateBoxPositionX($dayNumber, "xl")}px`},
+      ${({ $dayNumber }) => `${calculateBoxPositionY($dayNumber, "md")}px`}
+    );
   }
 `;
 

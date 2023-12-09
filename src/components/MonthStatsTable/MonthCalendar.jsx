@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-import { isInLeftRange } from "../../utils/isInLeftRange";
-
 import { LiDayStyles, UlMonth } from "./MonthStatsTable.styled";
 import DaysGeneralStats from "../DaysGeneralStats/DaysGeneralStats";
 
@@ -11,11 +9,7 @@ const MonthCalendar = ({ monthData }) => {
   return (
     <UlMonth>
       {currentDay && (
-        <DaysGeneralStats
-          currentDay={currentDay}
-          close={() => setCurrentDay(null)}
-          isLeft={isInLeftRange(currentDay?.date.day)}
-        />
+        <DaysGeneralStats currentDay={currentDay} close={() => setCurrentDay(null)} />
       )}
       {monthData.map((dayInfo) => (
         <LiDayStyles

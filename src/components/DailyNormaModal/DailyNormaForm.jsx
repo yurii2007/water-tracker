@@ -17,11 +17,11 @@ const DailyNormaForm = () => {
     dispatch(updateWaterRateThunk(newWaterRate))
       .unwrap()
       .then(() => {
-        Notify.success("ура ура");
+        Notify.success("получилось");
         toggleModal();
       })
       .catch(() => {
-        Notify.failure("nie");
+        Notify.failure("не получилось, попробуй ше разок");
       });
   };
 
