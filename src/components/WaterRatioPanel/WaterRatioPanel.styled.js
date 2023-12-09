@@ -123,6 +123,8 @@ export const AddBtn = styled.button`
   color: var(--white-color);
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   cursor: pointer;
+  transition: background-color var(--animation-transition),
+    box-shadow var(--animation-transition);
 
   svg {
     stroke: var(--white-color);
@@ -144,3 +146,5 @@ export const AddBtn = styled.button`
     width: 178px;
   }
 `;
+
+

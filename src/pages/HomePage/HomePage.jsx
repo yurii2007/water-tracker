@@ -1,16 +1,20 @@
 import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel";
 import MonthStatsTable from "../../components/MonthStatsTable/MonthStatsTable";
 import DailyNorma from "../../components/DailyNorma/DailyNorma";
-import { DivWrapperPage, SectionWrapperTodayListCalendar } from "./HomePage.styled";
+import {
+  DivWrapperPage,
+  SectionWrapperDailyNorma,
+  SectionWrapperTodayListCalendar,
+} from "./HomePage.styled";
 import TodayListModal from "../../components/TodayListModal/TodayListModal";
 
 const HomePage = () => {
   return (
     <DivWrapperPage>
-      <section>
+      <SectionWrapperDailyNorma>
         <DailyNorma />
         <WaterRatioPanel />
-      </section>
+      </SectionWrapperDailyNorma>
       <SectionWrapperTodayListCalendar>
         <TodayListModal />
         <MonthStatsTable />

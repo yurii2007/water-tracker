@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useModal } from "../ModalContext/ModalContextProvider";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Notiflix from "notiflix";
 import { useDispatch } from "react-redux";
 import { addWaterThunk, getTodayThunk } from "../../redux/Water/WaterThunk";
 import {
@@ -9,15 +12,14 @@ import {
   FormStyled,
   HeaderWrapper,
   ModalContainer,
+  StyledDateWrapper,
   StyledDecrementIcon,
   StyledIncrementIcon,
+  TimeGlobalStyles,
   ValueText,
 } from "./AddWaterModal.styled";
 import { ReactComponent as CloseBtnIcon } from "../../images/svg/x.svg";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import Notiflix from "notiflix";
-import css from "../AddWaterModal/AddWater.module.css";
+// import css from "../AddWaterModal/AddWater.module.css";
 
 const AddWaterModal = () => {
   const [value, setValue] = useState(0);
@@ -83,20 +85,23 @@ const AddWaterModal = () => {
       <FormStyled>
         <label>
           Recording time:
-          <DatePicker
-            selected={time}
-            className={css.input_wrapper}
-            onChange={(date) => {
-              setTime(date);
-            }}
-            showTimeSelect
-            showTimeSelectOnly
-            timeIntervals={5}
-            dateFormat="hh:mm"
-            minTime={new Date(2023, 1, 1, 0, 0)}
-            maxTime={new Date()}
-            timeZone="UTC"
-          />
+          <StyledDateWrapper>
+            <DatePicker
+              selected={time}
+              // className={css.input_wrapper}
+              onChange={(date) => {
+                setTime(date);
+              }}
+              showTimeSelect
+              showTimeSelectOnly
+              timeIntervals={5}
+              dateFormat="hh:mm"
+              minTime={new Date(2023, 1, 1, 0, 0)}
+              maxTime={new Date()}
+              timeZone="UTC"
+            />
+            <TimeGlobalStyles />
+          </StyledDateWrapper>
         </label>
         <label>
           Enter the value of the water used:
