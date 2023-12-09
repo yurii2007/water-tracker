@@ -47,19 +47,17 @@ const waterSlice = createSlice({
       })
       .addCase(getTodayThunk.rejected, rejectedCase)
       .addCase(addWaterThunk.pending, pendingCase)
-      .addCase(
-        addWaterThunk.fulfilled,
-        (state, { payload: { amount, time, _id } }) => {
-          state.today.dailyWaterList.push({ amount, time, _id });
-          state.isLoading = false;
-        }
-      )
+      .addCase(addWaterThunk.fulfilled, (state, { payload: { amount, time, _id } }) => {
+        state.today.dailyWaterList.push({ amount, time, _id });
+        state.isLoading = false;
+      })
       .addCase(addWaterThunk.rejected, rejectedCase)
       .addCase(deleteWaterThunk.pending, pendingCase)
       .addCase(deleteWaterThunk.fulfilled, (state, { payload }) => {
         state.today.dailyWaterList = state.today.dailyWaterList.filter(
           (data) => data._id !== payload.removedId
         );
+        state.isLoading = false;
       })
       .addCase(deleteWaterThunk.rejected, rejectedCaseDelete);
   },
