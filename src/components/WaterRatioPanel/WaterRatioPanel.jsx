@@ -9,23 +9,24 @@ import {
   TodayText,
   WrapperPercentage,
 } from "./WaterRatioPanel.styled";
+import { useSelector } from "react-redux";
+import { selectorWaterInfo } from "../../redux/selectors";
 
 const WaterRatioPanel = () => {
-  // const [inputValue, setInputValue] = useState(0);
+  const currentDayPercent = useSelector(selectorWaterInfo);
   const toggleModal = useModal();
-
-  // const handleChange = (evt) => {
-  //   const value = parseInt((1250 / 2000) * 100);
-  //   //Формула ((к-сть випитої води(із мого модального вікна)/добова норма води) * 100)
-  //   setWater(value);
-  //   setInputValue(parseInt(evt.target.value));
-  // };
 
   return (
     <ContainerWater>
       <InputContainer>
         <TodayText>Today</TodayText>
-        <InputRange type="range" min="0" max="100" value={30} disabled />
+        <InputRange
+          type="range"
+          min="0"
+          max="100"
+          value={currentDayPercent.percent}
+          disabled
+        />
         <WrapperPercentage>
           <span>0%</span>
           <span>50%</span>

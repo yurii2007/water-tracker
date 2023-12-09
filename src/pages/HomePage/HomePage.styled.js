@@ -15,11 +15,11 @@ import bgDeskBottleRetina from "../../images/background/desktop/bottle_home@2x.p
 
 export const DivWrapperPage = styled.div`
   width: 320px;
-  margin: 52px auto 0;
+  margin: 24px auto 0;
   padding: 0px 20px 40px;
   background-image: url(${bgMob}), url(${bgBottleMob});
   background-size: cover, 280px 208px;
-  background-position: top left, top 54px center;
+  background-position: top left, top 80px center;
   background-repeat: no-repeat;
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
@@ -29,7 +29,7 @@ export const DivWrapperPage = styled.div`
 
   @media screen and (min-width: 768px) {
     width: 768px;
-    margin: 24px auto 0;
+    margin: 40px auto 0;
     padding: 0px 32px 44px;
     background-image: url(${bgTab}), url(${bgBottleTab});
     background-size: cover, 518px 386px;
@@ -70,5 +70,20 @@ export const SectionWrapperTodayListCalendar = styled.section`
 
   @media screen and (min-width: 768px) {
     padding: 32px 24px;
+  }
+`;
+export const SectionWrapperDailyNorma = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 232px;
+  margin-bottom: 40px;
+
+  @media screen and (min-width: 768px) {
+    gap: 326px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding-top: 32px;
+    gap: 466px;
   }
 `;

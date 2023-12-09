@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Notiflix from "notiflix";
+import { createGlobalStyle } from "styled-components";
 import { ReactComponent as IncrementIcon } from "../../images/svg/plus.svg";
 import { ReactComponent as DecrementIcon } from "../../images/svg/minus.svg";
 
@@ -156,6 +157,8 @@ export const BtnSaveWrapper = styled.div`
     font-weight: 500;
     line-height: 1.33;
     cursor: pointer;
+    transition: background-color var(--animation-transition),
+      box-shadow var(--animation-transition);
   }
   @media screen and (min-width: 768px) {
     gap: 24px;
@@ -201,3 +204,38 @@ Notiflix.Notify.init({
     backOverlayColor: "rgba(238,191,49,0.2)",
   },
 });
+
+export const TitleWrapper = styled.input`
+  position: relative;
+  border: none;
+  font-size: 18px;
+  color: var(--white);
+  background-color: transparent;
+  padding-left: 20px;
+  padding-bottom: 4.5px;
+  cursor: pointer;
+  &:focus-visible {
+    outline: 0;
+  }
+
+  @media screen and (min-width: 768px) {
+    height: 29px;
+  }
+`;
+
+export const StyledDateWrapper = styled.div`
+  position: relative;
+  border-bottom: 1px solid var(--transparency-60);
+`;
+
+export const TimeGlobalStyles = createGlobalStyle`
+  .react-datepicker__wrapper {
+    position: relative;
+  }
+
+.react-datepicker-popper{
+    position: absolute;
+    inset: 0px auto auto 0px;
+    transform: translate3d(-45px, 40px, 0px);
+  }
+  `;
