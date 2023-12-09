@@ -1,17 +1,28 @@
 import { useDispatch } from "react-redux";
+import { Notify } from "notiflix";
 
 import { updateWaterRateThunk } from "../../redux/User/UserThunk";
+import { useModal } from "../ModalContext/ModalContextProvider";
 
 import { FormStyles } from "./DailyNormaModal.styled";
 import { BtnSave } from "../SettingModal/SettingModal.styled";
 
 const DailyNormaForm = () => {
   const dispatch = useDispatch();
+  const toggleModal = useModal();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newWaterRate = e.target.elements.amount.value * 1000;
-    dispatch(updateWaterRateThunk(newWaterRate));
+    dispatch(updateWaterRateThunk(newWaterRate))
+      .unwrap()
+      .then(() => {
+        Notify.success("ура ура");
+        toggleModal();
+      })
+      .catch(() => {
+        Notify.failure("nie");
+      });
   };
 
   return (

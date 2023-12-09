@@ -1,9 +1,18 @@
 import styled from "styled-components";
 
+import {
+  calculateBoxPositionY,
+  calculateBoxPositionX,
+} from "../../utils/calculateBoxPosition";
+
 export const DayStatsContainer = styled.div`
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  top: -194px;
+  transform: translate(
+    -50%,
+    ${({ $dayNumber }) => `${calculateBoxPositionY($dayNumber, "sm")}px`}
+  );
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
@@ -25,6 +34,18 @@ export const DayStatsContainer = styled.div`
       font-weight: 500;
       line-height: 1.33;
     }
+  }
+
+  @media screen and (min-width: 768px) {
+    top: -190px;
+    left: 0;
+    transform: translate(
+      ${({ $dayNumber }) => `${calculateBoxPositionX($dayNumber, "md")}px`},
+      ${({ $dayNumber }) => `${calculateBoxPositionY($dayNumber, "md")}px`}
+    );
+  }
+
+  @media screen and (min-width: 1440px) {
   }
 `;
 

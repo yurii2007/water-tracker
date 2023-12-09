@@ -10,7 +10,7 @@ const DaysGeneralStats = ({ currentDay, close, isLeft }) => {
     <DayStatsContainer $isLeft={isLeft} $dayNumber={date.day}>
       <UpperElem>
         <p>
-          <span>{date?.day},</span>
+          <span>{date?.day}, </span>
           <span>{monthName}</span>
         </p>
         <CloseModalSvg
@@ -19,7 +19,7 @@ const DaysGeneralStats = ({ currentDay, close, isLeft }) => {
         />
       </UpperElem>
       <p>Daily norma : {dailyNorma && <span>{norma}L</span>}</p>
-      <p>Fulfillment of the daily norm : {percent && <span>{parseInt(percent)} %</span>}</p>
+      <p>Fulfillment of the daily norm : {percent && <span>{parseInt(percent)}%</span>}</p>
       <p>How many servings of water : {quantity && <span>{quantity}</span>}</p>
     </DayStatsContainer>
   );
