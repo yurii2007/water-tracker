@@ -9,6 +9,7 @@ import {
   updateUserThunk,
   updateWaterRateThunk,
 } from "./UserThunk";
+import setTokens from "../../utils/setTokens";
 
 const initialState = {
   user: {
@@ -44,7 +45,17 @@ const rejectedCaseAvatar = (state, { payload }) => ({
 const userSlice = createSlice({
   name: "user",
   initialState,
-  //   reducers: {},
+  reducers: {
+    setStateToken: {
+      prepare: (token) => {
+        setTokens(token);
+        return { payload: token };
+      },
+      reducer: (state, { payload }) => {
+        state.token = payload;
+      },
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(updateUserThunk.pending, pendingCase)
@@ -103,3 +114,5 @@ const userSlice = createSlice({
 });
 
 export const userReducer = userSlice.reducer;
+
+export const { setStateToken } = userSlice.actions;
