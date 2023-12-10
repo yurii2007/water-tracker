@@ -22,20 +22,13 @@ const initialState = {
   message: "",
   token: "",
   isLoggedIn: false,
-  isLoading: false,
-  isRefreshing: false,
   error: null,
-};
-
-const pendingCase = (state) => {
-  state.isLoading = true;
 };
 
 const rejectedCase = (_, { payload }) => ({ ...initialState, error: payload });
 const rejectedCaseUser = (state, { payload }) => {
   state.error = payload;
   state.message = payload.message;
-  state.isLoading = false;
 };
 const rejectedCaseAvatar = (state, { payload }) => ({
   ...state,
@@ -58,30 +51,23 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(updateUserThunk.pending, pendingCase)
       .addCase(updateUserThunk.fulfilled, (state, { payload }) => {
         state.user.email = payload.email;
         state.user.name = payload.name;
         state.user.gender = payload.gender;
-        state.isLoading = false;
       })
       .addCase(updateUserThunk.rejected, rejectedCaseUser)
-      .addCase(registerThunk.pending, pendingCase)
       .addCase(registerThunk.fulfilled, (state, { payload }) => {
         state.message = payload;
-        state.isLoading = false;
       })
       .addCase(registerThunk.rejected, rejectedCase)
-      .addCase(loginThunk.pending, pendingCase)
       .addCase(loginThunk.fulfilled, (state, { payload }) => {
         state.user.email = payload.email;
         state.user.avatar = payload.avatar;
         state.token = payload.token;
         state.isLoggedIn = true;
-        state.isLoading = false;
       })
       .addCase(loginThunk.rejected, rejectedCase)
-      .addCase(getCurrentThunk.pending, pendingCase)
       .addCase(getCurrentThunk.fulfilled, (state, { payload }) => {
         state.token = payload.token;
         state.user.name = payload.name;
@@ -90,25 +76,15 @@ const userSlice = createSlice({
         state.user.gender = payload.gender;
         state.user.dailyNorma = payload.dailyNorma;
         state.isLoggedIn = true;
-        state.isLoading = false;
       })
       .addCase(getCurrentThunk.rejected, rejectedCase)
-      .addCase(logOutThunk.pending, pendingCase)
       .addCase(logOutThunk.fulfilled, rejectedCase)
-      .addCase(logOutThunk.rejected, rejectedCase)
-      .addCase(updateAvatarThunk.pending, pendingCase)
       .addCase(updateAvatarThunk.fulfilled, (state, { payload }) => {
         state.user.avatar = payload;
-        state.isLoading = false;
       })
       .addCase(updateAvatarThunk.rejected, rejectedCaseAvatar)
-      .addCase(updateWaterRateThunk.pending, pendingCase)
       .addCase(updateWaterRateThunk.fulfilled, (state, { payload }) => {
         state.user.dailyNorma = payload.dailyNorma;
-        state.isLoading = false;
-      })
-      .addCase(updateWaterRateThunk.rejected, (state) => {
-        state.isLoading = false;
       });
   },
 });

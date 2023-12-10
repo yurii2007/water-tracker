@@ -1,9 +1,10 @@
 import { createSelector } from "@reduxjs/toolkit";
 
+export const selectIsLoading = (state) => state.loading;
+
 // USER SELECTORS
 
 export const selectIsLoggedIn = (state) => state.user.isLoggedIn;
-export const selectIsLoading = (state) => state.user.isLoading;
 export const selectIsLogin = (state) => state.user.token;
 const selectToken = (state) => state.user.token;
 export const selectIsAuth = createSelector(
@@ -11,6 +12,7 @@ export const selectIsAuth = createSelector(
   (isLoggedIn, token) => token && isLoggedIn
 );
 
+export const selectUserData = (state) => state.user.user;
 export const selectIsName = (state) => state.user.user.name;
 export const selectUserLogo = (state) => state.user.user.avatar;
 export const selectDailyNorma = (state) => state.user.user.dailyNorma;

@@ -13,6 +13,7 @@ import storage from "redux-persist/lib/storage";
 
 import { userReducer } from "./User/UserSlice";
 import { waterReducer } from "./Water/WaterSlice";
+import { loadingReducer } from "./Loading/LoadingSlice";
 
 const persistUserConfig = {
   key: "auth",
@@ -24,6 +25,7 @@ const persistedUser = persistReducer(persistUserConfig, userReducer);
 
 const store = configureStore({
   reducer: {
+    loading: loadingReducer,
     user: persistedUser,
     water: waterReducer,
   },
