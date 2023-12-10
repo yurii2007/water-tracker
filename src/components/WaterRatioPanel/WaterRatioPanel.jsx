@@ -15,7 +15,6 @@ import { selectorWaterInfo } from "../../redux/selectors";
 const WaterRatioPanel = () => {
   const currentDayPercent = useSelector(selectorWaterInfo);
   const toggleModal = useModal();
-
   return (
     <ContainerWater>
       <InputContainer>
