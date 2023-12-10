@@ -8,14 +8,20 @@ import { DailyNormaContainer, DailyNormaContainerWaterStats } from "./DailyNorma
 
 const DailyNorma = () => {
   const toggleModal = useModal();
-  const dailyNorma = useSelector(selectDailyNorma);
+  const dailyNorma = useSelector(selectDailyNorma) ?? 0;
 
   return (
     <DailyNormaContainer>
       <p>My daily norma</p>
       <DailyNormaContainerWaterStats>
         <span>{dailyNorma / 1000} L</span>
-        <button onClick={() => toggleModal(<DailyNormaModal />)} type="button">
+        <button
+          onClick={() =>
+            // toggleModal(<DailyNormaModal size="medium" title="My daily norma" />)
+            toggleModal(<DailyNormaModal />)
+          }
+          type="button"
+        >
           Edit
         </button>
       </DailyNormaContainerWaterStats>

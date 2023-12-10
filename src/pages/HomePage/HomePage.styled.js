@@ -21,9 +21,7 @@ export const DivWrapperPage = styled.div`
   background-size: cover, 280px 208px;
   background-position: top left, top 80px center;
   background-repeat: no-repeat;
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
+  @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
     background-image: url(${bgMobRetina}), url(${bgBottleMobRetina});
   }
 
@@ -59,6 +57,7 @@ export const DivWrapperPage = styled.div`
 `;
 
 export const SectionWrapperTodayListCalendar = styled.section`
+  height: max-content;
   padding: 24px 8px;
   display: flex;
   flex-direction: column;

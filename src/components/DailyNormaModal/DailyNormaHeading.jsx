@@ -1,10 +1,8 @@
-import ModalTitle from "./ModalTitle";
-import { GenderFormulas, VolumeNorm } from "./DailyNormaHead.styled";
+import { GenderFormulas, VolumeNorm } from "./DailyNormaModal.styled";
 
 const DailyNormaHeading = () => {
   return (
     <>
-      <ModalTitle title="My daily norma" />
       <GenderFormulas>
         <p>
           For girl:
