@@ -19,23 +19,25 @@ import {
   SvgGlass,
   Time,
 } from "./TodayListModal.styled";
+import { useModal } from "../ModalContext/ModalContextProvider";
+
+import DeletePopUp from "./DeletePopUp";
 
 const TodayListModal = () => {
   const waterList = useSelector(selectorWaterList);
+  const toggleModal = useModal();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getTodayThunk());
   }, [dispatch]);
 
-  const handleModalOpen = () => {
-    console.log(123);
-  };
   const handleDelete = (id) => {
     dispatch(deleteWaterThunk(id))
       .unwrap()
       .then((data) => {
         Notiflix.Notify.success(data.message);
+        toggleModal();
       })
       .catch(() => {
         Notiflix.Notify.failure("something went wrong");
@@ -61,10 +63,18 @@ const TodayListModal = () => {
               </InfoWrapper>
               <BtnWrapper>
                 <div>
-                  <EditSvg onClick={handleModalOpen} />
+                  <EditSvg />
                 </div>
                 <div>
-                  <DeleteSvg onClick={() => handleDelete(day._id)} />
+                  <DeleteSvg
+                    onClick={() =>
+                      toggleModal(
+                        <DeletePopUp
+                          deleteEntry={() => handleDelete(day._id)}
+                        />
+                      )
+                    }
+                  />
                 </div>
               </BtnWrapper>
             </ListItem>
@@ -73,7 +83,6 @@ const TodayListModal = () => {
       </StyledList>
       <AddBtnWrapper>
         <button>
-          {/* <PlusSvg /> */}
           <span>+</span>
           <span>Add water</span>
         </button>
