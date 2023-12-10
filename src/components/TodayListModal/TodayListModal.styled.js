@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
-
 import { ReactComponent as GlassSvg } from "../../images/svg/glass_of_water.svg";
 import { ReactComponent as EditSvg } from "../../images/svg/edit_icon.svg";
-
 
 export const SvgEdit = styled(EditSvg)``;
 
@@ -128,5 +126,97 @@ export const AddBtnWrapper = styled.div`
         color: var(--secondary-yellow);
       }
     }
+  }
+`;
+
+// pop-up styles
+
+export const PopUp = styled.div`
+  display: flex;
+  padding: 32px 24px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  border-radius: 10px;
+  background: #fff;
+  width: 280px;
+
+  @media screen and (min-width: 768px) {
+    width: 592px;
+  }
+`;
+
+export const PopUpHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const StyledP = styled.p`
+  color: var(--primary-black);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.1;
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: end;
+  }
+`;
+export const BtnCancel = styled.button`
+  display: flex;
+  padding: 8px 30px;
+  width: 232px;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 10px;
+  background: var(--secondary-lightblue);
+  cursor: pointer;
+
+  order: 2;
+  color: var(--primary-blue);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+
+  @media screen and (min-width: 768px) {
+    order: 1;
+    padding: 10px 30px;
+    width: 160px;
+  }
+`;
+
+export const BtnDelete = styled.button`
+  display: flex;
+  padding: 8px 30px;
+  width: 232px;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 10px;
+  background: var(--secondary-red);
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+  cursor: pointer;
+
+  order: 1;
+
+  color: var(--white-color);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+
+  @media screen and (min-width: 768px) {
+    order: 2;
+    padding: 10px 30px;
+    width: 160px;
   }
 `;
