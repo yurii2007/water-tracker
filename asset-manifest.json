@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/water-tracker/static/css/main.854638f3.css",
-    "main.js": "/water-tracker/static/js/main.a81bf234.js",
+    "main.js": "/water-tracker/static/js/main.80dea393.js",
     "static/js/964.01bd139a.chunk.js": "/water-tracker/static/js/964.01bd139a.chunk.js",
     "static/js/606.22a826a4.chunk.js": "/water-tracker/static/js/606.22a826a4.chunk.js",
     "static/js/359.e2510040.chunk.js": "/water-tracker/static/js/359.e2510040.chunk.js",
-    "static/js/324.14335952.chunk.js": "/water-tracker/static/js/324.14335952.chunk.js",
+    "static/js/35.2d204ee0.chunk.js": "/water-tracker/static/js/35.2d204ee0.chunk.js",
     "static/js/651.3201484b.chunk.js": "/water-tracker/static/js/651.3201484b.chunk.js",
     "static/js/787.2cc86d7d.chunk.js": "/water-tracker/static/js/787.2cc86d7d.chunk.js",
     "static/js/520.d3b6ba71.chunk.js": "/water-tracker/static/js/520.d3b6ba71.chunk.js",
@@ -48,11 +48,11 @@
     "static/media/x.svg": "/water-tracker/static/media/x.89e68fcf2cc33e4c59ca32624d520e64.svg",
     "static/media/plus.svg": "/water-tracker/static/media/plus.a825844368d25850e9fa030c4bd74f44.svg",
     "main.854638f3.css.map": "/water-tracker/static/css/main.854638f3.css.map",
-    "main.a81bf234.js.map": "/water-tracker/static/js/main.a81bf234.js.map",
+    "main.80dea393.js.map": "/water-tracker/static/js/main.80dea393.js.map",
     "964.01bd139a.chunk.js.map": "/water-tracker/static/js/964.01bd139a.chunk.js.map",
     "606.22a826a4.chunk.js.map": "/water-tracker/static/js/606.22a826a4.chunk.js.map",
     "359.e2510040.chunk.js.map": "/water-tracker/static/js/359.e2510040.chunk.js.map",
-    "324.14335952.chunk.js.map": "/water-tracker/static/js/324.14335952.chunk.js.map",
+    "35.2d204ee0.chunk.js.map": "/water-tracker/static/js/35.2d204ee0.chunk.js.map",
     "651.3201484b.chunk.js.map": "/water-tracker/static/js/651.3201484b.chunk.js.map",
     "787.2cc86d7d.chunk.js.map": "/water-tracker/static/js/787.2cc86d7d.chunk.js.map",
     "520.d3b6ba71.chunk.js.map": "/water-tracker/static/js/520.d3b6ba71.chunk.js.map",
@@ -63,6 +63,6 @@
   },
   "entrypoints": [
     "static/css/main.854638f3.css",
-    "static/js/main.a81bf234.js"
+    "static/js/main.80dea393.js"
   ]
 }
