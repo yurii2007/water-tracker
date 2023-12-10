@@ -105,7 +105,8 @@ export const forgotPasswordThunk = createAsyncThunk(
   "user/forgot-password",
   async (userCredentials, { rejectWithValue }) => {
     try {
-      return await forgotPassword(userCredentials);
+      const data = await forgotPassword(userCredentials);
+      return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }

@@ -41,16 +41,20 @@ const waterSlice = createSlice({
       .addCase(getMonthInfoThunk.rejected, rejectedCase)
       .addCase(getTodayThunk.pending, pendingCase)
       .addCase(getTodayThunk.fulfilled, (state, { payload }) => {
+        // console.log(payload);
         state.today.dailyWaterList = payload.dailyWaterList;
-        state.today.percent = payload.percent;
+        state.today.percent = payload.percent ?? 0;
         state.isLoading = false;
       })
       .addCase(getTodayThunk.rejected, rejectedCase)
       .addCase(addWaterThunk.pending, pendingCase)
-      .addCase(addWaterThunk.fulfilled, (state, { payload: { amount, time, _id } }) => {
-        state.today.dailyWaterList.push({ amount, time, _id });
-        state.isLoading = false;
-      })
+      .addCase(
+        addWaterThunk.fulfilled,
+        (state, { payload: { amount, time, _id } }) => {
+          state.today.dailyWaterList.push({ amount, time, _id });
+          state.isLoading = false;
+        }
+      )
       .addCase(addWaterThunk.rejected, rejectedCase)
       .addCase(deleteWaterThunk.pending, pendingCase)
       .addCase(deleteWaterThunk.fulfilled, (state, { payload }) => {

@@ -16,6 +16,7 @@ import {
 import { useDispatch } from "react-redux";
 import { forgotPasswordThunk } from "../../redux/User/UserThunk";
 import { HaveAccount, Linkings } from "./ForgotPassword.styled";
+import { useNavigate } from "react-router-dom";
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -33,12 +34,14 @@ const validationSchema = yup.object().shape({
 
 const ForgotPasswordForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleSubmit = (values, { resetForm }) => {
     dispatch(forgotPasswordThunk(values))
       .unwrap()
-      .then(() => {
+      .then((data) => {
+        navigate("/signin");
         resetForm();
-        Notiflix.Notify.success("success", { timeout: 1000 });
+        Notiflix.Notify.success(data.message, { timeout: 1000 });
       })
       .catch((error) => {
         Notiflix.Notify.failure(error, { timeout: 1000 });
