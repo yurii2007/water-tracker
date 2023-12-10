@@ -19,7 +19,6 @@ import {
   ValueText,
 } from "./AddWaterModal.styled";
 import { ReactComponent as CloseBtnIcon } from "../../images/svg/x.svg";
-// import css from "../AddWaterModal/AddWater.module.css";
 
 const AddWaterModal = () => {
   const [value, setValue] = useState(0);
@@ -88,7 +87,6 @@ const AddWaterModal = () => {
           <StyledDateWrapper>
             <DatePicker
               selected={time}
-              // className={css.input_wrapper}
               onChange={(date) => {
                 setTime(date);
               }}
