@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const instance = axios.create({
-  baseURL: "https://water-tracker-f07j.onrender.com/api/user",
+  baseURL: "https://water-tracker-f07j.onrender.com/api/users/",
 });
 
 export const tokenUser = (token) => {
@@ -11,7 +11,7 @@ export const tokenUser = (token) => {
 // User data
 
 export const getProfile = async (token) => {
-  const { data } = await instance.get("/current", {
+  const { data } = await instance.get("current", {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -31,13 +31,13 @@ export const updateUser = async (newUserData) => {
     delete dataToUpdate.oldPassword;
   }
 
-  const { data } = await instance.patch("/updateUser", dataToUpdate);
+  const { data } = await instance.patch("updateUser", dataToUpdate);
   return data;
 };
 
 export const updateAvatar = async (newImg) => {
   const response = await instance.patch(
-    "/updateAvatar",
+    "updateAvatar",
     { file: newImg },
     {
       headers: {
@@ -50,7 +50,7 @@ export const updateAvatar = async (newImg) => {
 };
 
 export const updateWaterRate = async (newDailyNorma) => {
-  const { data } = await instance.patch("/updateWaterRate", {
+  const { data } = await instance.patch("updateWaterRate", {
     dailyNorma: newDailyNorma,
   });
   return data;

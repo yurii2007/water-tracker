@@ -17,6 +17,7 @@ import { useDispatch } from "react-redux";
 import { registerThunk } from "../../redux/User/UserThunk";
 import { usePasswordToggle } from "../../Helpers/usePasswordToggle";
 import { TogglePasswordIcon } from "../TogglePasswordVisibility/TogglePasswordVisibility";
+import { useNavigate } from "react-router-dom";
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -43,6 +44,7 @@ const validationSchema = yup.object().shape({
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle([
     "password1",
     "password2",
@@ -55,9 +57,10 @@ const SignUpForm = () => {
 
     dispatch(registerThunk({ email, password }))
       .unwrap()
-      .then(() => {
+      .then((data) => {
         resetForm();
-        Notiflix.Notify.success("success", { timeout: 1000 });
+        Notiflix.Notify.success(data.message, { timeout: 1000 });
+        navigate("/signin");
       })
       .catch((error) => {
         Notiflix.Notify.failure(error, { timeout: 1000 });

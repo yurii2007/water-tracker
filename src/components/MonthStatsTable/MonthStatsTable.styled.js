@@ -71,6 +71,7 @@ export const LiDayStyles = styled.li`
   text-align: center;
   font-weight: 400;
   letter-spacing: 0em;
+
   cursor: pointer;
   span {
     display: block;
@@ -83,7 +84,10 @@ export const LiDayStyles = styled.li`
     background: var(--white-color);
     border-radius: 50%;
     border: none;
-    border: ${({ $percentage }) => $percentage < 100 ? "1px solid var(--secondary-yellow)" : "none"};
+    border: ${({ $percentage }) =>
+      $percentage < 100 ? "1px solid var(--secondary-yellow)" : "none"};
+      box-shadow: ${({ $isActive }) =>
+    $isActive ? " 0px 2px 4px 0px #407BFF4D" : "none"};
     font-size: 16px;
     line-height: 20px;
 

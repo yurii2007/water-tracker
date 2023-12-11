@@ -50,7 +50,7 @@ const SignInForm = () => {
       .unwrap()
       .then(() => {
         resetForm();
-        Notiflix.Notify.success("success", { timeout: 1000 });
+        Notiflix.Notify.success("Welcome back! You're now logged in.", { timeout: 1000 });
       })
       .catch((error) => {
         Notiflix.Notify.failure(error, { timeout: 1000 });

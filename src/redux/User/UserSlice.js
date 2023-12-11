@@ -58,13 +58,19 @@ const userSlice = createSlice({
       })
       .addCase(updateUserThunk.rejected, rejectedCaseUser)
       .addCase(registerThunk.fulfilled, (state, { payload }) => {
-        state.message = payload;
+        state.message = payload.message;
+        state.user.email = payload.email;
+        state.user.avatar = payload.avatar;
+        state.user.username = payload.name;
+        state.token = payload.token;
+        state.isLoggedIn = true;
       })
       .addCase(registerThunk.rejected, rejectedCase)
       .addCase(loginThunk.fulfilled, (state, { payload }) => {
         state.user.email = payload.email;
         state.user.avatar = payload.avatar;
         state.token = payload.token;
+        state.user.username = payload.name;
         state.isLoggedIn = true;
       })
       .addCase(loginThunk.rejected, rejectedCase)
