@@ -35,7 +35,7 @@ const SettingModal = () => {
           .unwrap()
           .then(() => Notiflix.Notify.success("avatar updated successfully!"))
           .catch((error) => {
-            Notiflix.Notify.failure(error.message);
+            Notiflix.Notify.failure(error);
           });
       }
     }

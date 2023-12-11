@@ -17,8 +17,7 @@ const DailyNorma = () => {
         <span>{dailyNorma / 1000} L</span>
         <button
           onClick={() =>
-            // toggleModal(<DailyNormaModal size="medium" title="My daily norma" />)
-            toggleModal(<DailyNormaModal />)
+            toggleModal(<DailyNormaModal size="medium" title="My daily norma" />)
           }
           type="button"
         >
