@@ -25,8 +25,8 @@ export const calculateBoxPositionY = (dayNumber, screen) => {
   switch (screen) {
     case "sm":
       return floorNumber === number
-        ? parseInt(number - 1) * rowHeight[screen] - 16
-        : parseInt(number) * rowHeight[screen] - 16;
+        ? parseInt(number - 1) * rowHeight[screen] - 12
+        : parseInt(number) * rowHeight[screen] - 12;
     case "md":
       return floorNumber === number
         ? parseInt(number - 1) * rowHeight[screen]

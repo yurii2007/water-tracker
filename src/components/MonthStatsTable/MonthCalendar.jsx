@@ -15,6 +15,7 @@ const MonthCalendar = ({ monthData }) => {
         <LiDayStyles
           onClick={() => setCurrentDay(dayInfo)}
           $percentage={dayInfo.percent}
+          $isActive={currentDay?.date.day === dayInfo.date.day}
           key={dayInfo.date.day}
         >
           <span className="day">{dayInfo.date.day}</span>
