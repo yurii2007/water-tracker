@@ -78,8 +78,8 @@ const SettingForm = ({ closeModal }) => {
       <WrapperFormInfo>
         <FormMainWrapper>
           <LeftFormWrap>
-            <h3>Your gender identity</h3>
             <GenderBlock>
+              <h3>Your gender identity</h3>
               <label style={{ marginRight: "24px" }}>
                 <input
                   type="radio"

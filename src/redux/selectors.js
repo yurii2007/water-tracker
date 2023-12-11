@@ -16,6 +16,7 @@ export const selectUserData = (state) => state.user.user;
 export const selectIsName = (state) => state.user.user.name;
 export const selectUserLogo = (state) => state.user.user.avatar;
 export const selectDailyNorma = (state) => state.user.user.dailyNorma;
+export const selectAvatar = (state) => state.user.user.avatar;
 
 // WATER SELECTORS
 
