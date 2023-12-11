@@ -49,7 +49,7 @@ export const loginThunk = createAsyncThunk(
   "user/login",
   async (userCredentials, { rejectWithValue }) => {
     try {
-      const { user } = await logIn(userCredentials);
+      const user = await logIn(userCredentials);
       setTokens(user.token);
       return user;
     } catch (error) {
