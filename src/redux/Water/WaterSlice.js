@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   addWaterThunk,
   deleteWaterThunk,
+  editWaterThunk,
   getMonthInfoThunk,
   getTodayThunk,
 } from "./WaterThunk";
@@ -63,7 +64,17 @@ const waterSlice = createSlice({
         );
         state.isLoading = false;
       })
-      .addCase(deleteWaterThunk.rejected, rejectedCaseDelete);
+      .addCase(deleteWaterThunk.rejected, rejectedCaseDelete)
+      .addCase(editWaterThunk.rejected, rejectedCase)
+      .addCase(editWaterThunk.pending, pendingCase)
+      .addCase(editWaterThunk.fulfilled, (state, { payload }) => {
+        const array = state.today.dailyWaterList;
+        const indexChange = array.findIndex((item) => item._id === payload._id);
+
+        if (indexChange !== -1) {
+          array[indexChange] = payload;
+        }
+      });
   },
 });
 

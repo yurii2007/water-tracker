@@ -22,6 +22,7 @@ import {
 import { useModal } from "../ModalContext/ModalContextProvider";
 
 import DeletePopUp from "./DeletePopUp";
+import EditWaterModal from "../EditWaterModal/EditWaterModal";
 
 const TodayListModal = () => {
   const waterList = useSelector(selectorWaterList);
@@ -44,6 +45,17 @@ const TodayListModal = () => {
       });
   };
 
+  const handleEdit = ({ id, data }) => {
+    toggleModal(
+      <EditWaterModal
+        size="medium"
+        title="Edit the entered amount of water"
+        data={data}
+        id={id}
+      />
+    );
+  };
+
   return (
     <ListWrapper>
       <h2>Today</h2>
@@ -57,13 +69,16 @@ const TodayListModal = () => {
             <ListItem key={day._id}>
               <InfoWrapper>
                 <SvgGlass />
-
                 <Amount>{day.amount} ml</Amount>
                 <Time>{`${hours}:${minutes} ${period}`}</Time>
               </InfoWrapper>
               <BtnWrapper>
                 <div>
-                  <EditSvg />
+                  <EditSvg
+                    onClick={() => {
+                      handleEdit({ _id: day._id, data: day });
+                    }}
+                  />
                 </div>
                 <div>
                   <DeleteSvg

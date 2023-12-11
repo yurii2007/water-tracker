@@ -5,7 +5,9 @@ export const instance = axios.create({
 });
 
 export const tokenWater = (token) => {
-  instance.defaults.headers.common["Authorization"] = token ? `Bearer ${token}` : "";
+  instance.defaults.headers.common["Authorization"] = token
+    ? `Bearer ${token}`
+    : "";
 };
 
 export const getMonthInfo = async (date) => {
@@ -19,14 +21,16 @@ export const getTodayInfo = async () => {
 };
 
 export const addWater = async (amount) => {
-  const { data } = await instance.post(
-    "",
-    amount
-  );
+  const { data } = await instance.post("", amount);
   return data;
 };
 
 export const deleteWater = async (waterId) => {
   const { data } = await instance.delete(`${waterId}`);
+  return data;
+};
+
+export const editWater = async ({ newWaterParams, waterId }) => {
+  const { data } = await instance.patch(`${waterId}`, newWaterParams);
   return data;
 };
