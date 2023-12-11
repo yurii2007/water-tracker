@@ -171,32 +171,13 @@ export const BtnSaveWrapper = styled.div`
   }
 `;
 
-export const ModalContainer = styled.div`
-  background-color: var(--white-color);
-  width: 280px;
-  display: flex;
-  flex-direction: column;
-  padding: 24px 12px;
-  position: relative;
-  border-radius: 10px;
-
-  @media screen and (min-width: 768px) {
-    width: 704px;
-    padding: 32px 24px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    width: 592px;
-  }
-`;
-
 Notiflix.Notify.init({
   timeout: 2000,
   fontFamily: "Roboto",
   warning: {
-    background: "#407bff",
+    background: "#ff9d43",
     timeout: 8000,
-    textColor: "#d7e3ff",
+    textColor: "#ffffff",
     childClassName: "notiflix-notify-warning",
     notiflixIconColor: "rgba(0,0,0,0.2)",
     fontAwesomeClassName: "fas fa-exclamation-circle",
@@ -225,13 +206,12 @@ export const TitleWrapper = styled.input`
 
 export const StyledDateWrapper = styled.div`
   position: relative;
-  border-bottom: 1px solid var(--transparency-60);
 `;
 
 export const TimeGlobalStyles = createGlobalStyle`
   .react-datepicker-wrapper {
     position: relative;
-width: 100%;
+     width: 100%;
   }
 
 .react-datepicker__triangle {
@@ -240,9 +220,11 @@ width: 100%;
 
 .react-datepicker.react-datepicker--time-only {
     position: absolute;
+    font-size: 12px;
     left: 50%;
     top: 50%;
     transform: translate(-1%, -10%);
+    width: 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -271,20 +253,20 @@ width: 100%;
 
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list::-webkit-scrollbar-thumb {
   background-color: var(--white-color);
-  border-radius: 80px;
+  border-radius: 6px;
     background: var(--white-color);
     border: solid 1px var(--primary-blue);
     height: 20px;
 }
 
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected{
-  background-color: var(--primary-blue);
+  background-color: var(--primary-blue) !important;
     color: var(--white-color);
     font-weight: bold;
 }
 
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item:hover{
-  padding-left: 20px;
+      padding-left: 16px;
       border-left: 2px solid var(--secondary-yellow);
       transition: all 0.3s ease;
 }

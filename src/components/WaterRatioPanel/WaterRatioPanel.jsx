@@ -32,7 +32,12 @@ const WaterRatioPanel = () => {
           <span>100%</span>
         </WrapperPercentage>
       </InputContainer>
-      <AddBtn onClick={() => toggleModal(<AddWaterModal />)} type="button">
+      <AddBtn
+        onClick={() =>
+          toggleModal(<AddWaterModal size="medium" title="Add water" />)
+        }
+        type="button"
+      >
         <AddIcon aria-label="add_water" />
         Add water
       </AddBtn>
