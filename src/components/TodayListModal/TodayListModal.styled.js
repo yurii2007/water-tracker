@@ -19,6 +19,7 @@ export const StyledList = styled.ul`
   overflow: auto;
 
   @media screen and (min-width: 768px) {
+    min-height: 177px;
     max-height: 200px;
   }
 
@@ -131,32 +132,12 @@ export const AddBtnWrapper = styled.div`
 
 // pop-up styles
 
-export const PopUp = styled.div`
-  display: flex;
-  padding: 32px 24px;
-  flex-direction: column;
-  justify-content: center;
-  gap: 24px;
-  border-radius: 10px;
-  background: #fff;
-  width: 280px;
-
-  @media screen and (min-width: 768px) {
-    width: 592px;
-  }
-`;
-
-export const PopUpHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 export const StyledP = styled.p`
   color: var(--primary-black);
   font-size: 18px;
   font-weight: 500;
   line-height: 1.1;
+  margin-bottom: 24px;
 `;
 
 export const ButtonWrapper = styled.div`

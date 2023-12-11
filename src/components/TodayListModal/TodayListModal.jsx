@@ -53,13 +53,14 @@ const TodayListModal = () => {
           const hours = dateObject.getHours();
           const minutes = dateObject.getMinutes();
           const period = hours < 12 ? "AM" : "PM";
+          const formattedMinutes = minutes.toString().padStart(2, "0");
           return (
             <ListItem key={day._id}>
               <InfoWrapper>
                 <SvgGlass />
 
                 <Amount>{day.amount} ml</Amount>
-                <Time>{`${hours}:${minutes} ${period}`}</Time>
+                <Time>{`${hours}:${formattedMinutes} ${period}`}</Time>
               </InfoWrapper>
               <BtnWrapper>
                 <div>
@@ -70,6 +71,8 @@ const TodayListModal = () => {
                     onClick={() =>
                       toggleModal(
                         <DeletePopUp
+                          size={"small"}
+                          title={"Delete entry"}
                           deleteEntry={() => handleDelete(day._id)}
                         />
                       )

@@ -17,7 +17,12 @@ export const LogoModal = () => {
   return (
     <ContainerWidth onClick={() => toggleModal()}>
       <Container onClick={(e) => e.stopPropagation()}>
-        <Button type="button" onClick={() => toggleModal(<SettingModal />)}>
+        <Button
+          type="button"
+          onClick={() =>
+            toggleModal(<SettingModal size={"big"} title={"Setting"} />)
+          }
+        >
           <Setting />
           <Text>Setting</Text>
         </Button>

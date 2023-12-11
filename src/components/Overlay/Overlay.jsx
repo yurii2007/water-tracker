@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
 import { useModal } from "../ModalContext/ModalContextProvider";
 
@@ -37,7 +37,10 @@ const Overlay = ({ children }) => {
   }, [toggleModal]);
 
   return createPortal(
-    <OverlayStyle $isLogoModal={children.props.isLogoModal} onClick={backdropClick}>
+    <OverlayStyle
+      $isLogoModal={children.props.isLogoModal}
+      onClick={backdropClick}
+    >
       {children.props.isLogoModal ? (
         children
       ) : (
