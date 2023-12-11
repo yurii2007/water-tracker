@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useModal } from "../ModalContext/ModalContextProvider";
 
 import { OverlayStyle } from "./Overlay.styled";
-// import ModalBox from "../shared/ModalBox/ModalBox";
+import ModalBox from "../shared/ModalBox/ModalBox";
 
 const Overlay = ({ children }) => {
   const toggleModal = useModal();
@@ -37,15 +37,12 @@ const Overlay = ({ children }) => {
   }, [toggleModal]);
 
   return createPortal(
-    // <OverlayStyle $isLogoModal={children.props.isLogoModal} onClick={backdropClick}>
-    //   {children.props.isLogoModal ? (
-    //     children
-    //   ) : (
-    //     <ModalBox {...children.props}>{children}</ModalBox>
-    //   )}
-    // </OverlayStyle>
     <OverlayStyle $isLogoModal={children.props.isLogoModal} onClick={backdropClick}>
-      {children}
+      {children.props.isLogoModal ? (
+        children
+      ) : (
+        <ModalBox {...children.props}>{children}</ModalBox>
+      )}
     </OverlayStyle>,
     document.body
   );

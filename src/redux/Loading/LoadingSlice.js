@@ -5,6 +5,7 @@ import {
   logOutThunk,
   loginThunk,
   registerThunk,
+  updateAvatarThunk,
   updateUserThunk,
   updateWaterRateThunk,
 } from "../User/UserThunk";
@@ -23,7 +24,8 @@ export const LoadingSlice = createSlice({
           updateUserThunk.pending,
           getCurrentThunk.pending,
           logOutThunk.pending,
-          updateWaterRateThunk.pending
+          updateWaterRateThunk.pending,
+          updateAvatarThunk.pending
         ),
         () => true
       )
@@ -34,7 +36,8 @@ export const LoadingSlice = createSlice({
           updateUserThunk.rejected,
           getCurrentThunk.rejected,
           logOutThunk.rejected,
-          updateWaterRateThunk.rejected
+          updateWaterRateThunk.rejected,
+          updateAvatarThunk.rejected
         ),
         () => false
       )
@@ -45,7 +48,8 @@ export const LoadingSlice = createSlice({
           updateUserThunk.fulfilled,
           getCurrentThunk.fulfilled,
           logOutThunk.fulfilled,
-          updateWaterRateThunk.fulfilled
+          updateWaterRateThunk.fulfilled,
+          updateAvatarThunk.fulfilled
         ),
         () => false
       );
