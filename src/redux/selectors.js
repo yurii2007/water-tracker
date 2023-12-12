@@ -5,7 +5,6 @@ export const selectIsLoading = (state) => state.loading;
 // USER SELECTORS
 
 export const selectIsLoggedIn = (state) => state.user.isLoggedIn;
-export const selectIsLogin = (state) => state.user.token;
 const selectToken = (state) => state.user.token;
 export const selectIsAuth = createSelector(
   [selectIsLoggedIn, selectToken],

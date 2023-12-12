@@ -8,7 +8,6 @@ import {
   BenefitsList,
   BenefitsItem,
   BenefitsInfo,
-  TryTrackerBtn,
   TryTrackerLink,
   IconBox,
 } from "./WaterTracker.styled";
@@ -28,9 +27,7 @@ const WelcomeTracker = () => {
           </BenefitsItem>
         ))}
       </BenefitsList>
-      <TryTrackerBtn>
-        <TryTrackerLink to={routes.SignUp}>Try Tracker</TryTrackerLink>
-      </TryTrackerBtn>
+      <TryTrackerLink to={routes.SignUp}>Try Tracker</TryTrackerLink>
     </TrackerWrapper>
   );
 };

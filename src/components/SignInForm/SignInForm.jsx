@@ -19,6 +19,7 @@ import { useDispatch } from "react-redux";
 import { loginThunk } from "../../redux/User/UserThunk";
 import { TogglePasswordIcon } from "../TogglePasswordVisibility/TogglePasswordVisibility";
 import { usePasswordToggle } from "../../Helpers/usePasswordToggle";
+import GoogleBtn from "../shared/GoogleBtn/GoogleBtn";
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -60,6 +61,7 @@ const SignInForm = () => {
     <FormContainer>
       <AuthUpForma>
         <Title>Sign In</Title>
+        <GoogleBtn />
         <Formik
           initialValues={{
             email: "",

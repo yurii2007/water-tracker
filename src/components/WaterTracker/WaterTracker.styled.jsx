@@ -93,25 +93,15 @@ export const BenefitsInfo = styled.p`
   }
 `;
 
-export const TryTrackerBtn = styled.button`
+export const TryTrackerLink = styled(NavLink)`
+  display: block;
+  width: 100%;
+  padding: 8px 30px 8px 30px;
   background-color: var(--primary-blue);
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   border-radius: 10px;
   border: none;
-  width: 100%;
-  padding: 8px 30px 8px 30px;
 
-  @media screen and (min-width: 768px) {
-    padding: 10px 30px 10px 30px;
-    max-width: 276px;
-  }
-
-  @media screen and (min-width: 768px) {
-    max-width: 324px;
-  }
-`;
-
-export const TryTrackerLink = styled(NavLink)`
   color: var(--white-color);
   text-decoration: none;
   text-align: center;
@@ -119,9 +109,14 @@ export const TryTrackerLink = styled(NavLink)`
   line-height: 1.25;
   font-weight: 500;
   @media screen and (min-width: 768px) {
+    max-width: 276px;
     padding: 10px 30px 10px 30px;
+    
     font-size: 18px;
     line-height: 1.33;
+  }
+  @media screen and (min-width: 1440px) {
+    max-width: 324px;
   }
 `;
 

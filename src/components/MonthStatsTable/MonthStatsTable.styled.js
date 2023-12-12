@@ -34,7 +34,12 @@ export const DivMonthSwitcher = styled.div`
     width: 14px;
     height: 14px;
     cursor: pointer;
+    transition: var(--animation-transition);
   }
+  .arrow:is(:hover, :focus) {
+    transform: translateY(-1px);
+  }
+
   .month__name {
     font-size: 16px;
     font-weight: 400;
@@ -86,8 +91,7 @@ export const LiDayStyles = styled.li`
     border: none;
     border: ${({ $percentage }) =>
       $percentage < 100 ? "1px solid var(--secondary-yellow)" : "none"};
-      box-shadow: ${({ $isActive }) =>
-    $isActive ? " 0px 2px 4px 0px #407BFF4D" : "none"};
+    box-shadow: ${({ $isActive }) => ($isActive ? " 0px 2px 4px 0px #407BFF4D" : "none")};
     font-size: 16px;
     line-height: 20px;
 
