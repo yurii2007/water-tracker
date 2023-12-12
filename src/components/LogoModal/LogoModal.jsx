@@ -26,7 +26,12 @@ export const LogoModal = () => {
           <Setting />
           <Text>Setting</Text>
         </Button>
-        <Button type="button" onClick={() => toggleModal(<LogoutModal />)}>
+        <Button
+          type="button"
+          onClick={() =>
+            toggleModal(<LogoutModal size="small" title="Log out" />)
+          }
+        >
           <LogOut />
           <Text>Log out</Text>
         </Button>
