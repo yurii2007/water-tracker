@@ -10,6 +10,7 @@ export const OverlayStyle = styled.div`
   justify-content: center;
   align-items: center;
   overflow-y: scroll;
+  overflow-x: hidden;
   padding-inline: 20px;
   background-color: ${({ $isLogoModal }) => ($isLogoModal ? "transparent" : "#000000cc")};
 

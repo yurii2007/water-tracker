@@ -1,16 +1,18 @@
-import { Wrapper } from "./WelcomePage.styled";
 import WelcomeTracker from "../../components/WaterTracker";
 import WhyDrinkWater from "../../components/WhyDrinkWater";
 import { WelcomeWrapper } from "./WelcomePage.styled";
+import { DivWrapperPage } from "../HomePage/HomePage.styled";
 
 const WelcomePage = () => {
   return (
-    <Wrapper>
-      <WelcomeWrapper>
-        <WelcomeTracker />
-        <WhyDrinkWater />
-      </WelcomeWrapper>
-    </Wrapper>
+    <DivWrapperPage $page="welcome">
+      <section>
+        <WelcomeWrapper>
+          <WelcomeTracker />
+          <WhyDrinkWater />
+        </WelcomeWrapper>
+      </section>
+    </DivWrapperPage>
   );
 };
 

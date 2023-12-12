@@ -18,6 +18,7 @@ import { registerThunk } from "../../redux/User/UserThunk";
 import { usePasswordToggle } from "../../Helpers/usePasswordToggle";
 import { TogglePasswordIcon } from "../TogglePasswordVisibility/TogglePasswordVisibility";
 import { useNavigate } from "react-router-dom";
+import { setStateToken } from "../../redux/User/UserSlice";
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -51,7 +52,7 @@ const SignUpForm = () => {
   ]);
   const handleSubmit = ({ email, password, repeatPassword }, { resetForm }) => {
     if (password !== repeatPassword) {
-      Notiflix.Notify.failure("error", { timeout: 1000 });
+      Notiflix.Notify.failure("Passwords do not match", { timeout: 1000 });
       return;
     }
 
@@ -59,8 +60,11 @@ const SignUpForm = () => {
       .unwrap()
       .then((data) => {
         resetForm();
-        Notiflix.Notify.success(data.message, { timeout: 1000 });
-        navigate("/signin");
+        dispatch(setStateToken(data.token));
+        Notiflix.Notify.success("Welcome aboard! You're now officially registered.", {
+          timeout: 1000,
+        });
+        navigate("/");
       })
       .catch((error) => {
         Notiflix.Notify.failure(error, { timeout: 1000 });
