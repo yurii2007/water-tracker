@@ -1,41 +1,43 @@
 import styled from "styled-components";
 
-import bgMob from "../../images/background/mobile/bg_homescreen@1x.png";
-import bgMobRetina from "../../images/background/mobile/bg_homescreen@2x.png";
-import bgBottleMob from "../../images/background/mobile/bottle_homepage@1x.png";
-import bgBottleMobRetina from "../../images/background/mobile/bottle_homepage@2x.png";
-import bgTab from "../../images/background/tablet/bg_mainpage@1x.png";
-import bgTabRetina from "../../images/background/tablet/bg_mainpage@2x.png";
-import bgBottleTab from "../../images/background/tablet/bottle_homepage@1x.png";
-import bgBottleTabRetina from "../../images/background/tablet/bottle_homepage@2x.png";
-import bgDesk from "../../images/background/desktop/bg_mainpage@1x.png";
-import bgDeskRetina from "../../images/background/desktop/bg_mainpage@2x.png";
-import bgDeskBottle from "../../images/background/desktop/bottle_home@1x.png";
-import bgDeskBottleRetina from "../../images/background/desktop/bottle_home@2x.png";
+import { backgrounds } from "../../constants/backgrounds";
 
-export const DivWrapperPage = styled.div`
+const getBackgroundBottle = (size, page = "home", retina = false) => {
+  return retina ? backgrounds[page][size].bottleRetina : backgrounds[page][size].bottle;
+};
+
+export const MainWrapperPage = styled.main`
   width: 320px;
   margin: 24px auto 0;
   padding: 0px 20px 40px;
-  background-image: url(${bgMob}), url(${bgBottleMob});
-  background-size: cover, 280px 208px;
-  background-position: top left, top 80px center;
+  background-image: url(${backgrounds.sm.bg}),
+    url(${({ $page }) => getBackgroundBottle("sm", $page)});
+  background-size: ${({ $page }) =>
+    $page === "welcome" ? "cover" : "cover, 280px 208px"};
+  background-position: ${({ $page }) =>
+    $page === "welcome" ? "bottom center" : "top left, top 80px center"};
   background-repeat: no-repeat;
+
   @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
-    background-image: url(${bgMobRetina}), url(${bgBottleMobRetina});
+    background-image: url(${backgrounds.sm.bgRetina}),
+      url(${({ $page }) => getBackgroundBottle("sm", $page, true)});
   }
 
   @media screen and (min-width: 768px) {
     width: 768px;
     margin: 40px auto 0;
     padding: 0px 32px 44px;
-    background-image: url(${bgTab}), url(${bgBottleTab});
-    background-size: cover, 518px 386px;
-    background-position: top left, top 16px center;
+    background-image: url(${backgrounds.md.bg}),
+      url(${({ $page }) => getBackgroundBottle("md", $page)});
+    background-size: ${({ $page }) =>
+      $page === "welcome" ? "cover" : "cover, 518px 386px"};
+    background-position: ${({ $page }) =>
+      $page === "welcome" ? "bottom center" : "top left, top 16px center"};
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(${bgTabRetina}), url(${bgBottleTabRetina});
+      background-image: url(${backgrounds.md.bgRetina}),
+        url(${({ $page }) => getBackgroundBottle("md", $page, true)});
     }
   }
 
@@ -45,13 +47,17 @@ export const DivWrapperPage = styled.div`
     justify-content: space-between;
     margin: 20px auto 0;
     padding: 0px 112px 56px;
-    background-image: url(${bgDesk}), url(${bgDeskBottle});
-    background-size: cover, 738px 548px;
-    background-position: top left, top left 36px;
+    background-image: url(${backgrounds.xl.bg}),
+      url(${({ $page }) => getBackgroundBottle("xl", $page)});
+    background-size: ${({ $page }) =>
+      $page === "welcome" ? "contain" : "cover, 738px 548px"};
+    background-position: ${({ $page }) =>
+      $page === "welcome" ? "bottom center" : "top left, top left 36px"};
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(${bgDeskRetina}), url(${bgDeskBottleRetina});
+      background-image: url(${backgrounds.xl.bgRetina}),
+        url(${({ $page }) => getBackgroundBottle("xl", $page, true)});
     }
   }
 `;
@@ -71,6 +77,7 @@ export const SectionWrapperTodayListCalendar = styled.section`
     padding: 32px 24px;
   }
 `;
+
 export const SectionWrapperDailyNorma = styled.section`
   display: flex;
   flex-direction: column;

@@ -1,45 +1,46 @@
 import React from "react";
 import * as yup from "yup";
-import Notiflix from "notiflix";
-import { Formik, Form } from "formik";
+import { Notify } from "notiflix";
+import { Formik, Form, Field } from "formik";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { registerThunk } from "../../redux/User/UserThunk";
+import { setStateToken } from "../../redux/User/UserSlice";
+import { usePasswordToggle } from "../../Helpers/usePasswordToggle";
+
+import { TogglePasswordIcon } from "../TogglePasswordVisibility/TogglePasswordVisibility";
+import GoogleBtn from "../shared/GoogleBtn/GoogleBtn";
 import {
-  AuthUpForma,
   BtnSign,
   FormContainer,
-  FormField,
-  Input,
-  Lable,
+  Label,
   Linking,
   StyledError,
   Title,
 } from "./SignUpForm.styled";
-import { useDispatch } from "react-redux";
-import { registerThunk } from "../../redux/User/UserThunk";
-import { usePasswordToggle } from "../../Helpers/usePasswordToggle";
-import { TogglePasswordIcon } from "../TogglePasswordVisibility/TogglePasswordVisibility";
-import { useNavigate } from "react-router-dom";
 
 const validationSchema = yup.object().shape({
   email: yup
     .string()
-    .email("email is not valid")
-    .min(6, "the email must containe min six leters")
-    .max(64, "the email must containe maximum of 64 characters")
-    .required("email is required")
+    .email("The email is not valid.")
+    .min(6, "The email must contain at least six letters.")
+    .max(64, "The email must contain a maximum of 64 characters.")
+    .required("Email is required.")
     .trim()
     .matches(
       /^[a-zA-Z0-9]+[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/,
-      "email is not valid"
+      "Email is not valid."
     ),
   password: yup
     .string()
-    .required("password is required")
-    .min(8, "the password must containe min of 8 characters")
-    .max(64, "the password must containe maximum of 64 characters"),
+    .required("Password is required.")
+    .min(8, "The password must contain a minimum of 8 characters.")
+    .max(64, "The password must contain a maximum of 64 characters."),
   repeatPassword: yup
     .string()
-    .required("repeat password is required")
-    .oneOf([yup.ref("password"), null], 'Must match "password" field value'),
+    .required("Please repeat your password.")
+    .oneOf([yup.ref("password"), null], "Passwords must match."),
 });
 
 const SignUpForm = () => {
@@ -51,7 +52,7 @@ const SignUpForm = () => {
   ]);
   const handleSubmit = ({ email, password, repeatPassword }, { resetForm }) => {
     if (password !== repeatPassword) {
-      Notiflix.Notify.failure("error", { timeout: 1000 });
+      Notify.failure("Passwords do not match", { timeout: 1000 });
       return;
     }
 
@@ -59,78 +60,78 @@ const SignUpForm = () => {
       .unwrap()
       .then((data) => {
         resetForm();
-        Notiflix.Notify.success(data.message, { timeout: 1000 });
-        navigate("/signin");
+        dispatch(setStateToken(data.token));
+        Notify.success("Welcome aboard! You're now officially registered.", {
+          timeout: 1000,
+        });
+        navigate("/");
       })
       .catch((error) => {
-        Notiflix.Notify.failure(error, { timeout: 1000 });
+        Notify.failure(error, { timeout: 1000 });
       });
   };
 
   return (
     <FormContainer>
-      <AuthUpForma>
-        <Title>Sign Up</Title>
-        <Formik
-          initialValues={{
-            email: "",
-            password: "",
-            repeatPassword: "",
-          }}
-          onSubmit={handleSubmit}
-          validationSchema={validationSchema}
-        >
-          {({ errors, touched }) => {
-            return (
-              <Form>
-                <Lable>Enter your email</Lable>
-                <Input $error={errors.email && touched.email}>
-                  <FormField
-                    $error={errors.email && touched.email}
-                    autoComplete="off"
-                    name="email"
-                    type="email"
-                    placeholder="E-mail"
-                  />
-                </Input>
-                <StyledError name="email" component="div" />
-                <Lable>Enter your password</Lable>
-                <Input $error={errors.password && touched.password}>
-                  <FormField
-                    $error={errors.password && touched.password}
-                    autoComplete="off"
-                    name="password"
-                    type={showPasswords.password1 ? "text" : "password"}
-                    placeholder="Password"
-                  />
-                  <TogglePasswordIcon
-                    showPassword={showPasswords.password1}
-                    onToggle={() => togglePasswordVisibility("password1")}
-                  />
-                </Input>
-                <StyledError name="password" component="div" />
-                <Lable>Repeat password</Lable>
-                <Input $error={errors.repeatPassword && touched.repeatPassword}>
-                  <FormField
-                    $error={errors.repeatPassword && touched.repeatPassword}
-                    autoComplete="off"
-                    type={showPasswords.password2 ? "text" : "password"}
-                    name="repeatPassword"
-                    placeholder="Repeat password"
-                  />
-                  <TogglePasswordIcon
-                    showPassword={showPasswords.password2}
-                    onToggle={() => togglePasswordVisibility("password2")}
-                  />
-                </Input>
-                <StyledError name="repeatPassword" component="div" />
-                <BtnSign type="submit">Sign Up</BtnSign>
-              </Form>
-            );
-          }}
-        </Formik>
-        <Linking to="/signin">Sign in</Linking>
-      </AuthUpForma>
+      <Title>Sign Up</Title>
+      <GoogleBtn />
+      <Formik
+        initialValues={{
+          email: "",
+          password: "",
+          repeatPassword: "",
+        }}
+        onSubmit={handleSubmit}
+        validationSchema={validationSchema}
+      >
+        {({ errors, touched }) => {
+          return (
+            <Form>
+              <Label $error={errors.email && touched.email}>
+                Enter your email
+                <Field
+                  autoComplete="off"
+                  name="email"
+                  type="email"
+                  placeholder="E-mail"
+                />
+                <StyledError name="email" component="span" />
+              </Label>
+              <Label $error={errors.password && touched.password}>
+                Enter your password
+                <Field
+                  autoComplete="off"
+                  name="password"
+                  type={showPasswords.password1 ? "text" : "password"}
+                  placeholder="Password"
+                />
+                <TogglePasswordIcon
+                  showPassword={showPasswords.password1}
+                  onToggle={() => togglePasswordVisibility("password1")}
+                />
+                <StyledError name="password" component="span" />
+              </Label>
+              <Label $error={errors.repeatPassword && touched.repeatPassword}>
+                Repeat password
+                <Field
+                  $error={errors.repeatPassword && touched.repeatPassword}
+                  autoComplete="off"
+                  type={showPasswords.password2 ? "text" : "password"}
+                  name="repeatPassword"
+                  placeholder="Repeat password"
+                />
+                <TogglePasswordIcon
+                  showPassword={showPasswords.password2}
+                  onToggle={() => togglePasswordVisibility("password2")}
+                />
+                <StyledError name="repeatPassword" component="span" />
+              </Label>
+              <BtnSign type="submit">Sign Up</BtnSign>
+            </Form>
+          );
+        }}
+      </Formik>
+      <Linking to="/signin">Sign in</Linking>
     </FormContainer>
   );
 };

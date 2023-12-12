@@ -29,8 +29,8 @@ const SettingForm = ({ closeModal }) => {
 
   const dispatch = useDispatch();
 
-  const { values, errors, handleSubmit, handleChange, handleBlur, setValues } =
-    useFormik({
+  const { values, errors, handleSubmit, handleChange, handleBlur, setValues } = useFormik(
+    {
       initialValues: {
         gender: userData.gender || "",
         name: "",
@@ -54,11 +54,9 @@ const SettingForm = ({ closeModal }) => {
           .unwrap()
           .then(() => {
             if (values.email) {
-              Notiflix.Notify.success(
-                `Visit ${userData.email} to confirm new email`
-              );
+              Notiflix.Notify.success(`Visit ${userData.email} to confirm new email`);
             }
-            Notiflix.Notify.success("account updated successfully!");
+            Notiflix.Notify.success("Account updated successfully!");
             setValues((prevValues) => ({
               ...prevValues,
               oldPassword: "",
@@ -71,7 +69,8 @@ const SettingForm = ({ closeModal }) => {
             Notiflix.Notify.failure(error);
           });
       },
-    });
+    }
+  );
 
   return (
     <form onSubmit={handleSubmit}>
@@ -113,7 +112,7 @@ const SettingForm = ({ closeModal }) => {
               />
               {errors.name && <p>{errors.name}</p>}
             </InputLabel>
-            <InputLabel>
+            <InputLabel $error={errors.email}>
               <span> E-mail</span>
               <input
                 autoComplete="off"
@@ -128,7 +127,7 @@ const SettingForm = ({ closeModal }) => {
           </LeftFormWrap>
           <RightFormWrap>
             <h3>Password</h3>
-            <PasswordLabel $error={errors.oldPassword ? "true" : "false"}>
+            <PasswordLabel $error={errors.oldPassword}>
               <span> Outdated password:</span>
               <input
                 type={showPasswords.oldPassword ? "text" : "password"}
@@ -139,16 +138,14 @@ const SettingForm = ({ closeModal }) => {
                 placeholder="Old password"
                 onBlur={handleBlur}
               />
-              {errors.oldPassword && (
-                <ErrorPassText>{errors.oldPassword}</ErrorPassText>
-              )}
+              {errors.oldPassword && <ErrorPassText>{errors.oldPassword}</ErrorPassText>}
               <TogglePasswordIcon
                 type={"settings"}
                 showPassword={showPasswords.oldPassword}
                 onToggle={() => togglePasswordVisibility("oldPassword")}
               />
             </PasswordLabel>
-            <PasswordLabel $error={errors.newPassword ? "true" : "false"}>
+            <PasswordLabel $error={errors.newPassword}>
               <span> New Password:</span>
               <div>
                 <input
@@ -170,7 +167,7 @@ const SettingForm = ({ closeModal }) => {
                 />
               </div>
             </PasswordLabel>
-            <PasswordLabel $error={errors.repeatPassword ? "true" : "false"}>
+            <PasswordLabel $error={errors.repeatPassword}>
               <span> Repeat new password:</span>
               <input
                 type={showPasswords.password2 ? "text" : "password"}

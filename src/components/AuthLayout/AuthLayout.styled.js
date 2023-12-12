@@ -11,7 +11,7 @@ import bgDeskRetina from "../../images/background/desktop/bg_signin@2x.png";
 import bgDeskBottle from "../../images/background/desktop/bottle_signin@1x.png";
 import bgDeskBottleRetina from "../../images/background/desktop/bottle_signin@2x.png";
 
-const AuthLayoutStyles = styled.div`
+const AuthLayoutStyles = styled.main`
   background-image: url(${bgMob}), url(${bgBottleMob});
   background-size: cover, 280px 210px;
   background-position: top, bottom 20px center;
@@ -21,6 +21,7 @@ const AuthLayoutStyles = styled.div`
     background-image: url(${bgMobRetina}), url(${bgBottleMobRetina});
   }
   @media screen and (min-width: 768px) {
+    height: calc(100vh - 64px);
     background-image: url(${bgBottleTab});
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),

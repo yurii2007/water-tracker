@@ -1,6 +1,7 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 
 import {
+  forgotPasswordThunk,
   getCurrentThunk,
   logOutThunk,
   loginThunk,
@@ -25,7 +26,8 @@ export const LoadingSlice = createSlice({
           getCurrentThunk.pending,
           logOutThunk.pending,
           updateWaterRateThunk.pending,
-          updateAvatarThunk.pending
+          updateAvatarThunk.pending,
+          forgotPasswordThunk.pending
         ),
         () => true
       )
@@ -37,19 +39,16 @@ export const LoadingSlice = createSlice({
           getCurrentThunk.rejected,
           logOutThunk.rejected,
           updateWaterRateThunk.rejected,
-          updateAvatarThunk.rejected
-        ),
-        () => false
-      )
-      .addMatcher(
-        isAnyOf(
+          updateAvatarThunk.rejected,
+          forgotPasswordThunk.rejected,
           loginThunk.fulfilled,
           registerThunk.fulfilled,
           updateUserThunk.fulfilled,
           getCurrentThunk.fulfilled,
           logOutThunk.fulfilled,
           updateWaterRateThunk.fulfilled,
-          updateAvatarThunk.fulfilled
+          updateAvatarThunk.fulfilled,
+          forgotPasswordThunk.fulfilled
         ),
         () => false
       );

@@ -8,7 +8,7 @@ export const validationSchema = yup.object().shape({
   oldPassword: yup
     .string()
     .when("newPassword", (newPassword, field) =>
-      newPassword[0] ? field.required() : field
+      newPassword[0] ? field.required("Please enter your password.") : field
     ),
   newPassword: yup
     .string()

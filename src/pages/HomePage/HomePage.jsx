@@ -2,7 +2,7 @@ import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel";
 import MonthStatsTable from "../../components/MonthStatsTable/MonthStatsTable";
 import DailyNorma from "../../components/DailyNorma/DailyNorma";
 import {
-  DivWrapperPage,
+  MainWrapperPage,
   SectionWrapperDailyNorma,
   SectionWrapperTodayListCalendar,
 } from "./HomePage.styled";
@@ -10,7 +10,7 @@ import TodayListModal from "../../components/TodayListModal/TodayListModal";
 
 const HomePage = () => {
   return (
-    <DivWrapperPage>
+    <MainWrapperPage>
       <SectionWrapperDailyNorma>
         <DailyNorma />
         <WaterRatioPanel />
@@ -19,7 +19,7 @@ const HomePage = () => {
         <TodayListModal />
         <MonthStatsTable />
       </SectionWrapperTodayListCalendar>
-    </DivWrapperPage>
+    </MainWrapperPage>
   );
 };
 

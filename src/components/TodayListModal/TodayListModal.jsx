@@ -23,6 +23,7 @@ import { useModal } from "../ModalContext/ModalContextProvider";
 
 import DeletePopUp from "./DeletePopUp";
 import EditWaterModal from "../EditWaterModal/EditWaterModal";
+import AddWaterModal from "../AddWaterModal/AddWaterModal";
 
 const TodayListModal = () => {
   const waterList = useSelector(selectorWaterList);
@@ -100,7 +101,11 @@ const TodayListModal = () => {
         })}
       </StyledList>
       <AddBtnWrapper>
-        <button>
+        <button
+          onClick={() =>
+            toggleModal(<AddWaterModal size="medium" title="Add water" />)
+          }
+        >
           <span>+</span>
           <span>Add water</span>
         </button>

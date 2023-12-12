@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 import { useModal } from "../ModalContext/ModalContextProvider";
-import { selectIsLogin, selectIsName, selectUserLogo } from "../../redux/selectors";
+import { selectIsLoggedIn, selectIsName, selectUserLogo } from "../../redux/selectors";
 
 import {
   LogoDefault,
@@ -20,7 +20,7 @@ import { LogoModal } from "../LogoModal/LogoModal";
 const Header = () => {
   const toggleModal = useModal();
 
-  const isLogin = useSelector(selectIsLogin);
+  const isLogin = useSelector(selectIsLoggedIn);
   const isName = useSelector(selectIsName);
   const isUserLogo = useSelector(selectUserLogo);
 

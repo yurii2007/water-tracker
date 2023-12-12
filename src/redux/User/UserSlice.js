@@ -22,17 +22,14 @@ const initialState = {
   message: "",
   token: "",
   isLoggedIn: false,
-  error: null,
 };
 
-const rejectedCase = (_, { payload }) => ({ ...initialState, error: payload });
+const rejectedAuthCase = () => ({ ...initialState });
 const rejectedCaseUser = (state, { payload }) => {
-  state.error = payload;
   state.message = payload.message;
 };
-const rejectedCaseAvatar = (state, { payload }) => ({
+const rejectedCaseAvatar = (state) => ({
   ...state,
-  error: payload,
 });
 
 const userSlice = createSlice({
@@ -65,7 +62,7 @@ const userSlice = createSlice({
         state.token = payload.token;
         state.isLoggedIn = true;
       })
-      .addCase(registerThunk.rejected, rejectedCase)
+      .addCase(registerThunk.rejected, rejectedAuthCase)
       .addCase(loginThunk.fulfilled, (state, { payload }) => {
         state.user.email = payload.email;
         state.user.avatar = payload.avatar;
@@ -73,7 +70,7 @@ const userSlice = createSlice({
         state.user.username = payload.name;
         state.isLoggedIn = true;
       })
-      .addCase(loginThunk.rejected, rejectedCase)
+      .addCase(loginThunk.rejected, rejectedAuthCase)
       .addCase(getCurrentThunk.fulfilled, (state, { payload }) => {
         state.token = payload.token;
         state.user.name = payload.name;
@@ -83,8 +80,8 @@ const userSlice = createSlice({
         state.user.dailyNorma = payload.dailyNorma;
         state.isLoggedIn = true;
       })
-      .addCase(getCurrentThunk.rejected, rejectedCase)
-      .addCase(logOutThunk.fulfilled, rejectedCase)
+      .addCase(getCurrentThunk.rejected, rejectedAuthCase)
+      .addCase(logOutThunk.fulfilled, rejectedAuthCase)
       .addCase(updateAvatarThunk.fulfilled, (state, { payload }) => {
         state.user.avatar = payload;
       })

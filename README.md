@@ -1,6 +1,58 @@
-# Getting Started with Create React App
+# Water Tracker
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+# Water Tracker API
+
+This is backend API for [Water Tracker App](https://github.com/SakhnoDima/waterTrackerApi).The API handles data storage, retrieval, and management for the Water Tracker application.
+
+## To get more details you can visit [Doc File](https://water-tracker-f07j.onrender.com/api/docs)
+
+# Overview
+
+The Water Tracker App is a user-friendly application designed to help individuals monitor and record their daily water intake. Staying hydrated is essential for maintaining good health, and this app provides a convenient way for users to track and visualize their hydration habits.
+
+![Overview](./assets/water_tracker_welcome_page.jpg)
+
+# Features:
+
+## Record Water Intake
+
+Log Water Consumption: Easily record the amount of water you drink throughout the day.
+Track Time: Record the time when you consume water to establish a consistent hydration routine.
+
+## Calendar
+
+Historical Overview: View a calendar to see your water consumption history.
+Analyze Patterns: Identify trends in your hydration habits over time.
+
+![Features](./assets/water_tracker_user.jpg)
+
+## Daily Norma
+
+Set Daily Water Goals: Define your daily water intake goals based on personalized recommendations or your preferences.
+Visual Progress: Track your daily water consumption progress with a graphical representation of your goals.
+
+![Daily Norma](./assets/daily_norma.jpg)
+
+## Add Water
+
+Quick Entry: Use a simple form to add water intake with just a few clicks.
+Customization: Choose the specific amount of water and the time you consumed it.
+
+![Add Water](./assets/add_water.jpg)
+
+## User Settings
+
+Explore various settings to customize your Water Tracker experience. Here are some features you can manage:
+
+**Change Avatar:**
+Update your profile picture by navigating to the "Settings" section. Choose an avatar that represents you.
+
+**Update Name:**
+Easily modify your displayed name within the app. Personalize it to make the Water Tracker experience uniquely yours.
+
+![User Settings](./assets/setting_modal.jpg)
 
 ## Available Scripts
 
