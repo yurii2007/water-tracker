@@ -1,19 +1,12 @@
 import styled from "styled-components";
 
-import { ReactComponent as Cross } from "../../images/svg/x.svg";
-
 export const Container = styled.div`
   position: relative;
   background-color: var(--white-color);
-  padding: 32px 24px;
   display: flex;
   flex-direction: column;
   gap: 24px;
   border-radius: 10px;
-
-  @media (min-width: 768px) {
-    width: 592px;
-  }
 `;
 
 export const Title = styled.h2`
@@ -87,14 +80,4 @@ export const ButtonCancel = styled.button`
     padding: 10px 30px;
     width: 160px;
   }
-`;
-
-export const CrossIcon = styled(Cross)`
-  position: absolute;
-  right: 24px;
-  top: 36px;
-  cursor: pointer;
-
-  width: 24px;
-  height: 24px;
 `;

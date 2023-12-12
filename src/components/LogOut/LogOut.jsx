@@ -8,7 +8,6 @@ import {
   Text,
   ButtonLogOut,
   ButtonCancel,
-  CrossIcon,
   ContainerButton,
 } from "./LogOut.styled";
 import { logOutThunk } from "../../redux/User/UserThunk";
@@ -24,7 +23,6 @@ const LogOut = () => {
 
   return (
     <Container>
-      <Title>Log out</Title>
       <Text>Do you really want to leave?</Text>
       <ContainerButton>
         <ButtonLogOut type="button" onClick={handleLogout}>
@@ -34,7 +32,6 @@ const LogOut = () => {
           Cancel
         </ButtonCancel>
       </ContainerButton>
-      <CrossIcon onClick={() => toggleModal()} />
     </Container>
   );
 };
