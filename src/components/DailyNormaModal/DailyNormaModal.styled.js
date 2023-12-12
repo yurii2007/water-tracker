@@ -60,23 +60,6 @@ export const ArticleCalculateWrapper = styled.article`
     line-height: 1.25;
     color: var(--primary-black);
   }
-
-  input[type="number"] {
-    padding: 12px 10px;
-    border: 1px solid var(--secondary-lightblue);
-    border-radius: 6px;
-
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 20px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: var(--primary-blue);
-
-    &:focus {
-      outline: none;
-    }
-  }
 `;
 
 export const Genders = styled.div`
@@ -125,23 +108,6 @@ export const FormStyles = styled.form`
     letter-spacing: 0em;
     text-align: left;
     color: var(--primary-black);
-  }
-
-  input {
-    padding: 12px 10px;
-    border: 1px solid var(--secondary-lightblue);
-    border-radius: 6px;
-
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 20px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: var(--primary-blue);
-
-    &:focus {
-      outline: none;
-    }
   }
 
   @media screen and (min-width: 768px) {

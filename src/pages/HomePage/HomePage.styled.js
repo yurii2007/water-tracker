@@ -6,7 +6,7 @@ const getBackgroundBottle = (size, page = "home", retina = false) => {
   return retina ? backgrounds[page][size].bottleRetina : backgrounds[page][size].bottle;
 };
 
-export const DivWrapperPage = styled.div`
+export const MainWrapperPage = styled.main`
   width: 320px;
   margin: 24px auto 0;
   padding: 0px 20px 40px;
@@ -17,6 +17,7 @@ export const DivWrapperPage = styled.div`
   background-position: ${({ $page }) =>
     $page === "welcome" ? "bottom center" : "top left, top 80px center"};
   background-repeat: no-repeat;
+
   @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
     background-image: url(${backgrounds.sm.bgRetina}),
       url(${({ $page }) => getBackgroundBottle("sm", $page, true)});
@@ -76,6 +77,7 @@ export const SectionWrapperTodayListCalendar = styled.section`
     padding: 32px 24px;
   }
 `;
+
 export const SectionWrapperDailyNorma = styled.section`
   display: flex;
   flex-direction: column;

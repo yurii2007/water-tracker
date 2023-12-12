@@ -16,11 +16,9 @@ const Layout = () => {
     <ModalContextProvider>
       {isLoading ? <Loader /> : null}
       <Header />
-      <main>
-        <Suspense fallback={<SuspenseLoader />}>
-          <Outlet />
-        </Suspense>
-      </main>
+      <Suspense fallback={<SuspenseLoader />}>
+        <Outlet />
+      </Suspense>
     </ModalContextProvider>
   );
 };
