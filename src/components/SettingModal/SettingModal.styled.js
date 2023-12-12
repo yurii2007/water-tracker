@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const UploadWrapper = styled.div`
   display: flex;
@@ -86,15 +86,16 @@ export const InputLabel = styled.label`
 
   input {
     display: flex;
-    padding: 12px 10px;
     align-items: flex-start;
-    border-radius: 6px;
     height: 44px;
-    border: 1px solid #d7e3ff;
-    color: var(--primary-blue);
-    font-family: Roboto, sans-serif;
-    font-size: 16px;
-    line-height: 1.25;
+  }
+
+  input,
+  input:not(:placeholder-shown) {
+    ${({ $error }) =>
+      $error
+        ? "border: 1px solid var(--secondary-red); color: var(--secondary-red)"
+        : ""};
   }
 `;
 
@@ -112,21 +113,16 @@ export const PasswordLabel = styled.label`
   input {
     display: flex;
     height: 44px;
-    padding: 12px 10px;
     align-items: flex-start;
-    border-radius: 6px;
-    border: 1px solid #d7e3ff;
-    color: var(--primary-blue);
-    font-family: Roboto, sans-serif;
-    font-size: 16px;
-    line-height: 1.25;
     width: 100%;
+  }
 
-    ${(props) =>
-      props.$error === "true" &&
-      css`
-        border-color: var(--secondary-red);
-      `}
+  input,
+  input:not(:placeholder-shown) {
+    ${({ $error }) =>
+      $error
+        ? "border: 1px solid var(--secondary-red); color: var(--secondary-red)"
+        : ""};
   }
 `;
 

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const WelcomeWrapper = styled.div`
+export const WelcomeWrapper = styled.section`
   padding-top: 24px;
 
   @media screen and (min-width: 768px) {

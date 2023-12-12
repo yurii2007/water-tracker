@@ -1,15 +1,12 @@
 import React from "react";
 import * as yup from "yup";
-import Notiflix from "notiflix";
-import { Formik, Form } from "formik";
+import { Notify } from "notiflix";
+import { Formik, Form, Field } from "formik";
 
 import {
-  AuthUpForma,
   BtnSign,
   FormContainer,
-  FormField,
-  Input,
-  Lable,
+  Label,
   StyledError,
   Title,
 } from "../SignUpForm/SignUpForm.styled";
@@ -41,52 +38,48 @@ const ForgotPasswordForm = () => {
       .then((data) => {
         navigate("/signin");
         resetForm();
-        Notiflix.Notify.success(data.message, { timeout: 1000 });
+        Notify.success(data.message, { timeout: 1000 });
       })
       .catch((error) => {
-        Notiflix.Notify.failure(error, { timeout: 1000 });
+        Notify.failure(error, { timeout: 1000 });
       });
   };
   return (
-    <>
-      <FormContainer>
-        <AuthUpForma>
-          <Title>Forgot Password ?</Title>
-          <p>We will send you an email </p>
-          <Formik
-            initialValues={{
-              email: "",
-            }}
-            onSubmit={handleSubmit}
-            validationSchema={validationSchema}
-          >
-            {({ errors, touched }) => {
-              return (
-                <Form>
-                  <Lable>Enter your email</Lable>
-                  <Input $error={errors.email && touched.email}>
-                    <FormField
-                      $error={errors.email && touched.email}
-                      autoComplete="off"
-                      name="email"
-                      type="email"
-                      placeholder="E-mail"
-                    />
-                  </Input>
-                  <StyledError name="email" component="div" />
+    <FormContainer>
+      <Title>Forgot Password ?</Title>
+      <p>We will send you an email </p>
+      <Formik
+        initialValues={{
+          email: "",
+        }}
+        onSubmit={handleSubmit}
+        validationSchema={validationSchema}
+      >
+        {({ errors, touched }) => {
+          return (
+            <Form>
+              <Label $error={errors.email && touched.email}>
+                Enter your email
+                <Field
+                  $error={errors.email && touched.email}
+                  autoComplete="off"
+                  name="email"
+                  type="email"
+                  placeholder="E-mail"
+                />
+                <StyledError name="email" component="span" />
+              </Label>
 
-                  <BtnSign type="submit">Send</BtnSign>
-                </Form>
-              );
-            }}
-          </Formik>
-          <HaveAccount>
-            <p>Do you already have an account?</p>
-            <Linkings to="/signin">Sign in</Linkings>
-          </HaveAccount>
-        </AuthUpForma>
-      </FormContainer>
-    </>
+              <BtnSign type="submit">Send</BtnSign>
+            </Form>
+          );
+        }}
+      </Formik>
+      <HaveAccount>
+        <p>Do you already have an account?</p>
+        <Linkings to="/signin">Sign in</Linkings>
+      </HaveAccount>
+    </FormContainer>
   );
 };
 

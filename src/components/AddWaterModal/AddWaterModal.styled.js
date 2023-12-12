@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Notiflix from "notiflix";
+import { Notify } from "notiflix";
 import { createGlobalStyle } from "styled-components";
 import { ReactComponent as IncrementIcon } from "../../images/svg/plus.svg";
 import { ReactComponent as DecrementIcon } from "../../images/svg/minus.svg";
@@ -100,14 +100,9 @@ export const FormStyled = styled.form`
   input {
     width: 120px;
     display: flex;
-    padding: 12px 10px;
     align-items: flex-start;
     gap: 10px;
-    border-radius: 6px;
-    border: 1px solid var(--secondary-lightblue);
-    color: var(--primary-blue);
     margin-bottom: 24px;
-    outline: none;
     appearance: none;
   }
 
@@ -171,7 +166,7 @@ export const BtnSaveWrapper = styled.div`
   }
 `;
 
-Notiflix.Notify.init({
+Notify.init({
   timeout: 2000,
   fontFamily: "Roboto",
   warning: {
@@ -185,24 +180,6 @@ Notiflix.Notify.init({
     backOverlayColor: "rgba(238,191,49,0.2)",
   },
 });
-
-export const TitleWrapper = styled.input`
-  position: relative;
-  border: none;
-  font-size: 18px;
-  color: var(--white);
-  background-color: transparent;
-  padding-left: 20px;
-  padding-bottom: 4.5px;
-  cursor: pointer;
-  &:focus-visible {
-    outline: 0;
-  }
-
-  @media screen and (min-width: 768px) {
-    height: 29px;
-  }
-`;
 
 export const StyledDateWrapper = styled.div`
   position: relative;
