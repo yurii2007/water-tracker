@@ -1,23 +1,7 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  position: relative;
-  background-color: var(--white-color);
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  border-radius: 10px;
-`;
-
-export const Title = styled.h2`
-  color: var(--primary-black);
-  font-size: 26px;
-  font-weight: 500;
-  line-height: 1.23;
-  cursor: context-menu;
-`;
-
 export const Text = styled.p`
+  margin-bottom: 24px;
   color: var(--primary-black);
   font-size: 18px;
   font-weight: 500;

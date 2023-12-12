@@ -2,14 +2,7 @@ import { useDispatch } from "react-redux";
 
 import { useModal } from "../ModalContext/ModalContextProvider";
 
-import {
-  Container,
-  Title,
-  Text,
-  ButtonLogOut,
-  ButtonCancel,
-  ContainerButton,
-} from "./LogOut.styled";
+import { Text, ButtonLogOut, ButtonCancel, ContainerButton } from "./LogOut.styled";
 import { logOutThunk } from "../../redux/User/UserThunk";
 
 const LogOut = () => {
@@ -22,7 +15,7 @@ const LogOut = () => {
   };
 
   return (
-    <Container>
+    <>
       <Text>Do you really want to leave?</Text>
       <ContainerButton>
         <ButtonLogOut type="button" onClick={handleLogout}>
@@ -32,7 +25,7 @@ const LogOut = () => {
           Cancel
         </ButtonCancel>
       </ContainerButton>
-    </Container>
+    </>
   );
 };
 
