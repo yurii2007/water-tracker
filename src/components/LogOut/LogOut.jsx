@@ -2,7 +2,12 @@ import { useDispatch } from "react-redux";
 
 import { useModal } from "../ModalContext/ModalContextProvider";
 
-import { Text, ButtonLogOut, ButtonCancel, ContainerButton } from "./LogOut.styled";
+import {
+  Text,
+  ButtonLogOut,
+  ButtonCancel,
+  ContainerButton,
+} from "./LogOut.styled";
 import { logOutThunk } from "../../redux/User/UserThunk";
 
 const LogOut = () => {
