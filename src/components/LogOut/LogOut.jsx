@@ -4,7 +4,6 @@ import { useModal } from "../ModalContext/ModalContextProvider";
 
 import {
   Container,
-  Title,
   Text,
   ButtonLogOut,
   ButtonCancel,
