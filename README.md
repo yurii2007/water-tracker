@@ -2,6 +2,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Water Tracker API
+
+This is backend API for [Water Tracker App](https://github.com/SakhnoDima/waterTrackerApi).The API handles data storage, retrieval, and management for the Water Tracker application.
+
+## To get more details you can visit [Doc File](https://water-tracker-f07j.onrender.com/api/docs)
+
 # Overview
 
 The Water Tracker App is a user-friendly application designed to help individuals monitor and record their daily water intake. Staying hydrated is essential for maintaining good health, and this app provides a convenient way for users to track and visualize their hydration habits.
