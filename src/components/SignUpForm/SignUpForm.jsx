@@ -114,7 +114,6 @@ const SignUpForm = () => {
               <Label $error={errors.repeatPassword && touched.repeatPassword}>
                 Repeat password
                 <Field
-                  $error={errors.repeatPassword && touched.repeatPassword}
                   autoComplete="off"
                   type={showPasswords.password2 ? "text" : "password"}
                   name="repeatPassword"

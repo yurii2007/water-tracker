@@ -49,7 +49,9 @@ const SignInForm = () => {
       .unwrap()
       .then(() => {
         resetForm();
-        Notify.success("Welcome back! You're now logged in.", { timeout: 1000 });
+        Notify.success("Welcome back! You're now logged in.", {
+          timeout: 1000,
+        });
       })
       .catch((error) => {
         Notify.failure(error, { timeout: 1000 });
@@ -70,10 +72,10 @@ const SignInForm = () => {
         {({ errors, touched }) => {
           return (
             <Form>
-              <Label $error={errors.email && touched.email}>
+              <Label $error={String(errors.email && touched.email)}>
                 Enter your email
                 <Field
-                  $error={errors.email && touched.email}
+                  // error={String(errors.email && touched.email)}
                   autoComplete="off"
                   name="email"
                   type="email"
@@ -81,10 +83,10 @@ const SignInForm = () => {
                 />
                 <StyledError name="email" component="span" />
               </Label>
-              <Label $error={errors.password && touched.password}>
+              <Label $error={String(errors.password && touched.password)}>
                 Enter your password
                 <Field
-                  $error={errors.password && touched.password}
+                  // error={String(errors.password && touched.password)}
                   autoComplete="off"
                   name="password"
                   type={showPasswords.password1 ? "text" : "password"}
