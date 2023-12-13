@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 import { selectIsLoading } from "../../redux/selectors";
 
-import ModalContextProvider from "../ModalContext/ModalContextProvider";
+import ModalContextProvider from "../../context/ModalContext/ModalContextProvider";
 import Header from "../Header/Header";
 import Loader from "../Loader/Loader";
 import SuspenseLoader from "../Loader/SuspenseLoader";
