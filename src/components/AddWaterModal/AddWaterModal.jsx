@@ -42,6 +42,7 @@ const AddWaterModal = () => {
       default:
     }
   };
+
   const handleSave = async (evt) => {
     evt.preventDefault();
     if (value === 0) {
