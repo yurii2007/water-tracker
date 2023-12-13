@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { useModal } from "../ModalContext/ModalContextProvider";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Notiflix from "notiflix";
 import { useDispatch } from "react-redux";
+
 import { addWaterThunk, getTodayThunk } from "../../redux/Water/WaterThunk";
+import { useModal } from "../../context/ModalContext/ModalContextProvider";
+
 import {
   AmountText,
   BtnSaveWrapper,
@@ -57,6 +59,7 @@ const AddWaterModal = () => {
 
     dispatch(addWaterThunk(saveWater));
     dispatch(getTodayThunk());
+
     toggleModal();
   };
 

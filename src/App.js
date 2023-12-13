@@ -3,32 +3,29 @@ import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getCurrentThunk } from "./redux/User/UserThunk";
-import { selectIsAuth } from "./redux/selectors";
+import { selectIsAuth, selectToken } from "./redux/selectors";
 import { routes } from "./constants/routes";
 
 import Layout from "./components/Layout/Layout";
 
 const PublicRoute = React.lazy(() => import("./components/Routes/PublicRoute"));
-const AuthLayout = React.lazy(() =>
-  import("./components/AuthLayout/AuthLayout")
-);
+const AuthLayout = React.lazy(() => import("./components/AuthLayout/AuthLayout"));
 const WelcomePage = React.lazy(() => import("./pages/WelcomePage/WelcomePage"));
 const HomePage = React.lazy(() => import("./pages/HomePage/HomePage"));
 const SignInPage = React.lazy(() => import("./pages/SignInPage"));
 const SignUpPage = React.lazy(() => import("./pages/SignUpPage"));
-const NotFoundPage = React.lazy(() => import("./pages/NotFoundPage"));
-const ForgotPasswordPage = React.lazy(() =>
-  import("./pages/ForgotPasswordPage")
-);
+const NotFoundPage = React.lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
+const ForgotPasswordPage = React.lazy(() => import("./pages/ForgotPasswordPage"));
 const GoogleAuthPage = React.lazy(() => import("./pages/GoogleAuthPage"));
 
 const App = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
+  const token = useSelector(selectToken);
 
   useEffect(() => {
-    dispatch(getCurrentThunk());
-  }, [dispatch]);
+    if (token) dispatch(getCurrentThunk());
+  }, [dispatch, token]);
 
   return (
     <Routes>
@@ -65,8 +62,8 @@ const App = () => {
           }
         />
         <Route path="/google" element={<GoogleAuthPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
-      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };

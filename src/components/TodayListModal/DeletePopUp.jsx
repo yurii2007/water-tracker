@@ -5,7 +5,7 @@ import {
   StyledP,
 } from "../TodayListModal/TodayListModal.styled";
 
-import { useModal } from "../ModalContext/ModalContextProvider";
+import { useModal } from "../../context/ModalContext/ModalContextProvider";
 
 const DeletePopUp = ({ deleteEntry }) => {
   const toggleModal = useModal();

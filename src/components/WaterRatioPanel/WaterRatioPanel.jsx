@@ -1,4 +1,4 @@
-import { useModal } from "../ModalContext/ModalContextProvider";
+import { useModal } from "../../context/ModalContext/ModalContextProvider";
 import AddWaterModal from "../AddWaterModal/AddWaterModal";
 import { ReactComponent as AddIcon } from "../../images/svg/plus_circle.svg";
 import {
@@ -33,9 +33,7 @@ const WaterRatioPanel = () => {
         </WrapperPercentage>
       </InputContainer>
       <AddBtn
-        onClick={() =>
-          toggleModal(<AddWaterModal size="medium" title="Add water" />)
-        }
+        onClick={() => toggleModal(<AddWaterModal size="medium" title="Add water" />)}
         type="button"
       >
         <AddIcon aria-label="add_water" />

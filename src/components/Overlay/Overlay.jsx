@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
 import React, { useEffect } from "react";
 
-import { useModal } from "../ModalContext/ModalContextProvider";
+import { useModal } from "../../context/ModalContext/ModalContextProvider";
 
 import { OverlayStyle } from "./Overlay.styled";
 import ModalBox from "../shared/ModalBox/ModalBox";

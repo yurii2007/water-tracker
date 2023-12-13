@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 
-import { useModal } from "../ModalContext/ModalContextProvider";
+import { useModal } from "../../context/ModalContext/ModalContextProvider"; 
 
 import {
   Text,
