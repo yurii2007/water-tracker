@@ -9,7 +9,7 @@ export const updateDayInfo = (monthData, updatedDay) => {
   if (monthData.length === 0) return [];
 
   // Extract the current day from the updatedDay object
-  const currentDate = new Date(updatedDay.dailyWaterList[0].time).getDate();
+  const currentDate = new Date(updatedDay.dailyWaterList[0]?.time).getDate();
 
   // Iterate through each element in monthData
   return monthData.map((el) => {

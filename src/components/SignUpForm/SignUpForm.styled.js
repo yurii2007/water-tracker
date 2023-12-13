@@ -51,7 +51,7 @@ export const Label = styled.label`
   input,
   input:not(:placeholder-shown) {
     ${({ $error }) =>
-      $error
+      $error === "true"
         ? "border: 1px solid var(--secondary-red); color: var(--secondary-red)"
         : ""};
   }

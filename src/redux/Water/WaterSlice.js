@@ -34,7 +34,10 @@ const waterSlice = createSlice({
   initialState,
   reducers: {
     updateDailyNorma: (state, { payload }) => {
-      state.monthInfo = state.monthInfo.map((day) => ({ ...day, dailyNorma: payload }));
+      state.monthInfo = state.monthInfo.map((day) => ({
+        ...day,
+        dailyNorma: payload,
+      }));
     },
   },
   extraReducers: (builder) => {
@@ -54,10 +57,13 @@ const waterSlice = createSlice({
       })
       .addCase(getTodayThunk.rejected, rejectedCase)
       .addCase(addWaterThunk.pending, pendingCase)
-      .addCase(addWaterThunk.fulfilled, (state, { payload: { amount, time, _id } }) => {
-        state.today.dailyWaterList.push({ amount, time, _id });
-        state.isLoading = false;
-      })
+      .addCase(
+        addWaterThunk.fulfilled,
+        (state, { payload: { amount, time, _id } }) => {
+          state.today.dailyWaterList.push({ amount, time, _id });
+          state.isLoading = false;
+        }
+      )
       .addCase(addWaterThunk.rejected, rejectedCase)
       .addCase(deleteWaterThunk.pending, pendingCase)
       .addCase(deleteWaterThunk.fulfilled, (state, { payload }) => {
