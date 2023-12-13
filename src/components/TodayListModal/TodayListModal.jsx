@@ -19,7 +19,7 @@ import {
   SvgGlass,
   Time,
 } from "./TodayListModal.styled";
-import { useModal } from "../ModalContext/ModalContextProvider";
+import { useModal } from "../../context/ModalContext/ModalContextProvider";
 
 import DeletePopUp from "./DeletePopUp";
 import EditWaterModal from "../EditWaterModal/EditWaterModal";

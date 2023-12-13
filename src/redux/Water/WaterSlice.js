@@ -7,6 +7,7 @@ import {
   getMonthInfoThunk,
   getTodayThunk,
 } from "./WaterThunk";
+import { updateDayInfo } from "../../utils/updateDayInfo";
 
 const initialState = {
   monthInfo: [],
@@ -31,7 +32,11 @@ const rejectedCaseDelete = (state, { payload }) => {
 const waterSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    updateDailyNorma: (state, { payload }) => {
+      state.monthInfo = state.monthInfo.map((day) => ({ ...day, dailyNorma: payload }));
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getMonthInfoThunk.pending, pendingCase)
@@ -42,20 +47,17 @@ const waterSlice = createSlice({
       .addCase(getMonthInfoThunk.rejected, rejectedCase)
       .addCase(getTodayThunk.pending, pendingCase)
       .addCase(getTodayThunk.fulfilled, (state, { payload }) => {
-        // console.log(payload);
+        state.monthInfo = updateDayInfo(state.monthInfo, payload);
         state.today.dailyWaterList = payload.dailyWaterList;
         state.today.percent = payload.percent ?? 0;
         state.isLoading = false;
       })
       .addCase(getTodayThunk.rejected, rejectedCase)
       .addCase(addWaterThunk.pending, pendingCase)
-      .addCase(
-        addWaterThunk.fulfilled,
-        (state, { payload: { amount, time, _id } }) => {
-          state.today.dailyWaterList.push({ amount, time, _id });
-          state.isLoading = false;
-        }
-      )
+      .addCase(addWaterThunk.fulfilled, (state, { payload: { amount, time, _id } }) => {
+        state.today.dailyWaterList.push({ amount, time, _id });
+        state.isLoading = false;
+      })
       .addCase(addWaterThunk.rejected, rejectedCase)
       .addCase(deleteWaterThunk.pending, pendingCase)
       .addCase(deleteWaterThunk.fulfilled, (state, { payload }) => {
@@ -78,4 +80,5 @@ const waterSlice = createSlice({
   },
 });
 
+export const { updateDailyNorma } = waterSlice.actions;
 export const waterReducer = waterSlice.reducer;

@@ -4,6 +4,7 @@ import Notiflix from "notiflix";
 import { updateUserThunk } from "../../redux/User/UserThunk";
 import { validationSchema } from "../../schemas/settingFormSchema";
 import { TogglePasswordIcon } from "../TogglePasswordVisibility/TogglePasswordVisibility";
+import { usePasswordToggle } from "../../hooks/usePasswordToggle";
 
 import {
   BtnSave,
@@ -17,7 +18,6 @@ import {
   RightFormWrap,
   WrapperFormInfo,
 } from "./SettingModal.styled";
-import { usePasswordToggle } from "../../Helpers/usePasswordToggle";
 
 const SettingForm = ({ closeModal }) => {
   const userData = useSelector((state) => state.user.user);
