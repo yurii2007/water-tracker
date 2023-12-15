@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 
-import { useModal } from "../ModalContext/ModalContextProvider";
+import { useModal } from "../../context/ModalContext/ModalContextProvider";
 import { selectIsLoggedIn, selectIsName, selectUserLogo } from "../../redux/selectors";
 
 import {

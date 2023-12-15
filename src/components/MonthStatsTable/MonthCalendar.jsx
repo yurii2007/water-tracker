@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import { LiDayStyles, UlMonth } from "./MonthStatsTable.styled";
 import DaysGeneralStats from "../DaysGeneralStats/DaysGeneralStats";
@@ -6,11 +6,13 @@ import DaysGeneralStats from "../DaysGeneralStats/DaysGeneralStats";
 const MonthCalendar = ({ monthData }) => {
   const [currentDay, setCurrentDay] = useState(null);
 
+  const closeDayStats = useCallback(() => {
+    setCurrentDay(null);
+  }, []);
+
   return (
     <UlMonth>
-      {currentDay && (
-        <DaysGeneralStats currentDay={currentDay} close={() => setCurrentDay(null)} />
-      )}
+      {currentDay && <DaysGeneralStats currentDay={currentDay} close={closeDayStats} />}
       {monthData.map((dayInfo) => (
         <LiDayStyles
           onClick={() => setCurrentDay(dayInfo)}

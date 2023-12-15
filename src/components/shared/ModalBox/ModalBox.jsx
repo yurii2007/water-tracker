@@ -1,4 +1,4 @@
-import { useModal } from "../../ModalContext/ModalContextProvider";
+import { useModal } from "../../../context/ModalContext/ModalContextProvider";
 
 import { ReactComponent as CloseModalSvg } from "../../../images/svg/x.svg";
 import { DivModalBox, DivTitleWrapper, Title } from "./ModalBox.styled";

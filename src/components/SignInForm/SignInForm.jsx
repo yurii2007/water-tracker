@@ -4,7 +4,7 @@ import { Notify } from "notiflix";
 import { Formik, Form, Field } from "formik";
 import { useDispatch } from "react-redux";
 
-import { usePasswordToggle } from "../../Helpers/usePasswordToggle";
+import { usePasswordToggle } from "../../hooks/usePasswordToggle";
 import { loginThunk } from "../../redux/User/UserThunk";
 
 import { TogglePasswordIcon } from "../TogglePasswordVisibility/TogglePasswordVisibility";

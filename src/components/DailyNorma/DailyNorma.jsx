@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 
-import { useModal } from "../ModalContext/ModalContextProvider.jsx";
+import { useModal } from "../../context/ModalContext/ModalContextProvider.jsx";
 import { selectDailyNorma } from "../../redux/selectors.js";
 
 import DailyNormaModal from "../DailyNormaModal/DailyNormaModal";

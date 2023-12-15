@@ -7,7 +7,7 @@ import { updateAvatarThunk } from "../../redux/User/UserThunk";
 import { ReactComponent as UploadImgSvg } from "../../images/svg/upload_icon.svg";
 import { ReactComponent as AvatarSvg } from "../../images/svg/logo.svg";
 import { UpTitle, UploadWrapper } from "./SettingModal.styled";
-import { useModal } from "../ModalContext/ModalContextProvider";
+import { useModal } from "../../context/ModalContext/ModalContextProvider";
 import Notiflix from "notiflix";
 import { selectAvatar } from "../../redux/selectors";
 

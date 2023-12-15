@@ -1,9 +1,12 @@
 import { months } from "../../constants/months";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
 import { ReactComponent as CloseModalSvg } from "../../images/svg/x.svg";
 import { DayStatsContainer, UpperElem } from "./DaysGeneralStats.styled";
 
 const DaysGeneralStats = ({ currentDay, close }) => {
+  const ref = useOutsideClick(close);
+
   const { date, dailyNorma, percent, quantity } = currentDay;
   const info = {
     dailyNorma: dailyNorma ?? 0,
@@ -13,7 +16,7 @@ const DaysGeneralStats = ({ currentDay, close }) => {
   const norma = info.dailyNorma / 1000;
 
   return (
-    <DayStatsContainer $dayNumber={date.day}>
+    <DayStatsContainer ref={ref} $dayNumber={date.day}>
       <UpperElem>
         <p>
           <span>{date?.day}, </span>

@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 
 import { registerThunk } from "../../redux/User/UserThunk";
 import { setStateToken } from "../../redux/User/UserSlice";
-import { usePasswordToggle } from "../../Helpers/usePasswordToggle";
+import { usePasswordToggle } from "../../hooks/usePasswordToggle";
 
 import { TogglePasswordIcon } from "../TogglePasswordVisibility/TogglePasswordVisibility";
 import GoogleBtn from "../shared/GoogleBtn/GoogleBtn";

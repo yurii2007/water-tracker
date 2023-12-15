@@ -2,10 +2,11 @@ import { useDispatch } from "react-redux";
 import { Notify } from "notiflix";
 
 import { updateWaterRateThunk } from "../../redux/User/UserThunk";
-import { useModal } from "../ModalContext/ModalContextProvider";
+import { useModal } from "../../context/ModalContext/ModalContextProvider"; 
 
 import { FormStyles } from "./DailyNormaModal.styled";
 import { BtnSave } from "../SettingModal/SettingModal.styled";
+import { updateDailyNorma } from "../../redux/Water/WaterSlice";
 
 const DailyNormaForm = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const DailyNormaForm = () => {
     dispatch(updateWaterRateThunk(newWaterRate))
       .unwrap()
       .then(() => {
+        dispatch(updateDailyNorma(newWaterRate));
         Notify.success("Daily norma was successfully updated");
         toggleModal();
       })

@@ -7,6 +7,7 @@ import {
   getMonthInfoThunk,
   getTodayThunk,
 } from "./WaterThunk";
+import { updateDayInfo } from "../../utils/updateDayInfo";
 
 const initialState = {
   monthInfo: [],
@@ -31,7 +32,14 @@ const rejectedCaseDelete = (state, { payload }) => {
 const waterSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    updateDailyNorma: (state, { payload }) => {
+      state.monthInfo = state.monthInfo.map((day) => ({
+        ...day,
+        dailyNorma: payload,
+      }));
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getMonthInfoThunk.pending, pendingCase)
@@ -42,7 +50,7 @@ const waterSlice = createSlice({
       .addCase(getMonthInfoThunk.rejected, rejectedCase)
       .addCase(getTodayThunk.pending, pendingCase)
       .addCase(getTodayThunk.fulfilled, (state, { payload }) => {
-        // console.log(payload);
+        state.monthInfo = updateDayInfo(state.monthInfo, payload);
         state.today.dailyWaterList = payload.dailyWaterList;
         state.today.percent = payload.percent ?? 0;
         state.isLoading = false;
@@ -78,4 +86,5 @@ const waterSlice = createSlice({
   },
 });
 
+export const { updateDailyNorma } = waterSlice.actions;
 export const waterReducer = waterSlice.reducer;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useModal } from "../ModalContext/ModalContextProvider";
+import { useModal } from "../../context/ModalContext/ModalContextProvider"; 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Notiflix from "notiflix";
@@ -40,7 +40,9 @@ const EditWaterModal = ({ data }) => {
         setCounterValue((state) => state + 50);
         break;
       case "input":
-        setCounterValue(Number(evt.target.value));
+        const value = Number(evt.target.value);
+        const inputValue = Math.min(Math.max(value), 5000);
+        setCounterValue(inputValue);
         break;
       default:
     }
@@ -50,6 +52,10 @@ const EditWaterModal = ({ data }) => {
     evt.preventDefault();
     if (counterValue === 0) {
       Notiflix.Notify.warning("Please enter a non-zero value for water.");
+      return;
+    }
+    if (counterValue < 0 || counterValue === "") {
+      Notiflix.Notify.warning("Please enter a valid positive value for water.");
       return;
     }
     const newWaterParams = { amount: counterValue, time: startDate };
@@ -72,9 +78,9 @@ const EditWaterModal = ({ data }) => {
       <ValueText>Correct entered data:</ValueText>
       <WaterEditContainer>
         <SvgGlass />
-        <EnteredText>{counterValue} ml</EnteredText>
+        <EnteredText>{data.amount} ml</EnteredText>
         <TimeValue>
-          {startDate.toLocaleTimeString([], {
+          {new Date(data.time).toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",
             hour12: false,
@@ -122,7 +128,17 @@ const EditWaterModal = ({ data }) => {
             name="input"
             type="number"
             value={counterValue}
-            onChange={handleUpdate}
+            onChange={(evt) => {
+              if (
+                (evt.nativeEvent.inputType === "deleteContentBackward" ||
+                  evt.nativeEvent.inputType === "deleteContentForward") &&
+                counterValue === 0
+              ) {
+                setCounterValue("");
+              } else {
+                handleUpdate(evt);
+              }
+            }}
             min="1"
             max="5000"
           />
