@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { forgotPasswordThunk } from "../../redux/User/UserThunk";
 import { HaveAccount, Linkings } from "./ForgotPassword.styled";
 import { useNavigate } from "react-router-dom";
+import { MainContainer } from "../../pages/HomePage/HomePage.styled";
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -45,41 +46,43 @@ const ForgotPasswordForm = () => {
       });
   };
   return (
-    <FormContainer>
-      <Title>Forgot Password ?</Title>
-      <p>We will send you an email </p>
-      <Formik
-        initialValues={{
-          email: "",
-        }}
-        onSubmit={handleSubmit}
-        validationSchema={validationSchema}
-      >
-        {({ errors, touched }) => {
-          return (
-            <Form>
-              <Label $error={errors.email && touched.email}>
-                Enter your email
-                <Field
-                  $error={errors.email && touched.email}
-                  autoComplete="off"
-                  name="email"
-                  type="email"
-                  placeholder="E-mail"
-                />
-                <StyledError name="email" component="span" />
-              </Label>
+    <MainContainer>
+      <FormContainer>
+        <Title>Forgot Password ?</Title>
+        <p>We will send you an email </p>
+        <Formik
+          initialValues={{
+            email: "",
+          }}
+          onSubmit={handleSubmit}
+          validationSchema={validationSchema}
+        >
+          {({ errors, touched }) => {
+            return (
+              <Form>
+                <Label $error={errors.email && touched.email}>
+                  Enter your email
+                  <Field
+                    $error={errors.email && touched.email}
+                    autoComplete="off"
+                    name="email"
+                    type="email"
+                    placeholder="E-mail"
+                  />
+                  <StyledError name="email" component="span" />
+                </Label>
 
-              <BtnSign type="submit">Send</BtnSign>
-            </Form>
-          );
-        }}
-      </Formik>
-      <HaveAccount>
-        <p>Do you already have an account?</p>
-        <Linkings to="/signin">Sign in</Linkings>
-      </HaveAccount>
-    </FormContainer>
+                <BtnSign type="submit">Send</BtnSign>
+              </Form>
+            );
+          }}
+        </Formik>
+        <HaveAccount>
+          <p>Do you already have an account?</p>
+          <Linkings to="/signin">Sign in</Linkings>
+        </HaveAccount>
+      </FormContainer>
+    </MainContainer>
   );
 };
 

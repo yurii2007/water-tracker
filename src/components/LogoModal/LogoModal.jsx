@@ -20,7 +20,9 @@ export const LogoModal = () => {
         <Button
           type="button"
           onClick={() =>
-            toggleModal(<SettingModal size={"big"} title={"Setting"} />)
+            toggleModal(
+              <SettingModal size={"big"} title={"Setting"} isSettingModal />
+            )
           }
         >
           <Setting />

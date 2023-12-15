@@ -18,6 +18,7 @@ import {
   StyledError,
   Title,
 } from "../SignUpForm/SignUpForm.styled";
+import { MainContainer } from "../../pages/HomePage/HomePage.styled";
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -49,63 +50,67 @@ const SignInForm = () => {
       .unwrap()
       .then(() => {
         resetForm();
-        Notify.success("Welcome back! You're now logged in.", { timeout: 1000 });
+        Notify.success("Welcome back! You're now logged in.", {
+          timeout: 1000,
+        });
       })
       .catch((error) => {
         Notify.failure(error, { timeout: 1000 });
       });
   };
   return (
-    <FormContainer>
-      <Title>Sign In</Title>
-      <GoogleBtn />
-      <Formik
-        initialValues={{
-          email: "",
-          password: "",
-        }}
-        onSubmit={handleSubmit}
-        validationSchema={validationSchema}
-      >
-        {({ errors, touched }) => {
-          return (
-            <Form>
-              <Label $error={errors.email && touched.email}>
-                Enter your email
-                <Field
-                  $error={errors.email && touched.email}
-                  autoComplete="off"
-                  name="email"
-                  type="email"
-                  placeholder="E-mail"
-                />
-                <StyledError name="email" component="span" />
-              </Label>
-              <Label $error={errors.password && touched.password}>
-                Enter your password
-                <Field
-                  $error={errors.password && touched.password}
-                  autoComplete="off"
-                  name="password"
-                  type={showPasswords.password1 ? "text" : "password"}
-                  placeholder="Password"
-                />
-                <TogglePasswordIcon
-                  showPassword={showPasswords.password1}
-                  onToggle={() => togglePasswordVisibility("password1")}
-                />
-                <StyledError name="password" component="span" />
-              </Label>
-              <BtnSign type="submit">Sign In</BtnSign>
-            </Form>
-          );
-        }}
-      </Formik>
-      <ForgotLink>
-        <Linking to="/forgot-password">Forgot password?</Linking>
-        <Linking to="/signup">Sign Up</Linking>
-      </ForgotLink>
-    </FormContainer>
+    <MainContainer>
+      <FormContainer>
+        <Title>Sign In</Title>
+        <GoogleBtn />
+        <Formik
+          initialValues={{
+            email: "",
+            password: "",
+          }}
+          onSubmit={handleSubmit}
+          validationSchema={validationSchema}
+        >
+          {({ errors, touched }) => {
+            return (
+              <Form>
+                <Label $error={errors.email && touched.email}>
+                  Enter your email
+                  <Field
+                    $error={errors.email && touched.email}
+                    autoComplete="off"
+                    name="email"
+                    type="email"
+                    placeholder="E-mail"
+                  />
+                  <StyledError name="email" component="span" />
+                </Label>
+                <Label $error={errors.password && touched.password}>
+                  Enter your password
+                  <Field
+                    $error={errors.password && touched.password}
+                    autoComplete="off"
+                    name="password"
+                    type={showPasswords.password1 ? "text" : "password"}
+                    placeholder="Password"
+                  />
+                  <TogglePasswordIcon
+                    showPassword={showPasswords.password1}
+                    onToggle={() => togglePasswordVisibility("password1")}
+                  />
+                  <StyledError name="password" component="span" />
+                </Label>
+                <BtnSign type="submit">Sign In</BtnSign>
+              </Form>
+            );
+          }}
+        </Formik>
+        <ForgotLink>
+          <Linking to="/forgot-password">Forgot password?</Linking>
+          <Linking to="/signup">Sign Up</Linking>
+        </ForgotLink>
+      </FormContainer>
+    </MainContainer>
   );
 };
 

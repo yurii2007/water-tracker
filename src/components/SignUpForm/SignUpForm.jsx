@@ -19,6 +19,7 @@ import {
   StyledError,
   Title,
 } from "./SignUpForm.styled";
+import { MainContainer } from "../../pages/HomePage/HomePage.styled";
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -72,67 +73,69 @@ const SignUpForm = () => {
   };
 
   return (
-    <FormContainer>
-      <Title>Sign Up</Title>
-      <GoogleBtn />
-      <Formik
-        initialValues={{
-          email: "",
-          password: "",
-          repeatPassword: "",
-        }}
-        onSubmit={handleSubmit}
-        validationSchema={validationSchema}
-      >
-        {({ errors, touched }) => {
-          return (
-            <Form>
-              <Label $error={errors.email && touched.email}>
-                Enter your email
-                <Field
-                  autoComplete="off"
-                  name="email"
-                  type="email"
-                  placeholder="E-mail"
-                />
-                <StyledError name="email" component="span" />
-              </Label>
-              <Label $error={errors.password && touched.password}>
-                Enter your password
-                <Field
-                  autoComplete="off"
-                  name="password"
-                  type={showPasswords.password1 ? "text" : "password"}
-                  placeholder="Password"
-                />
-                <TogglePasswordIcon
-                  showPassword={showPasswords.password1}
-                  onToggle={() => togglePasswordVisibility("password1")}
-                />
-                <StyledError name="password" component="span" />
-              </Label>
-              <Label $error={errors.repeatPassword && touched.repeatPassword}>
-                Repeat password
-                <Field
-                  $error={errors.repeatPassword && touched.repeatPassword}
-                  autoComplete="off"
-                  type={showPasswords.password2 ? "text" : "password"}
-                  name="repeatPassword"
-                  placeholder="Repeat password"
-                />
-                <TogglePasswordIcon
-                  showPassword={showPasswords.password2}
-                  onToggle={() => togglePasswordVisibility("password2")}
-                />
-                <StyledError name="repeatPassword" component="span" />
-              </Label>
-              <BtnSign type="submit">Sign Up</BtnSign>
-            </Form>
-          );
-        }}
-      </Formik>
-      <Linking to="/signin">Sign in</Linking>
-    </FormContainer>
+    <MainContainer>
+      <FormContainer>
+        <Title>Sign Up</Title>
+        <GoogleBtn />
+        <Formik
+          initialValues={{
+            email: "",
+            password: "",
+            repeatPassword: "",
+          }}
+          onSubmit={handleSubmit}
+          validationSchema={validationSchema}
+        >
+          {({ errors, touched }) => {
+            return (
+              <Form>
+                <Label $error={errors.email && touched.email}>
+                  Enter your email
+                  <Field
+                    autoComplete="off"
+                    name="email"
+                    type="email"
+                    placeholder="E-mail"
+                  />
+                  <StyledError name="email" component="span" />
+                </Label>
+                <Label $error={errors.password && touched.password}>
+                  Enter your password
+                  <Field
+                    autoComplete="off"
+                    name="password"
+                    type={showPasswords.password1 ? "text" : "password"}
+                    placeholder="Password"
+                  />
+                  <TogglePasswordIcon
+                    showPassword={showPasswords.password1}
+                    onToggle={() => togglePasswordVisibility("password1")}
+                  />
+                  <StyledError name="password" component="span" />
+                </Label>
+                <Label $error={errors.repeatPassword && touched.repeatPassword}>
+                  Repeat password
+                  <Field
+                    $error={errors.repeatPassword && touched.repeatPassword}
+                    autoComplete="off"
+                    type={showPasswords.password2 ? "text" : "password"}
+                    name="repeatPassword"
+                    placeholder="Repeat password"
+                  />
+                  <TogglePasswordIcon
+                    showPassword={showPasswords.password2}
+                    onToggle={() => togglePasswordVisibility("password2")}
+                  />
+                  <StyledError name="repeatPassword" component="span" />
+                </Label>
+                <BtnSign type="submit">Sign Up</BtnSign>
+              </Form>
+            );
+          }}
+        </Formik>
+        <Linking to="/signin">Sign in</Linking>
+      </FormContainer>
+    </MainContainer>
   );
 };
 
