@@ -22,14 +22,13 @@ export const Title = styled.h2`
 export const FormContainer = styled.div`
   margin: 0 auto;
   max-width: 280px;
-  padding-top: 24px;
+
   @media screen and (min-width: 768px) {
     max-width: 336px;
     margin: 0 auto 0 32px;
-    padding-top: 40px;
   }
   @media screen and (min-width: 1440px) {
-    padding-top: 140px;
+    padding-top: 120px;
     max-width: 384px;
     margin: 0 198px 0 auto;
   }

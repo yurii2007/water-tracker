@@ -39,6 +39,9 @@ const Overlay = ({ children }) => {
   return createPortal(
     <OverlayStyle
       $isLogoModal={children.props.isLogoModal}
+      $isSettingModal={children.props.isSettingModal}
+      $isDailyModal={children.props.isDailyModal}
+      $isEditModal={children.props.isEditModal}
       onClick={backdropClick}
     >
       {children.props.isLogoModal ? (

@@ -5,20 +5,23 @@ import {
   MainWrapperPage,
   SectionWrapperDailyNorma,
   SectionWrapperTodayListCalendar,
+  MainContainer,
 } from "./HomePage.styled";
 import TodayListModal from "../../components/TodayListModal/TodayListModal";
 
 const HomePage = () => {
   return (
     <MainWrapperPage>
-      <SectionWrapperDailyNorma>
-        <DailyNorma />
-        <WaterRatioPanel />
-      </SectionWrapperDailyNorma>
-      <SectionWrapperTodayListCalendar>
-        <TodayListModal />
-        <MonthStatsTable />
-      </SectionWrapperTodayListCalendar>
+      <MainContainer>
+        <SectionWrapperDailyNorma>
+          <DailyNorma />
+          <WaterRatioPanel />
+        </SectionWrapperDailyNorma>
+        <SectionWrapperTodayListCalendar>
+          <TodayListModal />
+          <MonthStatsTable />
+        </SectionWrapperTodayListCalendar>
+      </MainContainer>
     </MainWrapperPage>
   );
 };

@@ -40,3 +40,11 @@ export const DivTitleWrapper = styled.div`
     line-height: 1.23;
   }
 `;
+
+export const Title = styled.h2`
+  max-width: 200px;
+
+  @media (min-width: 768px) {
+    min-width: 400px;
+  }
+`;

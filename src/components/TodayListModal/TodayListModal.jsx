@@ -53,6 +53,7 @@ const TodayListModal = () => {
         title="Edit the entered amount of water"
         data={data}
         id={id}
+        isEditModal
       />
     );
   };
